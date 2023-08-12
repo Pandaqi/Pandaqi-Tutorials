@@ -1,0 +1,120 @@
+@use "globals" as g;
+
+
+.quiz-container {
+	font-family: g.$header-font;
+
+    .quiz-question, .quiz-next-question {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 0.5em;
+    }
+
+    img {  
+        background: rgba(255,255,255,0.67);
+        border-radius: 0.25em;
+    }
+
+    .quiz-question {
+        span {
+            font-weight: 900;
+            color: #143553;
+
+            img {
+                width: auto;
+                max-height: 3.0rem;
+                max-width: 100%;
+                margin-bottom: -0.75rem;
+            }
+        }
+
+        span.image-container {
+            display: block;
+            margin: 0.5rem;
+            img {
+                max-height: 15rem;
+            }
+        }
+        
+    }
+
+    button.masked {
+        font-family: g.$header-font;
+        background-color: #267a6e;
+        color: #e7fffd;
+    }
+
+    .quiz-answers {
+        @include g.flex-center();
+        gap: 1.0em;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 1.5em;
+
+        @media all and (max-width: g.$breakpoint-big) {
+            flex-direction: column;
+            justify-content: left;
+        }
+
+        /*
+        img {
+            max-width: 250px;
+            max-height: 175px;
+        }
+        */
+
+        .quiz-answer {
+            @include g.flex-center();
+            gap: 0.5em;
+            width: 100%;
+            max-width: min(17.5rem, 350px);
+
+            &.full-width {
+                max-width: 100% !important;
+            }
+
+            @media all and (max-width: g.$breakpoint-big) {
+                width: 100%;
+                max-width: 100% !important;
+                justify-content: left;
+            }
+
+            .quiz-button-container {
+                @include g.flex-center();
+
+                font-size: 2.0rem;
+                padding: 1.0rem;
+
+                border: 6px solid #e5fbb7;
+                border-radius: 50%;
+                background: linear-gradient(to right, #fbcf77 50%, rgba(255,255,255,0.15) 50%);
+                background-size: 200% 100%;
+                background-position: right bottom;
+                transition: background-position 0.15s linear, border-color 0.15s linear, transform 0.15s;
+        
+                &:hover {
+                    border-color: #fb77a3;
+                    transform: scale(1.2, 1.2);
+                    cursor: pointer;
+                    background-position: left bottom;
+                }
+
+                .quiz-button {
+                    width: 2.0rem;
+                    height: 2.0rem;
+                    @include g.flex-center();
+                }
+            }
+        
+            .quiz-answer-text {
+                width: 100%;
+
+                img {
+                    max-height: 10rem;
+                    width: auto;
+                }
+            }
+        }
+    }
+}

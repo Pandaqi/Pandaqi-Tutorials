@@ -1,0 +1,12 @@
+{{ $url := .RelPermalink }}
+{{ $content := .Title }}
+{{ $icon_url := printf "%sicon.svg" $url }}
+
+<div class="link-with-icon">
+    <span class="icon">
+        <img src="{{ $icon_url }}" />
+    </span>
+    <a href="{{ $url }}">
+        {{ $content }}
+    </a>
+</div>

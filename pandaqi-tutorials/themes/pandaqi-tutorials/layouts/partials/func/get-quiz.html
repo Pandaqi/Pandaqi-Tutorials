@@ -1,0 +1,20 @@
+
+<section class="quiz-container">
+    <div class="quiz-question" id="quiz-question">
+        ... question text ...
+    </div>
+    <div class="quiz-answers" id="quiz-answers">
+        ... question answers ...
+    </div>
+    <div class="quiz-next-question" id="quiz-next-question">
+        ... question continue buttons ...
+    </div>
+</section>
+
+<script>
+    window.QUIZ_DATA = [
+        {{- range $k, $v := .Params.quiz -}}
+            {{- $v -}},
+        {{- end -}}
+    ]
+</script>

@@ -1,0 +1,13 @@
+{{ $style := or .style "" }}
+{{ $secondary_style := or .secondaryStyle "" }}
+
+<div class="block-container style-{{ $style }} secondary-style-{{ $secondary_style }}">
+    <div class="left-pad"></div>
+    <div class="left-block">
+        {{ partial "toc.html" .context }}
+    </div>
+    <div class="right-block">
+        {{ .content | .context.Page.RenderString }}
+    </div>
+    <div class="right-pad"></div>
+</div>

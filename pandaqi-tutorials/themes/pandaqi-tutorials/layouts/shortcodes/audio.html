@@ -1,0 +1,9 @@
+{{- $src := or (.Get "src") "" }}
+{{- $full_url := printf "%s%s" .Page.RelPermalink $src -}}
+{{- $class := or (.Get "class") "" }}
+<figure class="no-hover {{ $class | safeCSS }}">
+    <audio controls preload="{{ .Get "preload" | default "metadata" }}">
+        {{ with $full_url }}<source src="{{ . }}" type="audio/ogg">{{ end }}
+    </audio>
+    {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

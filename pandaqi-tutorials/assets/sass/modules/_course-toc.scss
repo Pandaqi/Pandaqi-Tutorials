@@ -1,0 +1,101 @@
+@use "globals" as g;
+
+$counter-size: 2.0rem;
+$text-color: #53142c;
+$line-color: #bb3b81;
+$line-num-color: #e271af;
+$counter-bg-color: #fff;
+$line-thickness: 6px;
+
+ol.overview {
+	@include g.remove-standard-list-style-inside();
+
+    li {
+        border-radius: 40px;
+        border-bottom: $line-thickness solid coral;
+        border-top: $line-thickness solid coral;
+        margin: 0;
+        margin-top: -1.0 * $line-thickness;
+        font-family: g.$header-font;
+        border-color: $line-color;
+        display: block;
+        position: relative;
+
+        transition: background-color g.$def-trans;
+
+        a {
+            transition: font-size g.$def-trans;
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            padding: 40px;
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+        
+        .counter {
+            @include g.flex-center();
+
+            border: $line-thickness solid $line-color;
+            background-color: $counter-bg-color;
+            border-radius: 50%;
+            width: $counter-size;
+            height: $counter-size;
+            
+            position: absolute;
+            top: 1.0rem;
+            font-size: 1.0rem;
+            font-weight: bold;
+            color: $text-color;
+        }
+
+        &:nth-child(2n-1) {
+
+            text-align: left;
+            border-left: $line-thickness solid $line-num-color;
+            border-right: 50px solid transparent;
+
+            .counter {
+                left: -0.5*$counter-size;
+            }
+        }
+
+        &:nth-child(2n) {
+            text-align: right;
+	        border-right: $line-thickness solid $line-num-color;
+	        border-left: 50px solid transparent;
+
+            .counter {
+                right: -0.5*$counter-size;
+            }
+        }  
+        
+        &:hover {
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+            
+            a {
+                font-size: 1.5rem;
+                font-weight: 900;
+            }
+
+            .counter {
+                color: black;
+            }
+            
+        }
+
+        &:first-child {
+            border-top-style: none;
+            border-top-left-radius: 0px;
+        }
+        
+        &:last-child {
+            border-bottom-style: none;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+    }
+}
+

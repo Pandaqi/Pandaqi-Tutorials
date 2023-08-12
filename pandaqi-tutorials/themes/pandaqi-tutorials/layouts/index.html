@@ -1,0 +1,14 @@
+{{ define "main" }}
+	<main class="padding">
+		<header class="overview-text center-block frontpage-text">
+			<h1>{{ .Title }}</h1>
+			<div>
+				{{ .Content }}
+			</div>
+		</header>
+
+		{{ $pages := (where .Site.Pages ".Params.type" "==" "course") }}
+		
+		{{ partial "summary-container" (dict "context" . "pages" $pages "layoutStyle" "grid" "class" "full-width") }}
+	</main>
+{{ end }}

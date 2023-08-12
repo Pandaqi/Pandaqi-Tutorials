@@ -1,0 +1,217 @@
+<!DOCTYPE>
+<html>
+<head>
+  <title>Live HTML/CSS/JS Editor</title>
+  <script src="jquery-2.1.4.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var editorArr = [];
+
+    /****   HTML ****/
+    var htmlEditor = ace.edit("theHTMLone");
+    var Range = ace.require("ace/range").Range;
+
+    htmlEditor.setTheme("ace/theme/monokai");
+
+    htmlEditor.setFontSize(16);
+    htmlEditor.setShowPrintMargin(false);
+
+    htmlEditor.renderer.setShowGutter(true);
+    htmlEditor.getSession().setMode("ace/mode/html");
+    htmlEditor.getSession().setUseWrapMode(true);
+
+    editorArr['html'] = htmlEditor;
+
+    /****   CSS ****/
+    var cssEditor = ace.edit("theCSSone");
+    var Range = ace.require("ace/range").Range;
+
+    cssEditor.setTheme("ace/theme/monokai");
+
+    cssEditor.setFontSize(16);
+    cssEditor.setShowPrintMargin(false);
+
+    cssEditor.renderer.setShowGutter(true);
+    cssEditor.getSession().setMode("ace/mode/css");
+    cssEditor.getSession().setUseWrapMode(true);
+
+    editorArr['css'] = cssEditor;
+
+    /****   JAVASCRiPT ****/
+    var jsEditor = ace.edit("theJSone");
+    var Range = ace.require("ace/range").Range;
+
+    jsEditor.setTheme("ace/theme/monokai");
+
+    jsEditor.setFontSize(16);
+    jsEditor.setShowPrintMargin(false);
+
+    jsEditor.renderer.setShowGutter(true);
+    jsEditor.getSession().setMode("ace/mode/javascript");
+    jsEditor.getSession().setUseWrapMode(true);
+
+    editorArr['js'] = jsEditor;
+
+    var transferCode = localStorage.getItem("transferCodeBlock");
+
+    var p = $("#preview").contents().find("body");
+
+    p.css("margin","2px");
+
+    editorArr[localStorage.getItem("transferCodeLang")].setValue(transferCode);
+
+    p.html('<span id="HTMLcontainer">' + transferCode + '</span><style type="text/css" id="CSScontainer"></style><script id="JScontainer"><\/script>');
+
+    $("#theHTMLone").on('keyup',function(){
+      p.find("#HTMLcontainer").html(htmlEditor.getValue());
+    });
+
+    $("#theCSSone").on('keyup',function(){
+      p.find("#CSScontainer").html(cssEditor.getValue());
+    });
+
+    var documentIframe = document.getElementById('preview').contentDocument;
+    var jQueryEl = documentIframe.createElement('script');
+    jQueryEl.src = "jquery-2.1.4.min.js";
+    documentIframe.head.appendChild(jQueryEl);
+
+    $("#upjs").on('click',function(){
+
+      documentIframe.getElementById('JScontainer').remove();
+
+      var script = documentIframe.createElement('script');
+      script.id = 'JScontainer';
+      script.innerHTML = jsEditor.getValue();
+
+      documentIframe.body.appendChild(script);
+
+
+      /*p.find("#JScontainer").remove();
+      var theValue = jsEditor.getValue();
+      theValue = theValue.replace("document","document.getElementById('preview').contentWindow.document");
+      var toAppend = "<script id='JScontainer'>" + theValue + "<\/script>";
+      p.append(toAppend);*/
+    });
+
+    Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+        for(var i = this.length - 1; i >= 0; i--) {
+            if(this[i] && this[i].parentElement) {
+                this[i].parentElement.removeChild(this[i]);
+            }
+        }
+    }
+  });
+  </script>
+  <script src="highlighter/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/mode-html.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/mode-css.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/theme-monokai.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/worker-javascript.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/worker-html.js" type="text/javascript" charset="utf-8"></script>
+  <script src="highlighter/worker-css.js" type="text/javascript" charset="utf-8"></script>
+  <style type="text/css">
+  @font-face {
+    font-family: 'Inconsolata';
+    src:url(Fonts/Consolas.ttf);
+  }
+
+  .ace_editor {
+    font-family:"Inconsolata", monospace;
+  }
+  
+  td {
+   color:#AAA;
+   overflow:auto;
+   background-color:#666;
+  }
+  body,html {
+    height:100%;
+    margin:0;
+    padding:0;
+    background-color:#333;
+    font-family:Lato;
+  }
+  pre, iframe {
+    width:100%;
+    height:100%;
+    background-color:white;
+  }
+  td {
+    vertical-align: top;
+  }
+  .aContainer {
+    padding:0;
+    margin:0;
+    position:relative;
+    height:100%;
+  }
+  h2 {
+    position:absolute;
+    right:15px;
+    bottom:0px;
+    z-index:1000;
+  }
+  #upjs {
+    font-family: Lato;
+    font-size:20px;
+    background-color:#333;
+    padding:8px;
+    margin:0px;
+    margin-bottom:-1px;
+    border:none;
+    cursor:pointer;
+    color:white;
+  }
+  #upjs:hover {
+    background-color:#EEE;
+    color:#333;
+  }
+  </style>
+</head>
+<body>
+  <table width="100%" height="100%" cellpadding="10" cellspacing="10">
+   <tbody>
+    <tr>
+     <td rowspan="2" width="40%">
+      <div class="aContainer">
+      <h2>HTML</h2>
+      <pre class="codes" id="theHTMLone" placeholder="Your HTML Code HERE"></pre>
+      </div>
+     </td>
+     <td width="30%" height="33%">
+      <div class="aContainer">
+      <h2>CSS</h2>
+      <pre class="codes" id="theCSSone" placeholder="Your CSS Code HERE"></pre>
+      </div>
+     </td>
+     <td width="30%">
+      <div class="aContainer">
+      <h2>JS / jQuery</h2>
+      <pre class="codes" id="theJSone" placeholder="Your JavaScript Code HERE"></pre>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="2">
+      <div class="aContainer">
+      <h2>Result</h2>
+      <iframe id="preview" src="javascript:;"></iframe>
+      </div>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="3" style="padding:0px;">
+      <div class="aContainer">
+        <span style="margin-top:12px;margin-left:12px;display:inline-block;color:#222;">Live HTML/CSS/JS Editor, Professional Panda &copy;</span>
+        <span style="float:right;"><input id="upjs" type="button" value="Update And Run JS"/></span>
+      </div>
+     </td>
+    </tr>
+   </tbody>
+  </table>
+</body>
+</html>

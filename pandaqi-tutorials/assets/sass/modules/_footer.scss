@@ -1,0 +1,67 @@
+@use "globals" as g;
+
+#gotoBottomBtn {
+    position: fixed;
+    z-index: 1000;
+    right: 1.25rem;
+    top: 0.4rem;
+    cursor: pointer;
+    transition: filter g.$def-trans;
+    border: none;
+
+    @include g.hexagon(3.0em, rgba(0,0,0,0.4));
+
+    &:hover {
+        filter: #{ "invert()" };
+    }
+
+    @media all and (max-width: g.$breakpoint-big)
+    {
+        right: 0.25rem;
+        top: 0.25rem;
+    }
+}
+
+footer {
+    a, button {
+        color: hsl(20, 75%, 22%);
+        background-color: beige;
+        transition: color g.$def-trans, background-color g.$def-trans;
+
+        &:hover {
+            background-color: hsl(20, 75%, 42%);
+            color: beige;
+        }
+    } 
+}
+
+#footer-container {
+	background-color: g.$header-footer-bg-color;
+	border-top: 4px solid g.$header-footer-border-color;
+	width: 100%;
+	display: block;
+    padding-top: 2.0em;
+	padding-bottom: 2.0em;
+
+    .menu {
+        margin-bottom: 2.0em;
+        max-width: g.$def-center-block-width;
+        margin: auto;
+    }
+
+    #footer, .menu {
+        @include g.flex-center();
+        flex-wrap: wrap;
+        padding: 1.0em;
+
+        @include g.remove-standard-list-style();
+    }
+
+    .credits {
+        margin-top: 2.0em;
+
+        font-family: g.$header-font;
+        text-align: center;
+        opacity: 0.8;
+    }
+}

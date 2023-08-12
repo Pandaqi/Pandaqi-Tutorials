@@ -1,0 +1,50 @@
+@use "modules/globals" as g;
+
+.data-transformation-container {
+    background-color: #eeb850;
+    color: #120c01;
+    font-family: "Dosis", sans-serif;
+
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    padding: 0.25em;
+    font-size: 0.75rem;
+
+    .data-transformation {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        gap: 1em;
+        line-height: 0;
+
+        img {
+            width: 100%;
+            max-height: 2em;
+        }
+    }
+
+    @media all and (min-width: g.$def-max-text-width)
+    {
+        position: absolute;
+        left: -0.725 * g.$left-block-width;
+        width: 0.65 * g.$left-block-width;
+        transform: translateY(-100%);
+        padding: 0.5em;
+
+        border-radius: 0;
+        border-top-left-radius: 0.5em;
+        border-bottom-left-radius: 0.5em;
+
+        .data-transformation {
+            gap: 0;
+
+            .icon {
+                margin-right: 0.25em;
+            }
+
+            flex-wrap: wrap;
+            line-height: 100%;
+        }
+    }
+}

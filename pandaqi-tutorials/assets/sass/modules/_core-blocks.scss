@@ -1,0 +1,317 @@
+@use "sass:math";
+@use "modules/globals" as g;
+
+.block-container {
+	display: flex;
+	flex-wrap: nowrap;
+
+	.left-pad {
+		width: 10vw;
+		@media all and (max-width: g.$def-max-width) { display: none; }
+	}
+
+	.right-pad {
+		width: 30vw;
+		@media all and (max-width: g.$def-max-width) { display: none; }
+	}
+
+	.left-block {
+		font-family: g.$header-font;
+
+		width: g.$left-block-width;
+		border-right-width: 0.5rem;
+		border-right-style: solid;
+		padding: 0.5rem;
+		position: relative;
+		text-align: right;
+
+		.metadata {
+			$circle-size: 3.0em;
+			$circle-bg: rgba(0,0,0,0.1);
+			position: relative;
+
+			.course-circle {
+				@include g.flex-center();
+				border-radius: 50%;
+
+				width: $circle-size;
+				height: $circle-size;
+				
+				background-color: $circle-bg;
+				margin-top: g.$def-padding;
+				margin-left: 1.0em;
+
+				img {
+					width: 0.66*$circle-size;
+				}
+			}
+			
+			.course-line {
+				position: absolute;
+				width: 100px;
+				height: 5px;
+				top: 1.5em;
+				background-color: $circle-bg;
+				left: 4.0em;
+			}
+
+			.text {
+				margin-top: 1.0rem;
+			}
+
+			a {
+				@include g.metadata-arrow-link();
+			}
+
+			span {
+				@include g.metadata-arrow();
+			}
+		}
+	
+		.toc {
+			@include g.remove-standard-list-style();
+
+			font-size: 0.75rem;
+			line-height: 150%;
+
+			.label {
+				display: inline-block;
+				margin-top: 1.5rem;
+			}
+
+			a {
+				@include g.metadata-arrow-link();
+			}
+		}
+	
+		@media all and (max-width: g.$breakpoint-big)
+		{
+			display: none;
+		}
+	}
+	
+	.right-block {
+		width: 100%;
+		max-width: g.$def-center-block-width;
+		padding: g.$def-padding;
+		position: relative;
+
+		h1 {
+			margin-top: 0;
+			margin-left: 2.0rem; // making space for the between-block-hex
+
+			@media all and (max-width: g.$breakpoint-big)
+			{
+				margin-left: 0;
+			}
+		}
+
+		.side-note {
+			span {
+				@include g.metadata-arrow();
+			}
+		}
+
+		.example, .remark, blockquote {
+
+			.label {
+				float: right;
+				margin-left: 1.0rem;
+				margin-bottom: 0.5rem;
+				opacity: 0.5;
+			}
+
+			.label + p, p:first-child {
+				display: inline;
+			}
+
+			p {
+				margin-bottom: 0;
+			}
+
+			ul {
+				margin: 0;
+			}
+		}
+
+		.example-arrow, .remark-arrow, blockquote {
+			position: relative;
+			margin-top: 0.5*g.$def-padding;
+		}
+
+		.example {	
+			background-color: g.$example-bg-color;
+		}
+
+		.example-arrow {
+			.arrow-right {
+				@include g.arrow-right(g.$example-bg-color);
+			}
+		}
+
+		blockquote {
+			background-color: g.$blockquote-bg-color;
+
+			strong {
+				color: #2a4f8e;
+			}
+		}
+
+		blockquote {
+			.arrow-right {
+				@include g.arrow-right(g.$blockquote-bg-color);
+			}
+		}
+
+		.remark {
+			color: #555a17;
+			background-color: g.$remark-bg-color;
+			font-family: g.$script-font;
+			font-size: 1.1rem;
+
+			strong {
+				color: #555a17;
+			}
+		}
+
+		.remark-arrow {
+			.arrow-right {
+				@include g.arrow-right(g.$remark-bg-color);
+			}
+		}
+	}
+}
+
+// To create drop caps only when needed, therefore a very specific rule
+.article {
+	#{ g.$drop-cap-selector } {
+		@include g.drop-cap();
+	}
+
+	.right-block {
+		margin-right: 0;
+
+		p {
+			@include g.hyphenate-fully();
+		}
+
+		@media all and (min-width:g.$breakpoint-huge) {
+			margin-right: (g.$def-max-width - g.$def-max-text-width);
+		}
+	}
+}
+
+.block-separator {
+	height: 1.0rem;
+
+	.right-block {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
+
+.prerequisite, .category-backlink {
+	color: #99a238;
+	font-style: italic;
+
+	a {
+		text-decoration-color: #99a238; 
+	}
+}
+
+.support-container {
+	display: flex;
+	justify-content: space-evenly;
+	gap: 1.0em;
+
+	p {
+		text-align: left !important;
+	}
+
+	.column {
+		max-width: 350px;
+	}
+	
+	.mobile-heading {
+		display: none;
+
+		font-family: g.$header-font;
+		font-size: 2.0rem;
+		margin: 0.25rem;
+		margin-top: 1.5rem;
+		font-weight: 900;
+		text-align: center;
+		line-height: 100%;
+	}
+
+	@media all and (max-width: g.$breakpoint-big)
+	{
+		.mobile-heading {
+			display: block;
+		}
+	}
+
+	@media all and (max-width: g.$breakpoint-medium)
+	{
+		flex-wrap: wrap;
+	}
+	
+	a {
+		background-color: #7b491a;
+		color: #ffdec1;
+		font-family: g.$header-font;
+	}
+
+	@include g.remove-standard-list-style();
+}
+
+#mobile-metadata {
+	display: none;
+
+	@include g.remove-standard-list-style();
+
+	ul {
+		li {
+			margin-right: 0.5em;
+		}
+	}
+	
+
+	@media all and (max-width:g.$breakpoint-big) 
+	{
+		display: block;
+	}
+
+	/* generalize this, but where else would I use this? */
+	.link-with-icon {
+		@include g.flex-center();
+		gap: 0.5em;
+
+		.icon {
+			@include g.hexagon(1.5em, rgba(255,255,255,0.5));
+			@include g.flex-center();
+	
+			img {
+				width: 0.77em;
+			}
+		}
+
+		a {
+			display: inline-block;
+			border-bottom-width: 2px;
+			border-bottom-style: solid;
+	
+			transition: border-color g.$def-trans, color g.$def-trans;
+		}
+	}
+
+	// to counteract padding, make it stretch the full width and compensate
+	padding: 0.5em;
+	margin-left: -1em;
+	margin-right: -2em;
+	padding-left: 1.5em;
+} 
+
+audio {
+	width: 100%;
+}

@@ -1,0 +1,33 @@
+<figure>
+	{{- $rel_url := .src -}}
+	{{- if not (in .src ".") -}}
+		{{- $rel_url = printf "%s.webp" $rel_url -}}
+	{{- end -}}
+	{{- $full_url := printf "content%s%s" .context.Page.RelPermalink $rel_url -}}
+	{{- $pure_alt := .alt -}}
+	{{- $class := or .class "" -}}
+	{{- if $pure_alt -}}
+		<figcaption class="side-note">
+			<span>{{- $pure_alt | safeHTML -}}</span>
+		</figcaption>
+	{{- end -}}
+	<picture>
+		{{- if fileExists $full_url -}}
+			{{- $img := imageConfig $full_url -}}			
+			{{- $alt := or $pure_alt ((replace .src ".webp" "") | humanize) -}}
+
+			<img 
+				src="{{- $rel_url -}}" 
+				loading="lazy" 
+				decoding="async" 
+				alt="{{- $alt | safeHTML -}}"
+				title="{{- $alt | safeHTML -}}"
+				width="{{- $img.Width -}}"
+				height="{{- $img.Height -}}"
+				class="{{- $class -}}"
+			/>
+		{{- else -}}
+			Cannot find image: {{- $full_url -}}
+		{{- end -}}
+	</picture>
+</figure>

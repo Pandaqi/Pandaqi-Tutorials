@@ -1,0 +1,17 @@
+<!-- look at us, our parent, and our parent's parent for a specific style to override -->
+{{ $style := or .Params.style "" }}
+
+{{ if and (le (len $style) 0) .Parent }}
+    {{ $style = or .Parent.Params.style "" }}
+{{ end }}
+
+{{ if and (le (len $style) 0) .Parent.Parent }}
+    {{ $style = or .Parent.Parent.Params.style "" }}
+{{ end }}
+
+<!-- if still none found, simply use our main section (one of the six) -->
+{{ if le (len $style) 0 }}
+    {{ $style = .Section }}
+{{ end }}
+
+{{ return $style }}

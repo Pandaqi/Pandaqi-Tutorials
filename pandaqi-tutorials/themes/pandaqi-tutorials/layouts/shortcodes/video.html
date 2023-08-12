@@ -1,0 +1,12 @@
+{{- $url := .Get "src" -}}
+<figure class="no-hover video">
+    <figcaption class="side-note">
+        <span>
+            {{- .Inner | safeHTML -}}
+        </span>
+    </figcaption>
+    <video width=100% controls>
+        <source src="{{- $url -}}" type="video/webm">
+        Your browser does not support the video tag.  
+    </video>
+</figure>

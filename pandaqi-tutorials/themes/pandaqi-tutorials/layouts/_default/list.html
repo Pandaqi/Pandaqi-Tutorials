@@ -1,0 +1,61 @@
+{{ define "main" }}
+	<main>
+		<header class="overview-text center-block padding">
+			<h1>{{ .Title }}</h1>
+			<div>
+				{{ .Content }}
+			</div>
+
+			{{ with .Params.pre }}
+				<div class="prerequisite">
+					Prerequisites: {{ . | markdownify }}
+				</div>
+			{{ end }}
+
+			{{ if ne .Section (.CurrentSection.Title | urlize) }}
+				{{ $parent := .Parent }}
+				<div class="category-backlink">
+					Category: this course is part of <a href="{{ $parent.RelPermalink }}">{{ $parent.Title }}</a>.
+				</div>
+			{{ else if .Parent.IsHome }}
+				<div class="category-backlink">
+					This is a main category. <a href="{{ .Site.BaseURL }}">Go back to home.</a>
+				</div>
+			{{ end }}
+		</header>
+		
+		{{ $layoutStyle := "grid" }}
+		{{ $pages := slice }}
+		{{ $is_taxonomy := .Data.Plural }}
+		{{ $page_select := (where .Pages "Section" .Section) }}
+
+		{{ $first_page := index $page_select 0 }}
+		{{ if eq $first_page.Params.type "article" }}
+			{{ $layoutStyle = "list" }}
+			{{ $page_select = (where .Pages.ByWeight "Section" .Section) }}
+		{{ end }}
+
+		{{ $is_grid := eq $layoutStyle "grid" }}
+		{{ if $is_taxonomy }}
+			{{ $pages = .Paginator.Pages }}
+		{{ else }}
+			{{ $paginator := .Paginate $page_select }} <!-- global paginate can be overriden by adding a number at the end of this! -->
+			{{ $pages = $paginator.Pages }}
+		{{ end }}
+
+		{{ if eq (len $pages) 0 }}
+			<div class="coming-soon-message">
+				Coming soon!
+			</div>
+		{{ else }}
+			{{ partial "summary-container" (dict "context" . "pages" $pages "layoutStyle" $layoutStyle) }}
+		{{ end }}
+
+		{{ if not $is_grid }}
+			<div>
+				{{ $pagination := partial "func/get-pagination.html" (dict "context" . "type" "list") }}
+				{{ partial "block-general.html" (dict "context" . "leftContent" "There's more!" "rightContent" $pagination "style" "nav") }}
+			</div>
+		{{ end }}
+	</main>
+{{ end }}

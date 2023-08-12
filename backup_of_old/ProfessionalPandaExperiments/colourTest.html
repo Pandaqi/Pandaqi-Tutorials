@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>COLOUR PANTONE</title>
+    <style type="text/css">
+      div {
+        width:33px;
+        height:33px;
+        display:inline-block;
+      }
+      section {
+        display:table-cell;
+        vertical-align: top;
+        padding:4px;
+      }
+
+      #displayColours {
+        width:45%;
+      }
+
+      #displayColours .selected {
+        animation:popUp 0.3s linear;
+      }
+
+      @keyframes popUp {
+        50% { transform:scale(2.3);}
+        100% { transform:scale(2);}
+      }
+
+      #displayColours div {
+        z-index:0;
+      }
+      div:hover, .selected {
+        transform:scale(2);
+        box-shadow:0px 0px 5px #333;
+        z-index:1000;
+      }
+      .selected {
+        border-color:#333 !important;
+        box-shadow:0px 0px 10px #eee !important;
+        z-index:500;
+      }
+      #displayStuff div {
+        position:relative;
+      }
+      #displayStuff div .moreInfo {
+        display:none;
+        position:absolute;
+        font-size:13px;
+      }
+      #displayStuff div:hover .moreInfo {
+        display:inline-block;
+        left:20px;
+      }
+      #displayStuff {
+        overflow:visible;
+      }
+      body {
+        background-color:#0a1c30;
+        display:table;
+        font-family:Lato;
+      }
+      h1 {
+        font-family:Rockwell;
+        font-size:64px;
+        margin-top:0px;
+        margin-bottom:5px;
+        color:#5f6f85;
+        text-align: center;
+      }
+      hr {
+        margin-bottom:20px;
+        margin-top:20px;
+        background-color:#ccc;
+        border:1px solid #ccc;
+      }
+    </style>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+    var theColours = [];
+    $(document).ready(function() {
+
+      var totalNumbers = $("#displayColours div").length-1;
+      var randNumbers = []; 
+      for(var i=0;i<5;i++) {
+        randNumbers.push(Math.round(Math.random()*totalNumbers));      
+      }
+
+      var counter = 0;
+      $("#displayColours div").each(function() {
+        if(randNumbers.indexOf(counter) > -1) {
+          theColours.push($(this).attr('data-color'));
+        }
+        counter++;
+      });
+
+      for(var i=0;i<5;i++) {
+        var c = theColours[i];
+        var generatedInside = generateTheData(c);
+        $("#displayStuff").append('<span style="display:table-cell;text-align:center;"><div style="background-color:' + c + ';width:100px;height:100px;padding:20px;border:4px solid #ccc;text-align:center;" id="myIDis' + i + '">' + generatedInside + '</div></span>');
+      }
+
+      var curID = '';
+      var corSmallSquare = '';
+
+      $("#displayStuff span div").click(function() {
+        /**REMOVE PREVIOUS***/
+        if(curID != '' || curID == $(this).attr('id')) {
+          $("#"+curID).removeClass('selected');
+          $("div[data-color=" + corSmallSquare + "]").removeClass("selected");
+        } 
+        /***SET NEW***/
+        if(curID != $(this).attr('id')) {
+          curID = $(this).attr('id');
+          corSmallSquare = rgb2hex($(this).css('background-color'));
+          $("div[data-color=" + corSmallSquare + "]").addClass('selected');
+          $(this).addClass('selected');          
+        } else {
+          curID = '';
+        }
+      });
+
+      $("#displayColours div").click(function() {
+        if(curID == '') {
+          curID = 'myIDis0';
+        }
+        if(corSmallSquare != '') {
+          $("div[data-color=" + corSmallSquare + "]").removeClass("selected");
+        }
+        var theColourNow = rgb2hex($("#"+curID).css('background-color'));
+        var chosenColour = $(this).attr('data-color');
+        console.log(theColourNow);
+        var index = theColours.indexOf(theColourNow);
+        console.log(index);
+        theColours[index] = chosenColour;
+        var generatedInside = generateTheData(chosenColour);
+        $("#"+curID).css('background-color',chosenColour);
+        $("#"+curID).html(generatedInside);
+        $("#"+curID).removeClass("selected");
+        curID = '';
+        updateTest();
+      });
+
+      updateTest();
+
+    });
+
+    function rgb2hex(rgb) {
+     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
+
+    function hex(x) {
+      var hexDigits = new Array
+        ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+      return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+   }
+
+    function updateTest() {
+      $("#testBG").css('background-color',theColours[0]);
+      $("#testH").css('color',theColours[1]);
+      $("#testP").css('color',theColours[2]);
+      $("#testA").css('color',theColours[3]);
+      $("#testS").css('color',theColours[4]);
+    }
+
+    function generateTheData(c) {
+      var total = 0;
+      var rgb = [0,0,0];
+      for(var j=1;j<c.length;j++) {
+        if(j == 1) {
+          rgb[0] += convertHexToNum(c[j])*16;
+          total += convertHexToNum(c[j])*16;
+        } else if(j == 2) {
+          rgb[0] += convertHexToNum(c[j]);
+          total += convertHexToNum(c[j]);
+        } else if(j == 3) {
+          rgb[1] += convertHexToNum(c[j])*16;
+          total += convertHexToNum(c[j])*16;
+        } else if(j == 4) {
+          rgb[1] += convertHexToNum(c[j]);
+          total += convertHexToNum(c[j]);
+        } else if(j == 5) {
+          rgb[2] += convertHexToNum(c[j])*16;
+          total += convertHexToNum(c[j])*16;
+        } else if(j == 6) {
+          rgb[2] += convertHexToNum(c[j]);
+          total += convertHexToNum(c[j]);
+        }
+      }
+      var textColour = '#EEE';
+      if(total > 357) {
+        textColour = '#333';
+      }
+      return '<span style="color:' + textColour + ';font-size:24px;line-height:100px;">' + c + '</span><br/><span class="moreInfo" style="color:' + textColour + '">RGB(' + rgb.join(",") + ')</span>';
+    }
+
+    function convertHexToNum(a) {
+      var theCur = typeof a == 'string' ? a.toUpperCase() : a;
+      if(theCur == 'A') {
+        return 10;
+      } else if(theCur == 'B') {
+        return 11;
+      } else if(theCur == 'C') {
+        return 12;
+      } else if(theCur == 'D') {
+        return 13;
+      } else if(theCur == 'E') {
+        return 14;
+      } else if(theCur == 'F') {
+        return 15;
+      } else {
+        return parseInt(a);
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <section id="displayColours">
+          <div data-color="#f4ed7c" style="background-color:#f4ed7c"></div>
+          <div data-color="#f4ed47" style="background-color:#f4ed47"></div>
+          <div data-color="#f9e814" style="background-color:#f9e814"></div>
+          <div data-color="#c6ad0f" style="background-color:#c6ad0f"></div>
+          <div data-color="#ad9b0c" style="background-color:#ad9b0c"></div>
+          <div data-color="#82750f" style="background-color:#82750f"></div>
+          <div data-color="#f7e859" style="background-color:#f7e859"></div>
+          <div data-color="#f9e526" style="background-color:#f9e526"></div>
+          <div data-color="#f9dd16" style="background-color:#f9dd16"></div>
+          <div data-color="#f9d616" style="background-color:#f9d616"></div>
+          <div data-color="#d8b511" style="background-color:#d8b511"></div>
+          <div data-color="#aa930a" style="background-color:#aa930a"></div>
+          <div data-color="#99840a" style="background-color:#99840a"></div>
+          <div data-color="#f9e55b" style="background-color:#f9e55b"></div>
+          <div data-color="#f9e24c" style="background-color:#f9e24c"></div>
+          <div data-color="#f9e04c" style="background-color:#f9e04c"></div>
+          <div data-color="#fcd116" style="background-color:#fcd116"></div>
+          <div data-color="#f7b50c" style="background-color:#f7b50c"></div>
+          <div data-color="#c6a00c" style="background-color:#c6a00c"></div>
+          <div data-color="#aa8e0a" style="background-color:#aa8e0a"></div>
+          <div data-color="#897719" style="background-color:#897719"></div>
+          <div data-color="#f9e27f" style="background-color:#f9e27f"></div>
+          <div data-color="#f7e8aa" style="background-color:#f7e8aa"></div>
+          <div data-color="#f9e070" style="background-color:#f9e070"></div>
+          <div data-color="#f9e08c" style="background-color:#f9e08c"></div>
+          <div data-color="#fcd856" style="background-color:#fcd856"></div>
+          <div data-color="#ffcc49" style="background-color:#ffcc49"></div>
+          <div data-color="#ffc61e" style="background-color:#ffc61e"></div>
+          <div data-color="#fcb514" style="background-color:#fcb514"></div>
+          <div data-color="#e0aa0f" style="background-color:#e0aa0f"></div>
+          <div data-color="#bf910c" style="background-color:#bf910c"></div>
+          <div data-color="#b58c0a" style="background-color:#b58c0a"></div>
+          <div data-color="#a37f14" style="background-color:#a37f14"></div>
+          <div data-color="#a38205" style="background-color:#a38205"></div>
+          <div data-color="#7c6316" style="background-color:#7c6316"></div>
+          <div data-color="#f4e287" style="background-color:#f4e287"></div>
+          <div data-color="#f4db60" style="background-color:#f4db60"></div>
+          <div data-color="#f2d13d" style="background-color:#f2d13d"></div>
+          <div data-color="#eaaf0f" style="background-color:#eaaf0f"></div>
+          <div data-color="#e29100" style="background-color:#e29100"></div>
+          <div data-color="#c6930a" style="background-color:#c6930a"></div>
+          <div data-color="#9e7c0a" style="background-color:#9e7c0a"></div>
+          <div data-color="#705b0a" style="background-color:#705b0a"></div>
+          <div data-color="#ffd87f" style="background-color:#ffd87f"></div>
+          <div data-color="#ffd691" style="background-color:#ffd691"></div>
+          <div data-color="#fcc963" style="background-color:#fcc963"></div>
+          <div data-color="#fcce87" style="background-color:#fcce87"></div>
+          <div data-color="#fcbf49" style="background-color:#fcbf49"></div>
+          <div data-color="#fcba5e" style="background-color:#fcba5e"></div>
+          <div data-color="#fca311" style="background-color:#fca311"></div>
+          <div data-color="#f99b0c" style="background-color:#f99b0c"></div>
+          <div data-color="#d88c02" style="background-color:#d88c02"></div>
+          <div data-color="#cc7a02" style="background-color:#cc7a02"></div>
+          <div data-color="#af7505" style="background-color:#af7505"></div>
+          <div data-color="#996007" style="background-color:#996007"></div>
+          <div data-color="#7a5b11" style="background-color:#7a5b11"></div>
+          <div data-color="#6b4714" style="background-color:#6b4714"></div>
+          <div data-color="#f2ce68" style="background-color:#f2ce68"></div>
+          <div data-color="#f2bf49" style="background-color:#f2bf49"></div>
+          <div data-color="#efb22d" style="background-color:#efb22d"></div>
+          <div data-color="#e28c05" style="background-color:#e28c05"></div>
+          <div data-color="#c67f07" style="background-color:#c67f07"></div>
+          <div data-color="#9e6b05" style="background-color:#9e6b05"></div>
+          <div data-color="#725e26" style="background-color:#725e26"></div>
+          <div data-color="#ffd69b" style="background-color:#ffd69b"></div>
+          <div data-color="#ffb777" style="background-color:#ffb777"></div>
+          <div data-color="#fccc93" style="background-color:#fccc93"></div>
+          <div data-color="#ff993f" style="background-color:#ff993f"></div>
+          <div data-color="#fcad56" style="background-color:#fcad56"></div>
+          <div data-color="#f47c00" style="background-color:#f47c00"></div>
+          <div data-color="#f77f00" style="background-color:#f77f00"></div>
+          <div data-color="#dd7500" style="background-color:#dd7500"></div>
+          <div data-color="#b55400" style="background-color:#b55400"></div>
+          <div data-color="#bc6d0a" style="background-color:#bc6d0a"></div>
+          <div data-color="#8c4400" style="background-color:#8c4400"></div>
+          <div data-color="#995905" style="background-color:#995905"></div>
+          <div data-color="#472200" style="background-color:#472200"></div>
+          <div data-color="#f4dbaa" style="background-color:#f4dbaa"></div>
+          <div data-color="#f9bf9e" style="background-color:#f9bf9e"></div>
+          <div data-color="#f2c68c" style="background-color:#f2c68c"></div>
+          <div data-color="#fca577" style="background-color:#fca577"></div>
+          <div data-color="#eda04f" style="background-color:#eda04f"></div>
+          <div data-color="#fc8744" style="background-color:#fc8744"></div>
+          <div data-color="#e87511" style="background-color:#e87511"></div>
+          <div data-color="#f96b07" style="background-color:#f96b07"></div>
+          <div data-color="#c66005" style="background-color:#c66005"></div>
+          <div data-color="#d15b05" style="background-color:#d15b05"></div>
+          <div data-color="#9e540a" style="background-color:#9e540a"></div>
+          <div data-color="#a04f11" style="background-color:#a04f11"></div>
+          <div data-color="#633a11" style="background-color:#633a11"></div>
+          <div data-color="#843f0f" style="background-color:#843f0f"></div>
+          <div data-color="#f9c6aa" style="background-color:#f9c6aa"></div>
+          <div data-color="#f9a58c" style="background-color:#f9a58c"></div>
+          <div data-color="#fc9e70" style="background-color:#fc9e70"></div>
+          <div data-color="#f98e6d" style="background-color:#f98e6d"></div>
+          <div data-color="#fc7f3f" style="background-color:#fc7f3f"></div>
+          <div data-color="#f97242" style="background-color:#f97242"></div>
+          <div data-color="#f96302" style="background-color:#f96302"></div>
+          <div data-color="#ea4f00" style="background-color:#ea4f00"></div>
+          <div data-color="#f95602" style="background-color:#f95602"></div>
+          <div data-color="#dd5900" style="background-color:#dd5900"></div>
+          <div data-color="#dd4f05" style="background-color:#dd4f05"></div>
+          <div data-color="#bc4f07" style="background-color:#bc4f07"></div>
+          <div data-color="#a53f0f" style="background-color:#a53f0f"></div>
+          <div data-color="#6d3011" style="background-color:#6d3011"></div>
+          <div data-color="#843511" style="background-color:#843511"></div>
+          <div data-color="#f9baaa" style="background-color:#f9baaa"></div>
+          <div data-color="#f98972" style="background-color:#f98972"></div>
+          <div data-color="#f9603a" style="background-color:#f9603a"></div>
+          <div data-color="#f74902" style="background-color:#f74902"></div>
+          <div data-color="#d14414" style="background-color:#d14414"></div>
+          <div data-color="#933311" style="background-color:#933311"></div>
+          <div data-color="#6d3321" style="background-color:#6d3321"></div>
+          <div data-color="#f9afad" style="background-color:#f9afad"></div>
+          <div data-color="#f99ea3" style="background-color:#f99ea3"></div>
+          <div data-color="#f9b2b7" style="background-color:#f9b2b7"></div>
+          <div data-color="#f9827f" style="background-color:#f9827f"></div>
+          <div data-color="#f9848e" style="background-color:#f9848e"></div>
+          <div data-color="#fc6675" style="background-color:#fc6675"></div>
+          <div data-color="#f95e59" style="background-color:#f95e59"></div>
+          <div data-color="#fc4f59" style="background-color:#fc4f59"></div>
+          <div data-color="#f43f4f" style="background-color:#f43f4f"></div>
+          <div data-color="#ef2b2d" style="background-color:#ef2b2d"></div>
+          <div data-color="#d62100" style="background-color:#d62100"></div>
+          <div data-color="#e23d28" style="background-color:#e23d28"></div>
+          <div data-color="#d62828" style="background-color:#d62828"></div>
+          <div data-color="#cc2d30" style="background-color:#cc2d30"></div>
+          <div data-color="#c13828" style="background-color:#c13828"></div>
+          <div data-color="#af2626" style="background-color:#af2626"></div>
+          <div data-color="#a03033" style="background-color:#a03033"></div>
+          <div data-color="#7c2d23" style="background-color:#7c2d23"></div>
+          <div data-color="#7c211e" style="background-color:#7c211e"></div>
+          <div data-color="#5b2d28" style="background-color:#5b2d28"></div>
+          <div data-color="#f9bfc1" style="background-color:#f9bfc1"></div>
+          <div data-color="#fc8c99" style="background-color:#fc8c99"></div>
+          <div data-color="#fc5e72" style="background-color:#fc5e72"></div>
+          <div data-color="#e8112d" style="background-color:#e8112d"></div>
+          <div data-color="#d11600" style="background-color:#d11600"></div>
+          <div data-color="#ce1126" style="background-color:#ce1126"></div>
+          <div data-color="#af1e2d" style="background-color:#af1e2d"></div>
+          <div data-color="#7c2128" style="background-color:#7c2128"></div>
+          <div data-color="#ffa3b2" style="background-color:#ffa3b2"></div>
+          <div data-color="#fcbfc9" style="background-color:#fcbfc9"></div>
+          <div data-color="#fc758e" style="background-color:#fc758e"></div>
+          <div data-color="#fc9bb2" style="background-color:#fc9bb2"></div>
+          <div data-color="#f4476b" style="background-color:#f4476b"></div>
+          <div data-color="#f4547c" style="background-color:#f4547c"></div>
+          <div data-color="#e5053a" style="background-color:#e5053a"></div>
+          <div data-color="#e00747" style="background-color:#e00747"></div>
+          <div data-color="#c40043" style="background-color:#c40043"></div>
+          <div data-color="#c10538" style="background-color:#c10538"></div>
+          <div data-color="#992135" style="background-color:#992135"></div>
+          <div data-color="#a80c35" style="background-color:#a80c35"></div>
+          <div data-color="#931638" style="background-color:#931638"></div>
+          <div data-color="#FAD5E1" style="background-color:#FAD5E1"></div>
+          <div data-color="#f6a5be" style="background-color:#f6a5be"></div>
+          <div data-color="#ef5b84" style="background-color:#ef5b84"></div>
+          <div data-color="#a0274b" style="background-color:#a0274b"></div>
+          <div data-color="#c41e3a" style="background-color:#c41e3a"></div>
+          <div data-color="#a32638" style="background-color:#a32638"></div>
+          <div data-color="#8c2633" style="background-color:#8c2633"></div>
+          <div data-color="#f2afc1" style="background-color:#f2afc1"></div>
+          <div data-color="#ed7a9e" style="background-color:#ed7a9e"></div>
+          <div data-color="#e54c7c" style="background-color:#e54c7c"></div>
+          <div data-color="#d30547" style="background-color:#d30547"></div>
+          <div data-color="#c0004e" style="background-color:#c0004e"></div>
+          <div data-color="#8e2344" style="background-color:#8e2344"></div>
+          <div data-color="#75263d" style="background-color:#75263d"></div>
+          <div data-color="#ffa0bf" style="background-color:#ffa0bf"></div>
+          <div data-color="#ff77a8" style="background-color:#ff77a8"></div>
+          <div data-color="#f94f8e" style="background-color:#f94f8e"></div>
+          <div data-color="#ea0f6b" style="background-color:#ea0f6b"></div>
+          <div data-color="#cc0256" style="background-color:#cc0256"></div>
+          <div data-color="#a50544" style="background-color:#a50544"></div>
+          <div data-color="#7c1e3f" style="background-color:#7c1e3f"></div>
+          <div data-color="#f4bfd1" style="background-color:#f4bfd1"></div>
+          <div data-color="#ed72aa" style="background-color:#ed72aa"></div>
+          <div data-color="#e22882" style="background-color:#e22882"></div>
+          <div data-color="#aa004f" style="background-color:#aa004f"></div>
+          <div data-color="#930042" style="background-color:#930042"></div>
+          <div data-color="#70193d" style="background-color:#70193d"></div>
+          <div data-color="#f993c4" style="background-color:#f993c4"></div>
+          <div data-color="#f46baf" style="background-color:#f46baf"></div>
+          <div data-color="#ed2893" style="background-color:#ed2893"></div>
+          <div data-color="#d60270" style="background-color:#d60270"></div>
+          <div data-color="#ad005b" style="background-color:#ad005b"></div>
+          <div data-color="#8c004c" style="background-color:#8c004c"></div>
+          <div data-color="#6d213f" style="background-color:#6d213f"></div>
+          <div data-color="#ffa0cc" style="background-color:#ffa0cc"></div>
+          <div data-color="#fc70ba" style="background-color:#fc70ba"></div>
+          <div data-color="#f43fa5" style="background-color:#f43fa5"></div>
+          <div data-color="#ce007c" style="background-color:#ce007c"></div>
+          <div data-color="#aa0066" style="background-color:#aa0066"></div>
+          <div data-color="#8e0554" style="background-color:#8e0554"></div>
+          <div data-color="#f9afd3" style="background-color:#f9afd3"></div>
+          <div data-color="#f7c4d8" style="background-color:#f7c4d8"></div>
+          <div data-color="#f484c4" style="background-color:#f484c4"></div>
+          <div data-color="#ea6bbf" style="background-color:#ea6bbf"></div>
+          <div data-color="#ed4faf" style="background-color:#ed4faf"></div>
+          <div data-color="#db28a5" style="background-color:#db28a5"></div>
+          <div data-color="#e0219e" style="background-color:#e0219e"></div>
+          <div data-color="#c4057c" style="background-color:#c4057c"></div>
+          <div data-color="#c4008c" style="background-color:#c4008c"></div>
+          <div data-color="#c40f89" style="background-color:#c40f89"></div>
+          <div data-color="#a8007a" style="background-color:#a8007a"></div>
+          <div data-color="#ad0075" style="background-color:#ad0075"></div>
+          <div data-color="#9b0070" style="background-color:#9b0070"></div>
+          <div data-color="#7c1c51" style="background-color:#7c1c51"></div>
+          <div data-color="#87005b" style="background-color:#87005b"></div>
+          <div data-color="#f2bad8" style="background-color:#f2bad8"></div>
+          <div data-color="#eda0d3" style="background-color:#eda0d3"></div>
+          <div data-color="#e87fc9" style="background-color:#e87fc9"></div>
+          <div data-color="#cc00a0" style="background-color:#cc00a0"></div>
+          <div data-color="#b7008e" style="background-color:#b7008e"></div>
+          <div data-color="#a3057f" style="background-color:#a3057f"></div>
+          <div data-color="#7f2860" style="background-color:#7f2860"></div>
+          <div data-color="#edc4dd" style="background-color:#edc4dd"></div>
+          <div data-color="#e29ed6" style="background-color:#e29ed6"></div>
+          <div data-color="#d36bc6" style="background-color:#d36bc6"></div>
+          <div data-color="#af23a5" style="background-color:#af23a5"></div>
+          <div data-color="#a02d96" style="background-color:#a02d96"></div>
+          <div data-color="#772d6b" style="background-color:#772d6b"></div>
+          <div data-color="#e5c4d6" style="background-color:#e5c4d6"></div>
+          <div data-color="#d8a8d8" style="background-color:#d8a8d8"></div>
+          <div data-color="#d1a0cc" style="background-color:#d1a0cc"></div>
+          <div data-color="#bf93cc" style="background-color:#bf93cc"></div>
+          <div data-color="#d3a5c9" style="background-color:#d3a5c9"></div>
+          <div data-color="#c687d1" style="background-color:#c687d1"></div>
+          <div data-color="#ba7cbc" style="background-color:#ba7cbc"></div>
+          <div data-color="#aa72bf" style="background-color:#aa72bf"></div>
+          <div data-color="#9b4f96" style="background-color:#9b4f96"></div>
+          <div data-color="#aa47ba" style="background-color:#aa47ba"></div>
+          <div data-color="#9e4fa5" style="background-color:#9e4fa5"></div>
+          <div data-color="#8e47ad" style="background-color:#8e47ad"></div>
+          <div data-color="#72166b" style="background-color:#72166b"></div>
+          <div data-color="#930fa5" style="background-color:#930fa5"></div>
+          <div data-color="#720082" style="background-color:#720082"></div>
+          <div data-color="#872b93" style="background-color:#872b93"></div>
+          <div data-color="#66008c" style="background-color:#66008c"></div>
+          <div data-color="#681e5b" style="background-color:#681e5b"></div>
+          <div data-color="#820c8e" style="background-color:#820c8e"></div>
+          <div data-color="#70147a" style="background-color:#70147a"></div>
+          <div data-color="#5b027a" style="background-color:#5b027a"></div>
+          <div data-color="#5e2154" style="background-color:#5e2154"></div>
+          <div data-color="#701e72" style="background-color:#701e72"></div>
+          <div data-color="#66116d" style="background-color:#66116d"></div>
+          <div data-color="#560c70" style="background-color:#560c70"></div>
+          <div data-color="#542344" style="background-color:#542344"></div>
+          <div data-color="#602d59" style="background-color:#602d59"></div>
+          <div data-color="#5b195e" style="background-color:#5b195e"></div>
+          <div data-color="#4c145e" style="background-color:#4c145e"></div>
+          <div data-color="#e0cee0" style="background-color:#e0cee0"></div>
+          <div data-color="#c9add8" style="background-color:#c9add8"></div>
+          <div data-color="#c6aadb" style="background-color:#c6aadb"></div>
+          <div data-color="#b591d1" style="background-color:#b591d1"></div>
+          <div data-color="#9663c4" style="background-color:#9663c4"></div>
+          <div data-color="#9b6dc6" style="background-color:#9b6dc6"></div>
+          <div data-color="#6d28aa" style="background-color:#6d28aa"></div>
+          <div data-color="#894fbf" style="background-color:#894fbf"></div>
+          <div data-color="#59118e" style="background-color:#59118e"></div>
+          <div data-color="#4f2170" style="background-color:#4f2170"></div>
+          <div data-color="#56008c" style="background-color:#56008c"></div>
+          <div data-color="#442359" style="background-color:#442359"></div>
+          <div data-color="#44235e" style="background-color:#44235e"></div>
+          <div data-color="#baafd3" style="background-color:#baafd3"></div>
+          <div data-color="#ad9ed3" style="background-color:#ad9ed3"></div>
+          <div data-color="#d1cedd" style="background-color:#d1cedd"></div>
+          <div data-color="#bfd1e5" style="background-color:#bfd1e5"></div>
+          <div data-color="#afbcdb" style="background-color:#afbcdb"></div>
+          <div data-color="#9e91c6" style="background-color:#9e91c6"></div>
+          <div data-color="#937acc" style="background-color:#937acc"></div>
+          <div data-color="#a5a0d6" style="background-color:#a5a0d6"></div>
+          <div data-color="#a5bae0" style="background-color:#a5bae0"></div>
+          <div data-color="#5b77cc" style="background-color:#5b77cc"></div>
+          <div data-color="#8977ba" style="background-color:#8977ba"></div>
+          <div data-color="#7251bc" style="background-color:#7251bc"></div>
+          <div data-color="#6656bc" style="background-color:#6656bc"></div>
+          <div data-color="#5e68c4" style="background-color:#5e68c4"></div>
+          <div data-color="#3044b5" style="background-color:#3044b5"></div>
+          <div data-color="#38197a" style="background-color:#38197a"></div>
+          <div data-color="#4f0093" style="background-color:#4f0093"></div>
+          <div data-color="#4930ad" style="background-color:#4930ad"></div>
+          <div data-color="#2d008e" style="background-color:#2d008e"></div>
+          <div data-color="#2b1166" style="background-color:#2b1166"></div>
+          <div data-color="#3f0077" style="background-color:#3f0077"></div>
+          <div data-color="#3f2893" style="background-color:#3f2893"></div>
+          <div data-color="#1c146b" style="background-color:#1c146b"></div>
+          <div data-color="#1e1c77" style="background-color:#1e1c77"></div>
+          <div data-color="#260f54" style="background-color:#260f54"></div>
+          <div data-color="#35006d" style="background-color:#35006d"></div>
+          <div data-color="#332875" style="background-color:#332875"></div>
+          <div data-color="#141654" style="background-color:#141654"></div>
+          <div data-color="#192168" style="background-color:#192168"></div>
+          <div data-color="#2b2147" style="background-color:#2b2147"></div>
+          <div data-color="#2b0c56" style="background-color:#2b0c56"></div>
+          <div data-color="#2b265b" style="background-color:#2b265b"></div>
+          <div data-color="#14213d" style="background-color:#14213d"></div>
+          <div data-color="#112151" style="background-color:#112151"></div>
+          <div data-color="#b5d1e8" style="background-color:#b5d1e8"></div>
+          <div data-color="#99badd" style="background-color:#99badd"></div>
+          <div data-color="#6689cc" style="background-color:#6689cc"></div>
+          <div data-color="#002b7f" style="background-color:#002b7f"></div>
+          <div data-color="#002868" style="background-color:#002868"></div>
+          <div data-color="#002654" style="background-color:#002654"></div>
+          <div data-color="#9bc4e2" style="background-color:#9bc4e2"></div>
+          <div data-color="#75aadb" style="background-color:#75aadb"></div>
+          <div data-color="#3a75c4" style="background-color:#3a75c4"></div>
+          <div data-color="#0038a8" style="background-color:#0038a8"></div>
+          <div data-color="#003893" style="background-color:#003893"></div>
+          <div data-color="#00337f" style="background-color:#00337f"></div>
+          <div data-color="#002649" style="background-color:#002649"></div>
+          <div data-color="#c4d8e2" style="background-color:#c4d8e2"></div>
+          <div data-color="#93c6e0" style="background-color:#93c6e0"></div>
+          <div data-color="#a8cee2" style="background-color:#a8cee2"></div>
+          <div data-color="#60afdd" style="background-color:#60afdd"></div>
+          <div data-color="#75b2dd" style="background-color:#75b2dd"></div>
+          <div data-color="#008ed6" style="background-color:#008ed6"></div>
+          <div data-color="#0051ba" style="background-color:#0051ba"></div>
+          <div data-color="#005bbf" style="background-color:#005bbf"></div>
+          <div data-color="#003f87" style="background-color:#003f87"></div>
+          <div data-color="#0054a0" style="background-color:#0054a0"></div>
+          <div data-color="#00386b" style="background-color:#00386b"></div>
+          <div data-color="#003d6b" style="background-color:#003d6b"></div>
+          <div data-color="#002d47" style="background-color:#002d47"></div>
+          <div data-color="#00334c" style="background-color:#00334c"></div>
+          <div data-color="#82c6e2" style="background-color:#82c6e2"></div>
+          <div data-color="#bae0e2" style="background-color:#bae0e2"></div>
+          <div data-color="#51b5e0" style="background-color:#51b5e0"></div>
+          <div data-color="#51bfe2" style="background-color:#51bfe2"></div>
+          <div data-color="#00a3dd" style="background-color:#00a3dd"></div>
+          <div data-color="#007fcc" style="background-color:#007fcc"></div>
+          <div data-color="#00a5db" style="background-color:#00a5db"></div>
+          <div data-color="#0072c6" style="background-color:#0072c6"></div>
+          <div data-color="#0084c9" style="background-color:#0084c9"></div>
+          <div data-color="#005b99" style="background-color:#005b99"></div>
+          <div data-color="#00709e" style="background-color:#00709e"></div>
+          <div data-color="#004f6d" style="background-color:#004f6d"></div>
+          <div data-color="#00546b" style="background-color:#00546b"></div>
+          <div data-color="#003f54" style="background-color:#003f54"></div>
+          <div data-color="#004454" style="background-color:#004454"></div>
+          <div data-color="#a5dde2" style="background-color:#a5dde2"></div>
+          <div data-color="#70cee2" style="background-color:#70cee2"></div>
+          <div data-color="#00bce2" style="background-color:#00bce2"></div>
+          <div data-color="#00a3d1" style="background-color:#00a3d1"></div>
+          <div data-color="#007aa5" style="background-color:#007aa5"></div>
+          <div data-color="#00607c" style="background-color:#00607c"></div>
+          <div data-color="#003f49" style="background-color:#003f49"></div>
+          <div data-color="#72d1dd" style="background-color:#72d1dd"></div>
+          <div data-color="#7fd6db" style="background-color:#7fd6db"></div>
+          <div data-color="#28c4d8" style="background-color:#28c4d8"></div>
+          <div data-color="#2dc6d6" style="background-color:#2dc6d6"></div>
+          <div data-color="#00adc6" style="background-color:#00adc6"></div>
+          <div data-color="#00b7c6" style="background-color:#00b7c6"></div>
+          <div data-color="#0099b5" style="background-color:#0099b5"></div>
+          <div data-color="#009baa" style="background-color:#009baa"></div>
+          <div data-color="#00829b" style="background-color:#00829b"></div>
+          <div data-color="#00848e" style="background-color:#00848e"></div>
+          <div data-color="#006b77" style="background-color:#006b77"></div>
+          <div data-color="#006d75" style="background-color:#006d75"></div>
+          <div data-color="#00494f" style="background-color:#00494f"></div>
+          <div data-color="#00565b" style="background-color:#00565b"></div>
+          <div data-color="#c9e8dd" style="background-color:#c9e8dd"></div>
+          <div data-color="#93dddb" style="background-color:#93dddb"></div>
+          <div data-color="#4cced1" style="background-color:#4cced1"></div>
+          <div data-color="#009ea0" style="background-color:#009ea0"></div>
+          <div data-color="#007f82" style="background-color:#007f82"></div>
+          <div data-color="#008789" style="background-color:#008789"></div>
+          <div data-color="#007272" style="background-color:#007272"></div>
+          <div data-color="#006663" style="background-color:#006663"></div>
+          <div data-color="#aaddd6" style="background-color:#aaddd6"></div>
+          <div data-color="#87ddd1" style="background-color:#87ddd1"></div>
+          <div data-color="#8ce0d1" style="background-color:#8ce0d1"></div>
+          <div data-color="#7ad3c1" style="background-color:#7ad3c1"></div>
+          <div data-color="#56c9c1" style="background-color:#56c9c1"></div>
+          <div data-color="#56d6c9" style="background-color:#56d6c9"></div>
+          <div data-color="#47d6c1" style="background-color:#47d6c1"></div>
+          <div data-color="#35c4af" style="background-color:#35c4af"></div>
+          <div data-color="#00b2aa" style="background-color:#00b2aa"></div>
+          <div data-color="#00c1b5" style="background-color:#00c1b5"></div>
+          <div data-color="#00c6b2" style="background-color:#00c6b2"></div>
+          <div data-color="#00af99" style="background-color:#00af99"></div>
+          <div data-color="#008c82" style="background-color:#008c82"></div>
+          <div data-color="#008977" style="background-color:#008977"></div>
+          <div data-color="#00aa9e" style="background-color:#00aa9e"></div>
+          <div data-color="#00b2a0" style="background-color:#00b2a0"></div>
+          <div data-color="#009b84" style="background-color:#009b84"></div>
+          <div data-color="#007770" style="background-color:#007770"></div>
+          <div data-color="#009987" style="background-color:#009987"></div>
+          <div data-color="#008270" style="background-color:#008270"></div>
+          <div data-color="#006d66" style="background-color:#006d66"></div>
+          <div data-color="#006056" style="background-color:#006056"></div>
+          <div data-color="#008272" style="background-color:#008272"></div>
+          <div data-color="#006b5b" style="background-color:#006b5b"></div>
+          <div data-color="#005951" style="background-color:#005951"></div>
+          <div data-color="#00493f" style="background-color:#00493f"></div>
+          <div data-color="#004f42" style="background-color:#004f42"></div>
+          <div data-color="#004438" style="background-color:#004438"></div>
+          <div data-color="#baead6" style="background-color:#baead6"></div>
+          <div data-color="#a0e5ce" style="background-color:#a0e5ce"></div>
+          <div data-color="#5eddc1" style="background-color:#5eddc1"></div>
+          <div data-color="#00997c" style="background-color:#00997c"></div>
+          <div data-color="#007c66" style="background-color:#007c66"></div>
+          <div data-color="#006854" style="background-color:#006854"></div>
+          <div data-color="#9bdbc1" style="background-color:#9bdbc1"></div>
+          <div data-color="#8ee2bc" style="background-color:#8ee2bc"></div>
+          <div data-color="#7ad1b5" style="background-color:#7ad1b5"></div>
+          <div data-color="#54d8a8" style="background-color:#54d8a8"></div>
+          <div data-color="#00b28c" style="background-color:#00b28c"></div>
+          <div data-color="#00c993" style="background-color:#00c993"></div>
+          <div data-color="#009977" style="background-color:#009977"></div>
+          <div data-color="#00b27a" style="background-color:#00b27a"></div>
+          <div data-color="#007a5e" style="background-color:#007a5e"></div>
+          <div data-color="#007c59" style="background-color:#007c59"></div>
+          <div data-color="#006b54" style="background-color:#006b54"></div>
+          <div data-color="#006847" style="background-color:#006847"></div>
+          <div data-color="#00563f" style="background-color:#00563f"></div>
+          <div data-color="#024930" style="background-color:#024930"></div>
+          <div data-color="#b5e2bf" style="background-color:#b5e2bf"></div>
+          <div data-color="#96d8af" style="background-color:#96d8af"></div>
+          <div data-color="#70ce9b" style="background-color:#70ce9b"></div>
+          <div data-color="#009e60" style="background-color:#009e60"></div>
+          <div data-color="#008751" style="background-color:#008751"></div>
+          <div data-color="#006b3f" style="background-color:#006b3f"></div>
+          <div data-color="#234f33" style="background-color:#234f33"></div>
+          <div data-color="#b5e8bf" style="background-color:#b5e8bf"></div>
+          <div data-color="#99e5b2" style="background-color:#99e5b2"></div>
+          <div data-color="#84e2a8" style="background-color:#84e2a8"></div>
+          <div data-color="#00b760" style="background-color:#00b760"></div>
+          <div data-color="#009e49" style="background-color:#009e49"></div>
+          <div data-color="#007a3d" style="background-color:#007a3d"></div>
+          <div data-color="#215b33" style="background-color:#215b33"></div>
+          <div data-color="#aadd96" style="background-color:#aadd96"></div>
+          <div data-color="#a0db8e" style="background-color:#a0db8e"></div>
+          <div data-color="#60c659" style="background-color:#60c659"></div>
+          <div data-color="#1eb53a" style="background-color:#1eb53a"></div>
+          <div data-color="#339e35" style="background-color:#339e35"></div>
+          <div data-color="#3d8e33" style="background-color:#3d8e33"></div>
+          <div data-color="#3a7728" style="background-color:#3a7728"></div>
+          <div data-color="#d3e8a3" style="background-color:#d3e8a3"></div>
+          <div data-color="#c4e58e" style="background-color:#c4e58e"></div>
+          <div data-color="#aadd6d" style="background-color:#aadd6d"></div>
+          <div data-color="#5bbf21" style="background-color:#5bbf21"></div>
+          <div data-color="#009e0f" style="background-color:#009e0f"></div>
+          <div data-color="#56aa1c" style="background-color:#56aa1c"></div>
+          <div data-color="#568e14" style="background-color:#568e14"></div>
+          <div data-color="#566b21" style="background-color:#566b21"></div>
+          <div data-color="#d8ed96" style="background-color:#d8ed96"></div>
+          <div data-color="#ceea82" style="background-color:#ceea82"></div>
+          <div data-color="#bae860" style="background-color:#bae860"></div>
+          <div data-color="#8cd600" style="background-color:#8cd600"></div>
+          <div data-color="#54bc00" style="background-color:#54bc00"></div>
+          <div data-color="#7fba00" style="background-color:#7fba00"></div>
+          <div data-color="#709302" style="background-color:#709302"></div>
+          <div data-color="#566314" style="background-color:#566314"></div>
+          <div data-color="#e0ea68" style="background-color:#e0ea68"></div>
+          <div data-color="#d6e542" style="background-color:#d6e542"></div>
+          <div data-color="#cce226" style="background-color:#cce226"></div>
+          <div data-color="#bad80a" style="background-color:#bad80a"></div>
+          <div data-color="#9ec400" style="background-color:#9ec400"></div>
+          <div data-color="#a3af07" style="background-color:#a3af07"></div>
+          <div data-color="#939905" style="background-color:#939905"></div>
+          <div data-color="#707014" style="background-color:#707014"></div>
+          <div data-color="#e8ed60" style="background-color:#e8ed60"></div>
+          <div data-color="#e0ed44" style="background-color:#e0ed44"></div>
+          <div data-color="#d6e80f" style="background-color:#d6e80f"></div>
+          <div data-color="#cee007" style="background-color:#cee007"></div>
+          <div data-color="#bac405" style="background-color:#bac405"></div>
+          <div data-color="#9e9e07" style="background-color:#9e9e07"></div>
+          <div data-color="#848205" style="background-color:#848205"></div>
+          <div data-color="#f2ef87" style="background-color:#f2ef87"></div>
+          <div data-color="#f2ed6d" style="background-color:#f2ed6d"></div>
+          <div data-color="#eaed35" style="background-color:#eaed35"></div>
+          <div data-color="#efea07" style="background-color:#efea07"></div>
+          <div data-color="#e5e811" style="background-color:#e5e811"></div>
+          <div data-color="#ede211" style="background-color:#ede211"></div>
+          <div data-color="#e0e20c" style="background-color:#e0e20c"></div>
+          <div data-color="#e8dd11" style="background-color:#e8dd11"></div>
+          <div data-color="#c1bf0a" style="background-color:#c1bf0a"></div>
+          <div data-color="#b5a80c" style="background-color:#b5a80c"></div>
+          <div data-color="#afa80a" style="background-color:#afa80a"></div>
+          <div data-color="#998c0a" style="background-color:#998c0a"></div>
+          <div data-color="#998e07" style="background-color:#998e07"></div>
+          <div data-color="#6d6002" style="background-color:#6d6002"></div>
+          <div data-color="#ffffff" style="background-color:#ffffff"></div>
+          <div data-color="#dddddd" style="background-color:#dddddd"></div>
+          <div data-color="#bbbbbb" style="background-color:#bbbbbb"></div>
+          <div data-color="#999999" style="background-color:#999999"></div>
+          <div data-color="#777777" style="background-color:#777777"></div>
+          <div data-color="#555555" style="background-color:#555555"></div>
+          <div data-color="#333333" style="background-color:#333333"></div>
+          <div data-color="#111111" style="background-color:#111111"></div>
+        </section>
+        <section>
+            <h1>Random Colour Scheme</h1>
+            <hr/>
+            <span style="width:100%;display:table;" id="displayStuff">
+            </span>
+            <hr/>
+            <span id="testBG" style="width:100%;height:100%;display:block;padding:10px;box-sizing:border-box">
+              <h2 id="testH" style="font-size:48px;">A Heading</h2>
+              <p id="testP" style="font-size:24px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sollicitudin enim, a sagittis eros. Sed et turpis in odio tempor placerat. Aliquam ac neque congue, cursus tellus eget, tempus mi. Quisque imperdiet, erat in vehicula molestie, purus ante congue diam, nec mollis velit risus et mi. <br/><br/>Nulla egestas, nibh sit amet pellentesque tempus, <a href="#" id="testA">augue dui efficitur urna</a>, a porta leo dui sed lacus. Praesent non metus turpis. Morbi et iaculis magna, eget tincidunt nisl. Nullam nec <strong id="testS">pellentesque ipsum</strong>. Suspendisse in ultricies nunc.</p>
+            </span>
+        </section>
+  </body>
+</html>

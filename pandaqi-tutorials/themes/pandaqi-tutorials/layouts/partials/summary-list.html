@@ -1,0 +1,10 @@
+{{ $style := partial "func/get-bubble-up-style.html" . }}
+{{ $url := .RelPermalink }}
+
+<nav class="summary">
+	<a href="{{ $url }}">
+		{{ partial "block-heading.html" (dict "context" . "heading" .Title "content" .Summary "style" $style) }}
+	</a>
+</nav>
+
+

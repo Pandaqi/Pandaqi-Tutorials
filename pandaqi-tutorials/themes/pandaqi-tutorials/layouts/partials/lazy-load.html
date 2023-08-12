@@ -1,0 +1,25 @@
+{{ if not .Site.Params.testOnlyCriticalStyle }}
+    {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "transpiler" "dartsass") }}
+    {{ $style := resources.Get "sass/style.scss" | resources.ToCSS $options }}
+    <script async defer>
+		const head = document.getElementsByTagName("head")[0];
+		let cssLink = document.createElement("link");
+	
+		cssLink.rel = "stylesheet";
+		cssLink.href = "{{ $style.RelPermalink }}";
+		cssLink.type = "text/css";
+	
+		head.appendChild(cssLink);
+	</script>
+{{ end }}
+
+{{- $all_pages := .Site.RegularPages | shuffle | first 100 -}}
+{{- $list := slice }}
+{{- range $all_pages -}}
+    {{- $list = $list | append .RelPermalink -}}
+{{- end -}}
+{{- $list := delimit $list "," }}
+<span style="display:none;" id="hidden-hugo-metadata" data-pages="{{ $list }}"></span>
+
+{{ $res := resources.Get "js/pq_tutorials/main.js" | js.Build "js/lib-pqTutorials.js" | minify }}
+<script async defer src="{{ $res.RelPermalink }}"></script>

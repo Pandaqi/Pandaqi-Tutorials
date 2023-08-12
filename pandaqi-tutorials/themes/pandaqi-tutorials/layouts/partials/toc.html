@@ -1,0 +1,7 @@
+<aside class="toc">
+    {{ $toc := .TableOfContents }}
+    {{ if gt (len $toc) 33 }} <!-- an empty table of contents generates this many characters -->
+        <span class="label">Contents > </span>
+    {{ end }}
+    {{ $toc }}
+</aside>

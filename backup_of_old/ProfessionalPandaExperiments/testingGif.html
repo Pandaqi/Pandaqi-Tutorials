@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Testing GIF player</title>
+		<script type="text/javascript" src="gifPlayer/libgif.js"></script>
+		<script type="text/javascript" src="gifPlayer/rubbable.js"></script>
+	</head>
+	<body>
+		<x-gif src="media/DrawingAnyRectangleExercise.gif" debug></x-gif>
+		<h1>Example with controls and no auto-play</h1>
+		<img id="example1" src="" rel:animated_src="media/DrawingBlockIn.gif" rel:auto_play="0"/>
+		<br>
+		<script type="text/javascript">
+			var gifs = [];
+			var newG = new SuperGif({ gif: document.getElementById('example1'), max_width: '700' } );
+			newG.load();
+			gifs.push(newG);
+		</script>
+		<span onmousedown="gifs[0].pause();">Pause</span> |
+		<span onmousedown="gifs[0].play();">Play</span> |
+		<span onmousedown="gifs[0].move_to(0);">Restart</span> |
+		<span onmousedown="gifs[0].pause();gifs[0].move_relative(1);">Step forward</span> |
+		<span onmousedown="gifs[0].pause();gifs[0].move_relative(-1);">Step back</span>
+
+		<!-- <h1>Example with rubbing and auto-play on</h1>
+		<img id="example2" src="media/DrawingAnyRectangleExercise.gif" rel:auto_play="1" rel:rubbable="1" />
+		<br>
+		<script type="text/javascript">
+			var sup2 = new RubbableGif({ gif: document.getElementById('example2') } );
+			sup2.load();
+		</script> -->
+	</body>
+</html>
+
+<!--
+<img src="URL.gif" /> => <img id="gifCounterXX" src="" rel:animated_src="URL.gif" rel:auto_play="0" />
+-->

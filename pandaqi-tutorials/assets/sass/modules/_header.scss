@@ -1,0 +1,42 @@
+@use "globals" as g;
+
+#menu-header {
+    #header-collapsed {
+        width: 100%;
+        background-color: g.$header-footer-bg-color;
+        text-align: center;
+
+        border-bottom: 4px solid  g.$header-footer-border-color;
+    
+        #open-menu-btn {
+            display: block;
+            width: 100%;
+
+            color: #875c27;
+            cursor: pointer;
+            font-family: g.$header-font;
+            transition: color g.$def-trans;
+
+            &:hover {
+                color: g.$def-font-color;
+                
+            }
+        }
+    }
+    
+    #header-popout {
+        display: none;
+        margin-top: 1.0rem;
+        
+        @include g.remove-standard-list-style();
+
+        ul {
+            @include g.flex-center();
+            flex-wrap: wrap;
+
+            a {
+                background-color: g.$header-footer-bg-color;
+            }
+        }
+    }
+}

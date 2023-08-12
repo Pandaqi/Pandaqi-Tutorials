@@ -1,0 +1,56 @@
+<footer id="footer-container">
+	{{ partial "menu-list.html" . }}
+
+	<div id="footer" class="center-block">
+		<ul>
+			<li>
+				{{ partial "button.html" (dict "href" "/tutorials/general-knowledge/pandaqi-tutorials/" "content" "About" "addIcon" true "class" "style-general-knowledge") }}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "href" "https://pandaqi.com" "content" "Pandaqi | Games" "addCustomIcon" "/tutorials/icon/pandaqi.svg")
+			}}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "href" "https://pandaqi.com/blog/" "content" "Pandaqi | Blog" "addCustomIcon" "/tutorials/icon/writing_feather.svg")
+			}}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "href" "https://tiamopastoor.com" "content" "Tiamo Pastoor | Books" "addCustomIcon" "/tutorials/icon/tiamopastoor.svg")
+			}}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "href" "https://rodepanda.com" "content" "Rode Panda | Portfolio" "addCustomIcon" "/tutorials/icon/rode_panda.svg") }}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "content" "Random" "id" "randProjBtn" "buttonTag" true "addCustomIcon" "/tutorials/icon/random.svg") }}
+			</li>
+			<li>
+				{{ partial "button.html" (dict "content" "Go to top" "id" "gotoTopBtn" "buttonTag" true "addCustomIcon" "/tutorials/icon/go_to_top.svg") }}
+			</li>
+		</ul>
+	</div>
+	<div class="credits">
+		Created by a young <a href="https://pandaqi.com">Pandaqi</a> (<a href="https://rodepanda.com">Tiamo Pastoor</a>) &middot; 
+		Maintained sporadically &middot; 
+		Using <a href="https://gohugo.io">Hugo</a> &middot; 
+		&copy; 2016&ndash;{{ now.Year }} <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+	</div>
+
+	{{ $courses := where .Site.Pages ".Params.type" "eq" "course" }}
+	{{ $articles := where .Site.Pages ".Params.type" "eq" "article" }}
+	{{ $num_courses := lang.NumFmt 0 (len $courses) }}
+	{{ $num_articles := lang.NumFmt 0 (len $articles) }}
+
+	{{ $num_words := 0 }}
+	{{ range $courses }}
+		{{ $num_words = add $num_words (.Content | countwords) }}
+	{{ end }}
+	{{ range $articles }}
+		{{ $num_words = add $num_words (.Content | countwords) }}
+	{{ end }}
+	{{ $num_words = lang.NumFmt 0 $num_words }}
+
+	<div class="credits">
+		Contains {{ $num_courses }} courses, {{ $num_articles }} articles, and {{ $num_words }} words &middot;
+	</div>
+</footer>

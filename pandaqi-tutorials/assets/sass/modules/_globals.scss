@@ -1,0 +1,169 @@
+$def-font-color: #402401;
+$def-bg-color: #fbfcfc;
+$header-footer-bg-color: #eeb850;
+$header-footer-border-color: #a97a25;
+
+$def-max-width: 1126px;
+$def-center-block-width: 720px;
+$def-max-text-width: 960px;
+$def-font-size: calc(15px + 0.390625vw);
+$def-padding: 1.0em;
+$def-line-height: 1.45rem;
+$def-margin: 1.0em; // default margin applied to paragraphs by browsers, @IMPROV: set manually just to be sure??
+$def-trans: 0.3s; // default time for transition parameter
+$def-arrow-size: 1.0em;
+$def-divider-color: $def-font-color;
+
+$breakpoint-small: 280px;
+$breakpoint-medium: 550px;
+$breakpoint-big: 800px;
+$breakpoint-huge: $def-max-width;
+
+$left-block-width: 250px;
+
+$body-font: "Raleway";
+$header-font: "Dosis";
+$script-font: "Pandaqi Hand";
+$code-font: "JetBrainsMono";
+
+$num-masks: 8;
+$mask-bg-color: rgb(225, 196, 148);
+
+$toc-color: #333;
+$toc-bg-color: #DDD;
+
+$remark-bg-color: hsl(65, 49%, 80%);
+$example-bg-color: rgb(225, 196, 148);
+$blockquote-bg-color: rgb(147, 217, 239);
+
+$drop-cap-selector: ".right-block > p:first-child:first-letter";
+
+$arrow-padding: 0.5em;
+$arrow-margin: 0.25em;
+
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin arrow($size) {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    left: -0.5 * $def-padding;
+    top: 0.5 * $def-padding;
+
+    transition: top $def-trans, left $def-trans, right $def-trans, bottom $def-trans;
+}
+
+@mixin arrow-right($color, $size: $def-arrow-size) {
+    @include arrow($size);
+    border-right: $size solid $color;
+}
+
+@mixin arrow-left($color, $size: $def-arrow-size) {
+    @include arrow($size);
+    border-left: $size solid $color;
+
+    left: initial;
+    top: 0.5em;
+    right: -($size - 0.025em);
+}
+
+@mixin hexagon($size, $color) {
+    width: $size;
+    height: ($size * 1.1547);
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    background-color: $color;
+}
+
+@mixin drop-cap() {
+    float: left;
+    // color: #e74c3c;
+    font-size: 5.0rem;
+    padding-top: 1.5rem;
+    padding-right: 0.25rem;
+    padding-bottom: 1.0rem;
+    font-weight: 900;
+    font-style: normal;
+    font-family: $header-font;
+}
+
+@mixin remove-standard-list-style() {
+    ul {
+        @include remove-standard-list-style-inside();
+    }
+}
+
+@mixin remove-standard-list-style-inside() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0.25em;
+        padding: 0;
+        display: inline-block;
+    }
+}
+
+@mixin metadata-arrow($col: $toc-color, $bg-col: $toc-bg-color) {
+    position: relative;
+    display: inline-block;
+
+    padding: $arrow-padding;
+    margin: $arrow-margin;
+
+    border-radius: 0.25em;
+
+    transition: color $def-trans, background-color $def-trans;
+
+    &::before {
+        @include arrow-left($bg-col, $arrow-padding + $arrow-margin);
+        transition: border-color $def-trans;
+    }
+}
+
+@mixin metadata-arrow-link($col: $toc-color, $bg-col: $toc-bg-color) {
+    @include metadata-arrow($col, $bg-col);
+
+    &:hover {
+        &::before {
+            @include arrow-left($col, $arrow-padding + $arrow-margin);
+        }
+
+    }
+}
+
+@mixin hyphenate-fully() {
+    text-align: justify;
+
+    -webkit-hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    -webkit-hyphenate-limit-chars: 6 3 3;
+    -webkit-hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-last: always;
+    -webkit-hyphenate-limit-zone: 8%;
+    -moz-hyphens: auto;
+    -moz-hyphenate-limit-chars: 6 3 3;
+    -moz-hyphenate-limit-lines: 2;
+    -moz-hyphenate-limit-last: always;
+    -moz-hyphenate-limit-zone: 8%;
+    -ms-hyphens: auto;
+    -ms-hyphenate-limit-chars: 6 3 3;
+    -ms-hyphenate-limit-lines: 2;
+    -ms-hyphenate-limit-last: always;
+    -ms-hyphenate-limit-zone: 8%;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
+    hyphenate-limit-zone: 8%;
+}

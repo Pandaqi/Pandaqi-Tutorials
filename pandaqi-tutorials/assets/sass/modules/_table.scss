@@ -1,0 +1,77 @@
+@use "globals" as g;
+
+$border: 3px solid gray;
+
+/*** IN-POST TABLE STYLES ***/
+table {
+	width: 100%;
+	border-spacing: 0px;
+	font-family: g.$body-font;
+	margin-bottom: 2.5rem;
+	border-bottom: $border;
+	box-shadow: 0 5px 5px #A9A9A9;
+	clear: both;
+
+    thead {
+        tr {
+            th {
+                border-bottom: $border;
+                font-weight: bold;
+            }
+
+            th:empty {
+                display: none;
+            }
+        }  
+    }
+    
+    tr {
+        td, th {
+            padding: 0.66rem;
+            margin: 0px;
+            line-height: g.$def-line-height;
+            &:nth-child(n+2) {
+                border-left: $border;
+            }
+        }
+    }
+}
+
+.style-less-table {
+	border: none;
+	box-shadow: none;
+
+    tr {
+        td {
+            background-color: transparent !important;
+            border: none !important;
+            vertical-align: top;
+        }
+
+        &:nth-child(2n) td {
+            background-color: rgba(255, 200, 100, 0.4);
+        }
+        
+    }
+}
+
+.database-table {
+    color: hsl(14, 49%, 43%);
+	border-bottom: none;
+	margin: 0px;
+    
+    tr td:nth-child(n+2) {
+	    border-left: 1px solid rgb(155, 100, 0);
+    }
+
+    &.un-selected-row {
+        font-style: italic;
+        font-size: 95%;
+        opacity: 0.5;
+    }
+}
+
+.helper-database-table {
+	opacity: 0.75;
+	margin-bottom: 50px;
+}

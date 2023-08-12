@@ -1,0 +1,56 @@
+@use "globals" as g;
+
+@mixin place-underneath()
+{
+    flex-direction: column;
+
+    .double-block-right {
+        text-align: center;
+
+        img {
+            width: auto;
+            height: auto;
+            max-height: 500px;
+        }
+    }
+}
+
+.double-view {
+	@include g.flex-center();
+    flex-direction: row;
+    gap: 0.5em;
+    position: relative;
+
+    @media all and (max-width: g.$breakpoint-big) {
+        @include place-underneath();
+    }
+
+    &.split-container-none {
+        @include place-underneath();
+    }
+
+    .double-block-left {
+        width: 100%;
+    }
+
+    .double-block-right {
+        width: 100%;
+
+        &.split-shrink {
+            flex-shrink: 2; // it's more important that the code has enough space, especially because images can be clicked
+        }
+
+        &.split-even {
+            flex-shrink: 1;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    svg, canvas {
+        border: 1px solid gray;
+        font-family: "Times New Roman";
+    }
+}

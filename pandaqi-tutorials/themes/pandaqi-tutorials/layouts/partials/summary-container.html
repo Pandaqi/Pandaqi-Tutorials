@@ -1,0 +1,19 @@
+{{ $layout_style := .layoutStyle }}
+{{ $context := .context }}
+{{ $class := or .class "" }}
+{{ $pages := .pages }}
+{{ if eq $layout_style "grid" }}
+    {{ $pages = $pages | shuffle }}
+{{ end }}
+
+<div class="summary-container summary-{{ $layout_style }} {{ $class }}">
+    <div class="sub-container">
+        {{ range $pages }}
+            {{ if eq $layout_style "grid" }}
+                {{ partial "summary-grid.html" . }}
+            {{ else if eq $layout_style "list" }}
+                {{ partial "summary-list.html" . }}
+            {{ end }}
+        {{ end }}
+    </div>
+</div>

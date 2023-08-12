@@ -1,0 +1,20 @@
+{{ $home_url := .Site.BaseURL | relURL }}
+
+{{ with .Site.Menus.main }}
+<nav class="menu">
+    <ul>
+        <li>
+            {{ partial "button.html" (dict "context" . "href" $home_url "content" "Home" "addIcon" true)}}
+        </li>
+
+        {{ range . }}
+        <li>
+            {{ $href := .URL | relURL }}
+            {{ $content := .Name }}
+            {{ $styleClass := printf "style-%s" ($content | urlize) }}
+            {{ partial "button.html" (dict "context" . "href" $href "content" $content "addIcon" true "class" $styleClass) }}
+        </li>
+        {{ end }}
+    </ul>
+</nav>
+{{ end }}

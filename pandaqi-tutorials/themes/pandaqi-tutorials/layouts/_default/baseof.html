@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	{{ partial "site-title.html" . }}
+
+	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+
+	<link rel="icon" type="image/png" href="{{ .Site.BaseURL }}/favicon.png" />
+
+	{{ $options := (dict "targetPath" "css/critical.css" "outputStyle" "compressed" "transpiler" "dartsass") }}
+	{{ $style := resources.Get "sass/critical.scss" | resources.ToCSS $options }}
+	<link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+	{{ if .Params.enableMathJax }}
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	{{ end }}
+</head>
+<body>
+	<!-- {{ block "header" . }} {{ partialCached "header" . }} {{ end }} -->
+
+	<button id="gotoBottomBtn">
+		<img src="/tutorials/icon/go_to_bottom.svg" class="no-click" />
+	</button>
+
+	<div id="overlay-image" style="display: none;">
+		<img id="overlay-image-src">
+		<div>(click anywhere to close)</div>
+	</div>
+
+	{{ block "main" . }}{{ end }}
+	
+	{{ block "footer" . }}
+		{{ partialCached "footer" . }}
+	{{ end }}
+
+	{{ block "lazyLoad" . }}
+		{{ partialCached "lazy-load" . }}
+	{{ end }}
+
+	{{ block "uncachedLazyLoad" . }}
+		{{ partial "lazy-load-uncached.html" . }}
+	{{ end }}
+
+</body>
+</html>

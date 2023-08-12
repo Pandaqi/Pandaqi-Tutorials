@@ -1,0 +1,300 @@
+@use "sass:color";
+@use "modules/globals" as g;
+
+* {
+	box-sizing: border-box;
+}
+
+body, html {
+	font-family: g.$body-font;
+	font-size: g.$def-font-size;
+	line-height: g.$def-line-height;
+	background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../grainy_bg.jpg);
+	color: g.$def-font-color;
+	background-color: g.$def-bg-color;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	overflow-x: hidden;
+}
+
+.center-block {
+	margin: auto;
+	//max-width: g.$def-max-width;
+	max-width: g.$def-center-block-width;
+}
+
+.padding {
+	padding: g.$def-padding;
+}
+
+.frontpage-text {
+	text-align: center;
+	max-width: 600px;
+	font-size: 0.75rem;
+	line-height: 120%;
+}
+
+.flex-center {
+	@include g.flex-center();
+}
+
+.complete-fill {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.coming-soon-message {
+	text-align: center;
+    font-family: 'Dosis';
+    font-size: 4.0rem;
+    margin: 3.0rem;
+	line-height: 120%;
+}
+
+span.underline {
+	text-decoration: underline;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+.style-article .right-block, .overview-text {
+	a {
+		text-decoration: underline 2px gray;
+		transition: text-decoration g.$def-trans, color g.$def-trans;
+
+		&:hover {
+			color: black;
+			text-decoration-color: g.$def-font-color;
+		}
+	}
+}
+
+button {
+	cursor: pointer;
+	border: none;
+}
+
+::selection {
+	color: rgba(255, 200, 150, 1);
+	background-color: #333;
+}
+
+section {
+	p, li {
+		a {
+			color: rgb(150, 100, 50);
+			border-bottom: 2px solid rgb(150, 100, 50);
+
+			&:hover {
+				color: indianred;
+				border-bottom: 2px solid indianred;
+				/*text-shadow:0px 1px 3px #333;*/
+			}
+		}
+	}
+}
+
+// this prevents ugly flashes on page load, because the SVGs are going MAXIMUM SIZE
+.summary-container {
+	img {
+        max-width: 256px;
+        max-height: 256px;
+    }
+}
+
+/* Headings */
+h1,h2,h3,h4,h5,h6 {
+	font-family: g.$header-font;
+	position: relative;
+	margin-top: 70px;
+	margin-bottom: 8px;
+	line-height: 120%;
+}
+
+h2,h3,h4,h5,h6 {
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		left: -1.0 * g.$def-padding;
+		//top: -0.275em;
+		@include g.hexagon(1.0em, g.$def-divider-color);
+	}
+}
+
+
+h1 {
+	margin-top: 0.5rem;
+	font-size: 3.5rem;
+}
+
+h2 {
+	font-size: 2.5rem;
+	padding-left: 0.5rem; // make space for hexagon
+}
+
+h3 {
+	font-size: 1.5rem;
+
+	&::before {
+		left: -1.325 * g.$def-padding;
+	}
+}
+
+h4 {
+	font-size: 1.0rem;
+}
+
+
+/* Small tags */
+abbr {
+	font-size: 76%;
+	letter-spacing: 0.75px;
+}
+
+dt {
+	margin-top: 20px;
+}
+
+dd {
+	margin-top: 8px;
+}
+
+strong, b {
+	color: hsl(20, 75%, 37%);
+}
+
+em strong,
+em b,
+strong em,
+b em {
+	font-variant: normal;
+	font-weight: normal;
+	letter-spacing: 0px;
+	color: hsl(20, 75%, 42%);
+}
+
+/* Images */
+img {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+}
+
+/* @IMPROV: should be moved to a better location */
+.side-note {
+	position: absolute;
+	left: -0.725 * g.$left-block-width;
+	width: 0.65 * g.$left-block-width;
+	line-height: 150%;
+	font-family: g.$header-font;
+	font-size: 0.75rem;
+}
+
+figure:not(.no-hover) {
+	transition: margin g.$def-trans, background g.$def-trans, border g.$def-trans;
+	border-left: 0 solid #e78655;
+	margin: 0;
+	background: transparent;
+	
+	&:hover {
+		cursor: pointer;
+		border-left: 0.5em solid #e78655;
+		background: repeating-linear-gradient(45deg,
+				transparent,
+				transparent 10px,
+				rgba(50, 50, 50, 0.05) 10px,
+				rgba(50, 50, 50, 0.05) 20px);
+	}
+}
+
+figure.video {
+	width: 100%;
+    margin: auto;
+	margin-top: 1em;
+    margin-bottom: 3.5em;
+
+	video {
+		filter: drop-shadow(0px 0px 5px #333);
+	}
+
+	/*
+	.side-note {
+		font-family: g.$header-font;
+		color: #553322;
+		background-color: #ffbb5f;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		text-align: center;
+	}*/
+}
+
+img {
+	&.float-right, &.float-left {
+		width: 250px !important;
+		margin: 1.0em;
+		display: inline-block;
+	}
+	
+	&.float-right {
+		float: right;
+	}
+
+	&.float-left {
+		float: left;
+	}
+}
+
+.float-clear {
+	clear: both;
+}
+
+#overlay-image {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	width: 100%;
+	height: 100%;
+	z-index: 5000;
+
+	display: none;
+	background-color: #EEE;
+
+	@include g.flex-center();
+
+	#overlay-image-src {
+		all: unset;
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	div {
+		text-align: center;
+		position: absolute;
+		bottom: 10px;
+		width: 100%;
+	}
+}
+
+// To remove decoration and easily print the tutorials at home
+@media print {
+
+	header,
+	#footer,
+	.hexSmall,
+	.hexagon {
+		display: none !important;
+	}
+}

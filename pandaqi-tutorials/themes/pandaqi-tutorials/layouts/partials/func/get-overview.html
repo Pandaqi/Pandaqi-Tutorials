@@ -1,0 +1,12 @@
+{{ $pages := .CurrentSection.Pages }}
+
+<ol class="overview">
+    {{ $counter := 1 }}
+    {{ range $pages }}
+        <li>
+            <span class="counter">{{ $counter }}</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{ $counter = add $counter 1 }}
+        </li>
+    {{ end }}
+</ol>

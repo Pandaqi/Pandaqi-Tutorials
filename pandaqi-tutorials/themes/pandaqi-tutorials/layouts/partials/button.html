@@ -1,0 +1,43 @@
+{{- $url := or .href "" -}}
+{{- if ne (substr $url -1) "/" -}}
+    {{- $url = printf "%s/" $url -}}
+{{- end -}}
+
+{{- $content := or .content "" -}}
+{{- $rand := index (seq 8 | shuffle) 0 -}}
+{{- $class := or .class "" -}}
+{{- $id := or .id "" -}}
+
+{{- $use_button_tag := or .buttonTag false -}}
+
+{{- $add_icon := or .addIcon false -}}
+{{- $icon_url := printf "%sicon.svg" $url -}}
+{{- $add_custom_icon := isset . "addCustomIcon" -}}
+{{- if $add_custom_icon -}}
+    {{- $icon_url = .addCustomIcon -}}
+{{- end -}}
+
+{{- if $use_button_tag -}}
+    <button class="masked big-mask mask-{{ $rand }} {{ $class }}" id="{{ $id }}">
+        <span class="container">
+            {{- if or $add_icon $add_custom_icon -}}
+                <span class="icon">
+                    <img src="{{ $icon_url }}" class="no-click">
+                </span>
+            {{- end -}}
+            {{- $content -}}
+        </span>
+    </button>
+
+{{- else -}}
+    <a href="{{ $url }}" class="masked big-mask mask-{{ $rand }} {{ $class }}">
+        <span class="container">
+            {{- if or $add_icon $add_custom_icon -}}
+                <span class="icon">
+                    <img src="{{ $icon_url }}" class="no-click">
+                </span>
+            {{- end -}}
+            {{- $content -}}
+        </span>
+    </a>
+{{- end -}}

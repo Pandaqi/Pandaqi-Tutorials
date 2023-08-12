@@ -1,0 +1,7 @@
+name = "Pandaqi Tutorials"
+description = "Tutorials about anything and everything."
+homepage = "https://pandaqi.com/tutorials"
+
+[author]
+  name = "Pandaqi"
+  homepage = "https://pandaqi.com"

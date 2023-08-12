@@ -1,0 +1,22 @@
+{{ $main := .Title }}
+{{ $subsection := .CurrentSection.Title }}
+{{ $section := .Section | humanize }}
+{{ $site := "Pandaqi Tutorials" }}
+{{ $slice := slice $main $subsection $section $site }}
+
+{{ if eq $main $subsection }}
+    {{ $slice = $slice | after 1 }}
+{{ end }}
+
+{{ if eq $subsection $section }}
+    {{ $slice = $slice | after 1 }}
+{{ end }}
+
+{{ $title := delimit $slice " | " }}
+{{ if .IsHome }}
+    {{ $title = "Homepage | Pandaqi Tutorials | Free learning for everyone" }}
+{{ end }}
+
+<title>
+    {{ $title }}
+</title>

@@ -1,0 +1,27 @@
+{{ define "main" }}
+	<main class="article">
+		<article>
+			{{ $style := partial "func/get-bubble-up-style.html" . }}
+			{{ $content := partial "func/get-mobile-metadata.html" . }}
+			{{ partial "block-heading.html" (dict "context" . "heading" .Title "content" $content "style" $style "html" true "addLinks" true) }}
+
+			{{ partial "block-article.html" (dict "context" . "content" .Content "style" "article" "secondaryStyle" $style) }}
+
+			{{ if .Params.overview }}
+				{{ $overview := partial "func/get-overview.html" . }}
+				{{ partial "block-general.html" (dict "context" . "leftContent" "Course Overview" "rightContent" $overview "style" "overview")}}
+			{{ end }}
+
+			{{ $pagination := partial "func/get-pagination.html" (dict "context" . "type" "series") }}
+			{{ partial "block-general.html" (dict "context" . "leftContent" "Continue with this course" "rightContent" $pagination  "style" $style) }}
+		
+			{{ if isset .Params "quiz" }}
+				{{ $quiz := partial "func/get-quiz.html" . }}
+				{{ partial "block-general.html" (dict "context" . "leftContent" "Test your knowledge with the quiz!" "rightContent" $quiz "style" "quiz") }}
+			{{ end }}
+			
+			{{ $support := partial "func/get-support-buttons.html" }}
+			{{ partial "block-general.html" (dict "context" . "leftContent" "Support me and this website!" "rightContent" $support "style" "support") }}
+		</article>
+	</main>
+{{ end }}

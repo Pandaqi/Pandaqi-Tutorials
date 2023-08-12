@@ -1,0 +1,17 @@
+{{ $src := .Get "src" }}
+{{ $lang := .Get "lang" }}
+{{ $split := or (.Get "split") "shrink" }}
+
+{{ $alt := "Code left > output right" }}
+{{ if eq $split "none" }}
+    {{ $alt = "Code above > output below" }}
+{{ end }}
+
+<div class="double-view split-container-{{ $split }}">
+    <div class="double-block-left split-{{ $split }}">
+        {{- highlight (trim .InnerDeindent "\n") $lang -}}
+    </div>
+    <div class="double-block-right split-{{ $split }}">
+        {{ partial "show-image.html" (dict "context" . "src" $src "alt" $alt) }}
+    </div>
+</div>

@@ -1,0 +1,49 @@
+@use "modules/globals" as g;
+
+.pagination {
+    @include g.remove-standard-list-style();
+
+    font-family: g.$header-font;
+
+    &.course-pagination {
+        ul li a {
+            color: black !important;
+        }
+    }
+
+    .nav-arrow {
+        position: relative;
+
+        .arrow-left {
+            @include g.arrow-left(g.$example-bg-color);
+        }
+
+        .arrow-right {
+            @include g.arrow-right(g.$example-bg-color);
+        }
+    }
+
+    ul {
+        @include g.flex-center();
+        gap: 2.0em;
+        justify-content: space-between;
+
+        li {
+            &:hover {
+                .arrow-left {
+                    right: -1.25rem;
+                }
+
+                .arrow-right {
+                    left: -1.25rem;
+                }
+            }
+            .nav-disabled {
+                font-style: italic;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    
+}

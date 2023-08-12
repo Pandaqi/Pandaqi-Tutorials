@@ -1,0 +1,56 @@
+{{ $course_url :=  .context.Parent.RelPermalink }}
+{{ $icon_url := printf "%sicon.svg" $course_url }}
+{{ $course_name := .context.Parent.Title }}
+{{ $section_name := .context.Parent.Parent.Title }}
+{{ $section_url := .context.Parent.Parent.RelPermalink }}
+{{ $section_icon_url := printf "%sicon.svg" $section_url }}
+
+{{ $style := .style }}
+{{ $isHTML := or .html false }}
+
+{{ $add_links := or .addLinks false }}
+
+<div class="block-container style-{{ $style }}">
+    <div class="left-pad"></div>
+    <div class="left-block">
+        <div class="metadata">
+            <div class="course-circle">
+                <img src="{{ $icon_url }}" class="no-click" />
+            </div>
+            <div class="course-line"></div>
+            <div class="text">
+                {{ if not $add_links }}
+                    <span>{{ $course_name }}</span>
+                    <span>{{ $section_name }}</span>
+                {{ else }}
+                    <a href="{{ $course_url }}">{{ $course_name }}</a>
+                    <a href="{{ $section_url }}">{{ $section_name }}</a>
+                {{ end }}
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="right-block">
+        <div class="between-block-hex">
+            <img src="{{ $section_icon_url }}" class="no-click" />
+        </div>
+
+        <h1>{{ .heading }}</h1>
+        <div>
+            {{ if $isHTML }}
+                {{ .content | safeHTML }}
+            {{ else }}
+                {{ .content | .context.Page.RenderString | plainify }}
+            {{ end }}
+        </div>
+    </div>
+    <div class="right-pad"></div>
+</div>
+
+<div class="block-container style-{{ $style }} block-separator">
+    <div class="left-pad"></div>
+    <div class="left-block"></div>
+    <div class="right-block"></div>
+    <div class="right-pad"></div>
+</div>

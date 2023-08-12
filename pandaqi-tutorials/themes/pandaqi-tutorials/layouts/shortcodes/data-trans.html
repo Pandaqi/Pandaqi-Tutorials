@@ -1,0 +1,11 @@
+{{- $from := or (.Get "from") "" -}}
+{{- $to := or (.Get "to") "" -}}
+
+<div class="data-transformation-container">
+    <div class="data-transformation">
+        <div class="icon"><img class="no-hover" src="/tutorials/icon/data_transformation.svg" /></div>
+        <div class="from">{{- $from -}}</div>
+        <div class="arrow">&nbsp;=>&nbsp;</div>
+        <div class="to">{{- $to -}}</div>
+    </div>
+</div>
