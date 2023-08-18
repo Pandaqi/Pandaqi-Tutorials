@@ -62,6 +62,14 @@ This character is egotistical ... except when their family is in danger.
 
 With this simple technique, you can get a character with a wide range of (competing or contradicting) traits. But it makes sense and is understandable to the audience, creating empathy and interest.
 
+This is also a great way to _show_ who a character is without telling the audience directly: by creating a contrast or contradiction between how they _portray themselves_ and who they _truly are_. 
+
+You might call this the trait of a **good character arc**: the whole story builds to the moment when somebody's _true_ character is finally revealed. The thing that was inside them all along finally comes out during a twist, or climax, or impactful conflict. (Could be good---which looks like a change into a better person---or bad---creating the antihero or the fall from grace.)
+
+{{% example %}}
+Han Solo in Star Wars constantly says he only cares about himself and has this air of narcissism and egoism around him. But his actions constantly show that he helps others, until he finally ends up being a crucial piece in victory over the empire. Under pressure, near the climax of the story, his _true_ character has shown itself. Such contrast creates interesting character.
+{{% /example %}}
+
 ## Now write!
 
 Write a story with characters developed using this technique. Use level 1 for most characters, but level 2 for the main character(s).

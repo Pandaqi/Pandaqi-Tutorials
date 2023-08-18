@@ -36,6 +36,22 @@ You _can_ do it the other way around: you invent a great backstory, then base yo
 This works best if your great backstory is just a _prequel_ to the story. If the backstory is so interesting, turn it into a full story! (And once that story is done, you know the state of your character at that point, and can write subsequent plots around it.)
 {{% /remark %}}
 
+## How to reveal backstory?
+
+There's a reason it's backstory or unknown history. People don't like to talk about it and it usually doesn't come up in conversation (in a natural way).
+
+For example, I've been struggling with a chronic illness for 10+ years. Almost everyone around me _doesn't even know this_. Because when would I talk about it? When would I say "hey, out of the blue, just so you know, here's my history with disease"? Never. The only people who truly know are those who have _seen_ or _experienced_ the limitations this places upon me.
+
+The same is true for story. Don't forcefully insert backstory all the time. Don't literally state it at weird moments. Instead, I think the rule below is a good general principle.
+
+> True character is revealed in the choices somebody makes under pressure.
+
+In other words, _conflict_ is the state in which people reveal hidden or deeper parts about themselves. 
+
+I won't mention my chronic disease out of the blue. But throw me in a situation where my illness _prevents_ me from doing something (or makes it really hard to do), and now I suddenly have a conflict. I have to show or explain this information to someone in hopes of resolving the situation.
+
+That's why it's generally recommended to throw your characters into conflicts all the time---the bigger the better. That's the natural state in which they reveal personality, flaws, backstory, everything. Either by _showing_ it (in how they deal with the conflict) or through dialogue (because they need somebody else, or other people are asking sensible questions).
+
 ## An example
 
 This is an example of the "backstory as I go"-approach. I like to do this because, as stated, the actual story is more important then backstory. I focus on the main plot first, trying to come up with interesting scene after interesting scene, and let that _determine_ my backstory. Otherwise, you run the risk of planning some great background for a character, but having no exciting or suitable way to communicate it in the main story.

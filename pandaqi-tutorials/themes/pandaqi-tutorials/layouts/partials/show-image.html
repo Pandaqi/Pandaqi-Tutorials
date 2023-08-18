@@ -4,6 +4,7 @@
 		{{- $rel_url = printf "%s.webp" $rel_url -}}
 	{{- end -}}
 	{{- $full_url := printf "content%s%s" .context.Page.RelPermalink $rel_url -}}
+	{{- $full_url = replace $full_url "/tutorials" "" -}}
 	{{- $pure_alt := .alt -}}
 	{{- $class := or .class "" -}}
 	{{- if $pure_alt -}}

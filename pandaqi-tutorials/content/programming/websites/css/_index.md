@@ -1,6 +1,7 @@
 ---
 title: "CSS"
 pre: "Some HTML knowledge. For example, take the basic HTML course on this website."
+type: "course"
 ---
 
 CSS is the second most important language of the internet, behind HTML. The acronym means "Cascading Style Sheets". As the name implies, it _styles_ webpages. A boring white page with black text suddenly turns into a beautiful design! 

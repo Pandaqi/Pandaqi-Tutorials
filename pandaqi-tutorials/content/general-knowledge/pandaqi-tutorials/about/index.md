@@ -18,14 +18,14 @@ Once I was done with education---I'm officially a "Mathematical engineer", but n
 
 Below are links to all my other projects. I hope they give you joy. And I hope you give my paid work a chance if that is the case, as it is how I make my living.
 
+* [Tiamo Pastoor | Books & Writing](https://tiamopastoor.com)
 * [Pandaqi | Games](https://pandaqi.com)
 * [Tiamo, El Troubadour | Music](https://eltroubadour.com)
-* [Niet Dat het Uitmaakt | Dutch Blog](https://nietdathetuitmaakt.nl)
 * [Rode Panda | Portfolio](https://rodepanda.com)
 
 My work spans four major areas: **writing, design, games/programming,** and **music**. I taught myself all of that. I even skipped third grade because I could already read---thank you, Harry Potter books lying around!---when we were supposed to _start learning how to read_.
 
-However, due to a chronic illness, I had to spend years mostly focussing on _writing_ and _programming_. As that's all you can do when your body barely works. This website, for example, had support for videos and sound from day one, but not a single tutorial currently uses it.
+However, due to a chronic illness, I had to spend years mostly focusing on _writing_ and _programming_. As that's all you can do when your body barely works. This website, for example, had support for videos and sound from day one, but not a single tutorial currently uses it.
 
 The illness is most likely the result of my stress and depression because of the educational system. I say this as advice and a warning. Your youth is the most _critical_ moment for the development of your health. Schooling in most countries basically means you spend 20 years stressed-out, overworked, bossed around and very unhappy. 
 

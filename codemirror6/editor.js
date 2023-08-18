@@ -148,7 +148,9 @@ class Editor
     const tabData = {}
     for(const tab of this.tabs)
     {
-      tabData[tab.getLanguage()] = tab.getEditorContent();
+      let content = tab.getEditorContent();
+      content = content.replace(/\n\s\n/g, '\n'); // stupid replacement needed for the &nbsp; that gets added through Hugo
+      tabData[tab.getLanguage()] = content;
     }
 
     const iframe = document.createElement("iframe");

@@ -28,9 +28,11 @@ Two fonts is the maximum. If you _really_ need to, you can go for three fonts, b
 
 A good example are my Wildebyte books. The main font for it (Megrim) is very nice ... but too thin for the cover. Using it made the title just completely unreadable. So I had to design my own "thick" version of it and use that.
 
-@TODO: IMAGE of that? (Wildebyte Covers => Tiny font besides thick font, plus explanation)
+![Yes, the title itself also changed, because the first title was just a placeholder to test the covers.](book_cover_font_thickness.webp)
 
-A common question is: _which should be bigger, the title or the author's name?_ 
+Obviously, most of the time you just want to find a thick font that already exists. No need to learn how font design works just for a book cover!
+
+Finally, a common question is: _which should be bigger, the title or the author's name?_ 
 
 And the answer is: _whichever is most recognizable_.
 
@@ -48,7 +50,9 @@ It's as simple as that. Remember the mantra: it doesn't need to be astonishingly
 
 When in doubt, go for _contrast_ and _legibility_. It's tempting to use loads of colors, but don't. If it leads to unreadable text or a blinding rainbow, just pick solid black/white for your text. Keep it simple, keep it NOT UGLY.
 
-@TODO: Image?? (Find some book covers that are very minimalist but have good colors?)
+Check the image below. Good typography (legible, distinct, contrast) and a strong color scheme (recognizable, bright, not-clashing) are better than overcomplicating and trying too much.
+
+![](book_covers_minimalist.webp)
 
 ### Illustration
 
@@ -75,7 +79,7 @@ The beauty of a pattern is that ...
 
 Playing with the pattern, and perhaps adding some variation, can create a very nice texture for the book cover. You won't even need an actual illustration.
 
-@TODO: Image? (Simple patterns => Wildebyte, front and back;  Minimal Style => ??)
+![Please remember these are all early versions of these covers, as I still work on them.](book_cover_texture_pattern.webp)
 
 ## Mistake: the default settings
 
@@ -101,7 +105,7 @@ As such, how do you fix this?
 
 In every design, there should be _one_ thing that clearly draws the eye and gets the spotlight. One element that stands out and does something unpredictable. Those simple tweaks already improve your designs a lot.
 
-@TODO: Image?? (Just give an example of default settings, then with things shaken up.)
+![No, this isn't a real book by me, just a quick example.](book_cover_dont_be_bland.webp)
 
 ## Mistake: doing too much
 
@@ -178,7 +182,7 @@ Say you have planned a fantasy series of 5 books. Within your fantasy world, the
 It can be as simple as this. Simple illustrations, simple iconography, obvious color choices. That is enough---doing more increases the likelihood of screwing it up.
 {{% /example %}}
 
-@TODO: IMAGE?? (Use the plans for the Wildebyte book series, though note that these aren't finished.)
+![Another reminder that these are not the finished covers.](book_cover_series_approach.webp)
 
 ## Conclusion
 

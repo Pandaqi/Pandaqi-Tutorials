@@ -58,6 +58,28 @@ After the midpoint, however, the character turns "proactive"---a warrior. They a
 
 The idea of "sacrifice" matches what I said in the previous chapter, about how the hero should not be the same at the start and the end. This is most impactful if this is a _big_ change, which is why it's important to pick a main character that has a lot of _potential_ for change.
 
+## Kishotenketsu Method
+
+This method was too similar to the 4 act structure to get its own chapter. But I still wanted to talk about it, because it closely aligns to how I have come to view stories over the years (naturally). When I discovered it, I was like "yes, that's how a story works!"
+
+In Western storytelling, there's a big focus on the _climax_. Some point in which the stakes are the highest and the most decisive action happens or decision must be made.
+
+In traditional Asian storytelling, however, this climax is instead a **twist**. The whole story builds towards a _twist_ (or perhaps a _revelation_ if you want). Once revealed, the twist is shocking, surprising, and puts the whole story into a new context. It must be a mystery, an open question, that is finally answered and gives the story extra depth. (But not necessarily a question the audience was consciously asking, or the answer they expected.)
+
+{{% example %}}
+Say we have a story about somebody who isn't able to get a job. Whatever they try, no matter their qualifications, they just get turned down _everywhere_. Until, around the time of the "climax", it's revealed that one person has been working against them on purpose the whole time! TWIST!
+
+It reframes all previous scenes you had with that person. It reframes the conflict and the way to resolve it. You can _still_ end with a big "climactic fight" or a satisfying "finally he gets his dream job". But the story hinges on a twist, first and foremost.
+{{% /example %}}
+
+{{% example %}}
+Alternatively, you could add a twist that the main character has some illness that causes them to speak a different language. So they _think_ they're making perfect sense, but everybody else thinks they're talking gibberish. (And they only discover this, during the climax, when they appear in some recording and, for the first time, _hear_ themselves talking gibberish.)
+
+Or a twist could be that his "amazing qualifications" are actually false. They are simply fake and worthless, and it takes the whole story for him to piece together how that happened.
+{{% /example %}}
+
+I think this is a helpful way to think about the 3 or 4 act structure and the place of the "climax". Reframe it as a shocking twist or revelation, and you open yourself up to a much wider range of more diverse stories.
+
 ## Now write
 
 Invent a character that is clearly an Orphan. (Or made an Orphan in the first chapter, through the Inciting Incident.) If their current situation isn't dire, they don't have a strong reason to change or act. A bad start will lead to a struggling story.
