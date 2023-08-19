@@ -67,7 +67,7 @@ As shown in the image, there are several other properties that can change the co
 * `column-count`: set the number of columns directly
 * `column-width`: set the column width directly
 * `column-gap`: how much empty space there should be between columns (horizontally)
-* `column-rule`: a thin border to display between the columns. (This follows the same values as the `border`, which I haven't explained yet, so don't worry about this now.)
+* `column-rule`: a thin border to display between the columns. (This follows the same values as the `border`. Don't worry about this now, I will explain it at the [Border](../border/) chapter.)
 
 {{< playful-code deftab="css" >}}
 {{< playful-code-tab lang="html" >}}

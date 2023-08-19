@@ -17,6 +17,34 @@ There's that display property again! The very important one that I explained at 
 
 From now on, all its direct children are "flex items" and behave in a different way.
 
+## Gap
+
+By default, all these flex items will be pushed against each other. To add whitespace---a gap---between them, use the `gap` property. It accepts any number (with unit, of course).
+
+In the example, try removing the gap or playing with the value.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    width: 100%;
+    height: 20px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
 ## Wrapping
 
 What does flexbox do? First of all, it moves all its children on the same line. (No wrapping, no elements flowing vertically.)
@@ -25,7 +53,30 @@ Sometimes this is what you want. But you can turn this off with `flex-wrap: wrap
 
 ![Example of flexbox wrapping its flex items.](flexbox_wrap.webp)
 
-@TODO: EXAMPLE
+In the example below, notice how the flex items wrap underneath each other. Remove this property, and they are forced to sit next to each other on the same line.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    width: 100%;
+    height: 20px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## Direction
 
@@ -37,7 +88,30 @@ The `flex-direction` property can take four values: `row`, `row-reverse`, `colum
 
 This is already really powerful. A vertical ("column") layout is extremely hard to do (well) with just the default page flow.
 
-@TODO: EXAMPLE
+In the example below, notice how items are laid out vertically (even though wrapping is not enabled!)
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    width: 100px;
+    height: 20px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## Justify
 
@@ -56,7 +130,29 @@ It can take these values, which are best explained with an image:
 
 ![Examples of all the justify values for flexbox.](flexbox_justify.webp)
 
-@TODO: EXAMPLE
+In the example below, notice how the flex items are spread evenly across the main axis (horizontal). Also try playing with the `justify-content` property to see what happens.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1</div>
+    <div>2</div>
+    <div>3<br/>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    min-width: 100px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## Align Items
 
@@ -74,7 +170,30 @@ It takes these values, again best explained with an image.
 
 ![Examples of all the align-items values for flexbox.](flexbox_align_items.webp)
 
-@TODO: EXAMPLE
+In the example below, notice how the elements have different heights. But because `align-items` is set to center, the other elements don't change their height, but instead everything positions around the same center line.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1<br/>1<br/>1</div>
+    <div>2</div>
+    <div>3<br/>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    min-width: 100px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## Align Content
 
@@ -84,7 +203,34 @@ It takes the same values as the `justify` property.
 
 ![Examples of all the align-content values for flexbox.](flexbox_align_content.webp)
 
-@TODO: EXAMPLE
+In the example below, notice how the _whole_ flexbox has moved to the end of its container. See what happens when you change `align-content` to something else.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div>1<br/>1<br/>1</div>
+    <div>2</div>
+    <div>3<br/>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: end;
+    flex-wrap: wrap;
+    height: 120px;
+    background-color: #AAFFFF;
+    gap: 1em;
+}
+div {
+    background-color: #FFAAAA;
+    min-width: 100px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## Grow / Shrink
 
@@ -98,7 +244,47 @@ Beware! These properties are set on the **flex item**, not the flexbox container
 
 ![Examples of growing and shrinking for flexbox items](flexbox_grow_shrink.webp)
 
-@TODO: EXAMPLE
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<section>
+    <div class="narrow">1<br/>1<br/>1</div>
+    <div>2</div>
+    <div class="wide">3<br/>3</div>
+    <div>4</div>
+</section>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1em;
+}
+&nbsp;
+div {
+    background-color: #FFAAAA;
+    flex-basis: 50px;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+&nbsp;
+.narrow {
+    flex-shrink: 2;
+}
+&nbsp;
+.wide {
+    flex-grow: 2;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
+Pay careful attention to this example. The `.wide` element (the third) grows twice as large as the others. Which is expected, because it has `flex-grow: 2`.
+
+But ... why doesn't the `.narrow` element (the first) shrink twice as quickly as the others?
+
+Well, because shrinking only happens if there's too _little_ space. In this case, the default size of the elements is only `50px`, which means there is too _much_ space. So elements can only _grow_.
+
+Change that value to something much bigger (like `300px`), and now elements are too wide. The flexbox has to shrink them, so the `flex-shrink` property takes effect and you should see the narrow element actually shrink faster.
 
 ## Basis
 

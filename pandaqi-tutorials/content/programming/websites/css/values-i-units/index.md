@@ -80,6 +80,11 @@ p {
 
 The common approach is to set a good _fixed_ font-size for your major elements (in `px`, yes). Then use _relative units_ for everything below that, so they automatically scale based on that. To adapt your whole layout, you merely need to change one or two font-size properties near the top.
 
+Also, **percentages** are special. There are _two_ ways to write them.
+
+* The common way: a percentage with the `%` unit (such as `100%`)
+* The math way: a number with no unit. In this case, `1` equals `100%`. (So `0.5` means `50%`, and so on.)
+
 ### Viewport Units
 
 The relative units all depend on its own (parent) element. But the thing that forces websites to be responsive is the fact that _screen size_ differs between devices! 

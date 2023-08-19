@@ -104,6 +104,20 @@ img {
 {{< /playful-code-tab >}}
 {{< /playful-code >}}
 
+Of course, you can also set the inverse. You can _forbid_ any other elements to the left or right of the current element. For that, use the `clear` property, which takes `left`, `right` or `both`.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<p><img src="/tutorials/programming/websites/css/positioning/panda_image.png"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+img { 
+  clear: both;
+  max-width: 120px;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
 ## Z-Index
 
 So far, we talked about positioning in the x-axis (horizontally) and the y-axis (vertically). But there is a third axis!

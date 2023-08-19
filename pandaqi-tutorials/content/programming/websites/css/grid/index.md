@@ -25,46 +25,4 @@ All its direct children are now "grid items" and behave as such.
 
 Now the fun starts.
 
-@TODO
-
-
-
-
-
-
-@TODO: Explain CSS comments early on + add `transparent` as the "invisible color" or "no color" option
-
-@TODO: Where to explain that images are displayed at FULL SIZE by default?
-
-@TODO: Where to explain `box-sizing` (and the universal selector `*`)?? Feels like it should be early on, as it's a big deal. At the box model?
-
-@TODO: Unexplained = declaring the four sides separately (padding-left, padding-right, shorthands). It's just messy and not that useful at this moment.
-
-
-* Flexbox => Code Examples
-* Grid => WHERE + HOW BIG
-* Transform => WHERE + HOW BIG
-* Masks / Clipping => HOW BIG
-  * +Object-fit => HOW BIG
-* Backgrounds => BACKGROUND
-  * Opacity here? 
-* Gradients => BACKGROUND
-* Filter => OVERALL ... so where?
-* Text & Fonts => FOREGROUND
-  * Whitespace (use the old image) 
-* Lists, Tables & Links => FOREGROUND
-* Border (regular border, border radius, border images) => DECORATION
-* Outline => DECORATION
-* Pseudo-Classes => DECORATION
-* Pseudo-Elements => DECORATION
-* Shadows => DECORATION
-* Transitions & Animations => RESPOND
-* Counters => RESPOND
-* Variables => RESPOND
-* Math Functions => RESPOND
-* Forms (bit of an exception/leftover) => mostly about the weird default styling for input elements
-* Advanced Selectors I (combinators, attr-selectors, ...)
-* Advanced Selectors II
-* Media Queries (also @supports?) => RESPOND
-* Web to Print (@page, paged.js, ...)
-* Conclusion
+@TODO: actually write article + interactive examples + images?
