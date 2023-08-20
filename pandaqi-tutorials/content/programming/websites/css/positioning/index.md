@@ -157,3 +157,48 @@ p {
 }
 {{< /playful-code-tab >}}
 {{< /playful-code >}}
+
+## In Practice: Overlays
+
+I'll give another practical application of these properties, as I like to do.
+
+On this website, you can click any image to see it at the full size. This is a common feature.
+
+How does this work?
+
+* I add a `<div>` to the HTML.
+* But I position it _absolutely_. (So it doesn't affect the rest of the page, and I can place it anywhere.)
+* And I use a trick to make sure it fills _the whole screen_. I set the distance to all edges (`left`, `right`, `top` and `bottom`) ... to zero!
+
+Then I simply hide this overlay at the start (`display:none;`). Whenever you click an image, it shows itself by switching to `display: block;`. Then it loads the image you clicked inside. (This is all done with JavaScript.)
+
+See the example below. Change the `display` property to show the overlay (it's hidden now)---see how it fills the entire available space.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="overlay">
+  <img src="/tutorials/programming/websites/css/positioning/panda_image.png">
+</div>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+.overlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+&nbsp;
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
+{{% remark %}}
+Also, in case you hadn't noticed already, images display at their full original width by default. That's why I need to tell the `<img>` tag to follow `max-width` and `max-height`. Without it, the image would just shrug and overflow the overlay, instead of neatly staying inside.
+{{% /remark %}}

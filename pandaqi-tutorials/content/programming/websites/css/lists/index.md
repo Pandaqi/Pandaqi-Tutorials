@@ -50,7 +50,28 @@ li {
 {{< /playful-code-tab >}}
 {{< /playful-code >}}
 
-If you want total control, you can set the list style to any image using the `list-style-image` property.
+### Symbols & Images
+
+If you want total control, you can set the list style to any image using the `list-style-image` property. (With, as expected, a _url_ to a valid image as the value.)
+
+If you want _different_ bullets per item, use the `symbols(sym1 sym2 ...)` value. You can provide any number of symbols (separated by space) and it will use those.
+
+_Beware! At time of writing (late 2023), this value isn't supported everywhere yet! Try it in Firefox, for now._
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<ul>
+  <li>List Item 1</li>
+  <li>List Item 2</li>
+  <li>List Item 3</li>
+</ul>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+li {
+  list-style-type: symbols("* - @");
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
 
 ## List Style Position
 
@@ -141,63 +162,3 @@ li {
 }
 {{< /playful-code-tab >}}
 {{< /playful-code >}}
-
-
-
-
-
-@TODO: Explain CSS comments early on + add `transparent` as the "invisible color" or "no color" option
-
-@TODO: Where to explain that images are displayed at FULL SIZE by default? + The "margin: auto" trick for centering?
-
-@TODO: Where to explain `box-sizing` (and the universal selector `*`)?? Feels like it should be early on, as it's a big deal. At the box model?
-
-@TODO: Unexplained = declaring the four sides separately (padding-left, padding-right, shorthands). It's just messy and not that useful at this moment.
-
-  Maybe move the explanation of "we're not going to do shorthand declarations in this tutorial" more to the start?
-
-@TODO: Flexbox Code Examples
-
-@TODO: Grid Complete Article
-
-* Links => FOREGROUND
-* Pseudo-Classes => DECORATION
-* Pseudo-Elements => DECORATION
-* Shadows => DECORATION
-* Transitions & Animations => RESPOND
-* Counters => RESPOND
-* Variables => RESPOND
-* Math Functions => RESPOND
-* Forms (bit of an exception/leftover) => mostly about the weird default styling for input elements
-* Tables (same as forms)
-* Text III => 
-* Advanced Selectors I (combinators, attr-selectors, ...)
-* Advanced Selectors II
-* ?? => user-select, pointer-events, other misc stuff??
-* Media Queries (also @supports?) => RESPOND
-* Web to Print (@page, paged.js, widows, orphans, break-before, ...)
-* Conclusion
-
-
-
-## Decoration
-
-When you learned HTML, you probably noticed that _(hyper)links_ automatically get a border underneath them. An "underline". In fact, it's so common that people automatically assume that links have this underline, and anything without it isn't registered as "a link I can click".
-
-This isn't an actual border. It's not set via the `border` property, though it _does_ work using the same values (thickness, style and color).
-
-As expected, there's another CSS property that controls this. It's called `text-decoration`.
-
-What's the difference? This property takes the text into account. It will not show the border if it overlaps with a letter. (Usually letters with something sticking out at the bottom, such as the "j" or "p".)
-
-@TODO (text-decoration from links)
-
-## Transformation
-
-@TODO (text-transform)
-
-## Text Shadow
-
-@TODO (text-shadow)
-
-`text-overflow` and `writing-mode`??

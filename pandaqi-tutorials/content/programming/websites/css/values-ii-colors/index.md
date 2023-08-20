@@ -11,6 +11,27 @@ If you've never designed (digitally) before, you most likely have _no idea_ how 
 
 To show this in action, I'll use the `color` and `background-color` properties. (The first sets text color, the second background color.)
 
+## No color
+
+The baseline is, of course, "no color". This is the first thing that trips up newcomers. How do you tell CSS to use "no color"?
+
+Many CSS properties have the value `none` to indicate nothing---but not this one. "None" is not a color!
+
+Instead, use the value `transparent`. A fully transparent color is invisible.
+
+In the example below, see how ... you _can't_ see the paragraph ;)
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<p>This paragraph is invisible because it has no color.</p>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+p {
+  color: transparent;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
 ## Named
 
 In the examples before now, I only used names of common colors (such as `red`). CSS has a _long_ list of color names you can just type (and the computer knows what to do).

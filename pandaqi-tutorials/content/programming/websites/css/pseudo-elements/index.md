@@ -46,7 +46,7 @@ How do you style these? By selecting them with the `::marker` pseudo-element, th
 
 _But wait_, you might say, _how do I add content inside something that doesn't exist in the HTML?_
 
-Ah, good question! Pseudo-elements have a unique property that can't be used anywhere else: `content`. It accepts any string.
+Ah, good question! Pseudo-elements have a unique property that can't be used anywhere else: `content`. It accepts any string. 
 
 {{< playful-code deftab="css" >}}
 {{< playful-code-tab lang="html" >}}
@@ -59,6 +59,35 @@ Ah, good question! Pseudo-elements have a unique property that can't be used any
 {{< playful-code-tab lang="css" >}}
 li::marker {
   content: "🎅";
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
+## The content property
+
+This property is even more powerful than it might seem (at first glance).
+
+You can also _combine_ multiple strings, simply by typing them with a space in between. 
+
+_When would I need that?_ Well, for example, what if you need the content to be _dynamic_? Some part of it is fixed (typed by you), but another part should be updated as the page is loaded? 
+
+You can use the `attr(<attribute>)` keyword!
+
+This reads the value of the given _attribute_ on the HTML element and places it in the `content`. 
+
+See the example below. Part of the content is a string typed by us, the other part reads an attribute (which we invented ourselves) from the element being styled.
+
+{{< playful-code deftab="css" >}}
+{{< playful-code-tab lang="html" >}}
+<ul>
+  <li marker="🎅">He's making a list ...</li>
+  <li marker="🎄">He's checking it twice ...</li>
+  <li marker="🛷">Gonna find out ...</li>
+</ul>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+li::marker {
+  content: attr(marker) " | ";
 }
 {{< /playful-code-tab >}}
 {{< /playful-code >}}
