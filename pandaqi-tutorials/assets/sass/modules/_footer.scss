@@ -63,5 +63,9 @@ footer {
         font-family: g.$header-font;
         text-align: center;
         opacity: 0.8;
+
+        a { 
+            font-weight: bold;
+        }
     }
 }

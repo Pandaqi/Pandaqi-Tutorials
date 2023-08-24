@@ -2,8 +2,8 @@
 
 <nav class="summary style-{{ $style }}">
 	<a href="{{ .RelPermalink }}" class="flex-center complete-fill">
-		{{ $icon_url := printf "%s/icon.svg" .RelPermalink }}
-		<img src="{{ $icon_url }}" class="no-click" />
+		{{ $icon_url := printf "%sicon.svg" .RelPermalink }}
+		<img src="{{ $icon_url }}" alt="Icon for {{ .Title }}" class="no-click" />
 		<span class="label">{{ .Title }}</span>
 	</a>
 </nav>

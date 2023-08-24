@@ -37,26 +37,26 @@ You can right-click > "open image in new tab", then check the URL to see which v
 
 Yes, the official recommendation is to place picture elements inside figure elements.
 
-## The Source element
+## The Source Element
 
-@TODO: figure this out and provide a clear explanation
+The source element for _other_ media types (such as video and audio) is very simple and will be discussed in their respective chapters.
 
-  => https://stackoverflow.com/questions/35099471/how-to-use-srcset-and-sizes-for-responsive-images
+For images, however, it has a _lot_ of functionality. Why? So you can use _responsive_ images. 
 
+Based on the screen size and resolution of the visitor, you load and display a different image. This way, you don't need to load unnecessarily large image files, but also never display a pixelated or tiny image to users with high-resolution screens. It also allows users to _zoom in_ (or out), and it loads new versions to match the new resolution.
 
-A source element can have these attributes.
+{{% remark %}}
+In the future, HTML will probably natively support responsive _audio_ and _video_ too. But for now, those formats are relatively new and more complicated than images. As such, everything explained below ONLY works in picture elements.
+{{% /remark %}}
+
+The `<source>` element can have these attributes.
 
 * `type`: the image format. (`image/webp` for webp, `image/png` for png, etcetera)
-* `media`: a restriction for when this image should be used. (A CSS media query, so out of scope for this course.)
-* `srcset`: one or multiple urls, separated by commas, to the source images
-* `sizes`: 
+* `srcset`: one or multiple urls to source images _plus_ their ideal display size, separated by commas.
+  * After each url, type `number` + `w` (to set the ideal width in pixels) or `number` + `h` (to set the ideal height in pixels). 
+* `media` (optional): a restriction for when this image should be used. (A [CSS media query](/tutorials/programming/websites/css/media-queries/), so out of scope for this course.)
+* `sizes` (optional): the base size to display the source images. (The default is `100vw`: full width. If you want your `500px` image to be displayed at `250px`, for example, the value would be `50vw`.)
 
-The example below tries to load the `.webp` version first. If it fails, it falls back on the `.png`. Whatever it loads, however, the attributes of the `<img>` tag are applied.
+As mentioned, though, this is both complicated and advanced. My own websites use a lot of images, but aren't _extremely_ heavy on them, and I take great care to compress the images to tiny sizes anyway. As such, I have never actually needed to use these advanced HTML attributes.
 
-
-
-_Why srcset? Why supply multiple urls per source?_ An image might be displayed at many different resolutions. For a user on their tiny phone, you don't want to load your huge, high-resolution version. You want to load a much smaller version.
-
-If you supply multiple URLs, you therefore must add a size to each. After each url, type `number` + `w` (to set the ideal width in pixels) or `number` + `h` (to set the ideal height in pixels).
-
-This is quite advanced and annoyingly complicated, so I don't want to dwell on it. If you really need this, visit the official documentation, and figure it out through trial-and-error.
+If you _do_ decide you need this, [study the MDN docs for the full explanation, with examples](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source). Remember, this course is NOT a documentation :)

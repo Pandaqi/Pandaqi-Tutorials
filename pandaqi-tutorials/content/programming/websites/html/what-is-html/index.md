@@ -71,3 +71,16 @@ Once we reached this point, however, people decided that versioning was a bad id
 So, for practical purposes, just remember that "HTML5" means "the current version of HTML" at all times.
 
 The downside of this system, is that support between browsers varies. Whenever in doubt about using something, check which browsers actually _support_ it with [Can I Use](https://caniuse.com).
+
+## About names
+
+HTML is **case sensitive**. This means that it matters whether you use lowercase or uppercase letters. For example, `<p>` is **not** the same as `</p>`.
+
+In the case of HTML,
+
+* All syntax you will learn is entirely **lowercase**, never uppercase.
+* Similarly, there are **no spaces**. Different words are connected with a hyphen. (For example, `green-box` instead of `green box`.)
+
+You'll see this again and again throughout this course, as you see this naming in action. I still wanted to explicitly mention it at the start, as it's a common pitfall for true beginners. Those new to coding might accidentally mix lowercase and uppercase, or add spaces, because that's how you'd write natural language.
+
+The computer doesn't do what you want ... you check your code ... and to your eyes, nothing seems wrong! Well, case sensitivity is usually the culprit.

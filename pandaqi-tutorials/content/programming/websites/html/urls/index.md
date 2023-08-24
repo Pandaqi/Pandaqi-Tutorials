@@ -20,7 +20,7 @@ A URL is a simple way to represent a file structure. (Because a website, in the 
 * Then you get the **folders**, separated by **slashes** (`/`). Each new part means we go one level deeper.
 * Until it ends, with either a folder or a file.
 
-@TODO: IMAGE of a folder structure + the url that results from it
+![How folder structure leads to a specific URL (and vice versa).](urls_and_folder_structure.webp)
 
 Now comes the golden rule of websites, to remember until the end of time.
 

@@ -21,8 +21,8 @@ export default class Images {
                 const src = img.getAttribute("src");
                 this.overlayImage.style.display = "flex";
                 this.overlayImageSource.src = src;
-                this.overlayImageSource.style.maxWidth = img.naturalWidth + "px";
-                this.overlayImageSource.style.maxHeight = img.naturalHeight + "px";
+                //this.overlayImageSource.style.maxWidth = img.naturalWidth + "px";
+                //this.overlayImageSource.style.maxHeight = img.naturalHeight + "px";
             });
         }
 
@@ -30,5 +30,7 @@ export default class Images {
             if(this.overlayImage.style.display != "flex") { return; }
             this.overlayImage.style.display = 'none';
         });
+
+        
     }
 }

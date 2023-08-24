@@ -27,13 +27,13 @@
 <body>
 	<!-- {{ block "header" . }} {{ partialCached "header" . }} {{ end }} -->
 
-	<button id="gotoBottomBtn">
-		<img src="/tutorials/icon/go_to_bottom.svg" class="no-click" />
+	<button id="gotoBottomBtn" aria-lable="Button to scroll to bottom of page">
+		<img src="/tutorials/icon/go_to_bottom.svg" alt="Button to scroll to bottom" title="Button to scroll to bottom" class="no-click" />
 	</button>
 
 	<div id="overlay-image" style="display: none;">
-		<img id="overlay-image-src">
-		<div>(click anywhere to close)</div>
+		<img id="overlay-image-src" alt="Fullscreen image (when image inside article is clicked)">
+		<div class="overlay-image-instruction">(click anywhere to close)</div>
 	</div>
 
 	{{ block "main" . }}{{ end }}

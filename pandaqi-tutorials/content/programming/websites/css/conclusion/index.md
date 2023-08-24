@@ -82,10 +82,3 @@ If you made something awesome thanks to my courses, never hesitate to let me kno
 Keep learning,
 
 Pandaqi
-
-
-
-
-@TODO: Grid Complete Article => Functions: minmax, repeat
-
-@TODO: Video example => pick some video and audio from my own marketing, then reuse that in my HTML course as well

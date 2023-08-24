@@ -18,7 +18,7 @@ The source tag takes a `src` and `type` attribute. (Not `srcset`, like images in
 
 {{< playful-code lang="html" >}}
 <figure>
-    <audio>
+    <audio controls>
         <source src="sound.ogg" type="audio/ogg">
         <source src="sound.mp3" type="audio/mpeg">
         <source src="sound.wav" type="audio/wav">
@@ -26,8 +26,6 @@ The source tag takes a `src` and `type` attribute. (Not `srcset`, like images in
     </audio>
 </figure>
 {{< /playful-code >}}
-
-@TODO: Actually supply these sound files.
 
 The `ogg`, `mp3` and `wav` file types are supported by all browsers. I ordered them based on file size; smallest first.
 

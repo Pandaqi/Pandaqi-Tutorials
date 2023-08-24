@@ -36,9 +36,36 @@ For example, a _paragraph_ (`<p>`) is a block element, while that _emphasis_ tag
 
 ## Block-level elements
 
-@TODO: Image of a typical web page with these elements marked
+Below is the list of big, semantic block-level elements. The image displays the general skeleton of a webpage, with the code for it in the example below. After that, each element is named and explained in a little more detail.
 
-@TODO: code example, simplified, that would produce such a page
+![Semantic page skeleton using HTML block-level elements.](html_semantic_page_skeleton.webp)
+
+{{< playful-code lang="html" height="400" >}}
+<header>Some navigation buttons.</header>
+<main> 
+    <article>
+        <h1>Header</h1>
+        <section>
+            <p>This is the introduction</p>
+        </section>
+        <section>
+            <p>Paragraph, paragraph.</p>
+            <p>Paragraph, paragraph.</p>
+            <p>Paragraph, paragraph.</p>
+        </section>
+        <section>
+            <p>The summary and conclusion.</p>
+            <div>
+                A highly specific, unique section that has no semantic tag.
+            </div>
+        </section>
+        <aside>
+            <p>Some final remarks and footnotes here.</p>
+        </aside>
+    </article>
+</main>
+<footer>Some credits here.</footer>
+{{< /playful-code >}}
 
 ### Main
 

@@ -15,7 +15,9 @@
     <div class="left-block">
         <div class="metadata">
             <div class="course-circle">
-                <img src="{{ $icon_url }}" class="no-click" />
+                <img alt="Icon for course '{{ $course_name }}'"
+                     title="Icon for course '{{ $course_name }}'"  
+                     src="{{ $icon_url }}" class="no-click" />
             </div>
             <div class="course-line"></div>
             <div class="text">
@@ -33,7 +35,9 @@
     </div>
     <div class="right-block">
         <div class="between-block-hex">
-            <img src="{{ $section_icon_url }}" class="no-click" />
+            <img alt="Icon for parent category '{{ $section_name }}'"
+                 title="Icon for parent category '{{ $section_name }}'"
+                 src="{{ $section_icon_url }}" class="no-click" />
         </div>
 
         <h1>{{ .heading }}</h1>

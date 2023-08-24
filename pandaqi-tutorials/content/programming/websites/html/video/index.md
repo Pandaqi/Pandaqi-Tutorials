@@ -10,17 +10,15 @@ The video tag is very similar to the [Audio](../audio/) tag. That's why this cha
 * Use a `<video>` tag
 * Which contains `<source>` tags to list all possible video sources, which is a _void_ element.
 
-{{< playful-code lang="html" >}}
+{{< playful-code lang="html" height="500" >}}
 <figure>
-    <video>
-        <source src="some_video.webm" type="video/webm">
-        <source src="some_video.mp4" type="video/mp4">
+    <video controls>
+        <source src="video.webm" type="video/webm">
+        <source src="video.mp4" type="video/mp4">
         Sorry, could not load this video.
     </video>
 </figure>
 {{< /playful-code >}}
-
-@TODO: Actually provide the video for this example
 
 The types that are best supported are `.webm` and `.mp4`. Webm is newer and creates much smaller video files, so I recommend picking that.
 
@@ -41,7 +39,7 @@ Attribute | Description |
 {{< playful-code lang="html" >}}
 <figure>
     <video controls width="500" height="281">
-        <source src="some_video.webm" type="video/webm">
+        <source src="video.webm" type="video/webm">
         Sorry, could not load this video.
     </video>
 </figure>

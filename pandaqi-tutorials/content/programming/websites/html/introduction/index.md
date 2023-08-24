@@ -51,7 +51,7 @@ _So why don't we have ONE language for the web?_ A common rule among game develo
 
 That's why I _like_ the fact that we have three languages. Each has its own, clear purpose. Need to design your website? You only need CSS. Need to structure the text of an article? You only need HTML.
 
-## Final remark
+## Learning happens by doing
 
 I always make this remark at the start of a course.
 
@@ -63,4 +63,18 @@ If you only read articles or books, you might think you're being productive, but
 
 So read a few chapters, build a webpage, don't try to memorize any of this.
 
-Let's get this party started!
+In other words, this course is **not** a documentation! A documentation is simply a dry **reference** with _all_ the syntax, names, possible values, and more. 
+
+Why? To _look up_ what you need _when you need it_! When you're building that web page yourself, you can always use the [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/HTML) to look up the exact syntax needed.
+
+## Unsure what to build?
+
+It doesn't need to be grand---in fact, keep it extremely small. You probably have a favorite website, or one that you visit a lot. A simple goal could be to recreate that webpage yourself.
+
+Or maybe you have a certain hobby, like writing or painting. As you follow this course, try building webpages that showcase your work or allow you to blog about it!
+
+Knowing how to challenge yourself with tiny projects is _also_ an incredibly useful skill. If I told you exactly what you needed to build, it would be like homework. You'd probably ignore it, or do it "against your own motivation". And when this course is over? You're still not able to set your own goals and create your own projects, because you relied on someone else to tell you what to do.
+
+So find something you're passionate about. Find a website you like, or something that could be turned _into_ a website. Use those practical goals to actually practice with the knowledge in this course!
+
+Now, let's get this party started.

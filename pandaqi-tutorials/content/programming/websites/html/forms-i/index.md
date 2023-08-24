@@ -34,6 +34,10 @@ Such as ...
 * Clicking on a label will automatically focus on the interactive element associated with it.
 * And more.
 
+Below is an image that displays the general lifecycle of a loop. Further explanation of all the details appears below it.
+
+![Visualization of the HTML form structure and submit loop.](form_submit_loop.webp)
+
 ## The general structure
 
 As always, HTML wants to add _structure_. It wants to subdivide the form into smaller and smaller parts. These are ...

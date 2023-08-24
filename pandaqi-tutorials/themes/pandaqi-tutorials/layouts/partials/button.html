@@ -22,7 +22,7 @@
         <span class="container">
             {{- if or $add_icon $add_custom_icon -}}
                 <span class="icon">
-                    <img src="{{ $icon_url }}" class="no-click">
+                    <img alt="Icon to accompany button labeled '{{ $content }}'" src="{{ $icon_url }}" class="no-click">
                 </span>
             {{- end -}}
             {{- $content -}}
@@ -34,7 +34,7 @@
         <span class="container">
             {{- if or $add_icon $add_custom_icon -}}
                 <span class="icon">
-                    <img src="{{ $icon_url }}" class="no-click">
+                    <img alt="Icon to accompany button labeled '{{ $content }}'" src="{{ $icon_url }}" class="no-click">
                 </span>
             {{- end -}}
             {{- $content -}}

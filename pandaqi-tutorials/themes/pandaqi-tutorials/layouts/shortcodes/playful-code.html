@@ -3,7 +3,8 @@
 {{- $no_preview := or (.Get "nopreview") false -}}
 {{- $def_tab := or (.Get "deftab") "" -}}
 {{- $content := htmlUnescape (trim .InnerDeindent "\n") -}}
-<div class="codemirror-editor" data-lang="{{ $lang }}" data-keepbase="{{ $keep_base }}" data-nopreview="{{ $no_preview }}" data-deftab="{{ $def_tab }}" data-content="{{ $content }}">
+{{- $height := or (.Get "height") 150 -}}
+<div class="codemirror-editor" data-lang="{{ $lang }}" data-keepbase="{{ $keep_base }}" data-nopreview="{{ $no_preview }}" data-deftab="{{ $def_tab }}" data-content="{{ $content }}" data-height="{{ $height }}">
     <div class="codemirror-tabs"><!-- --></div>
     <div class="codemirror-container" ><!-- --></div>
     <div class="codemirror-result"><!-- --></div>

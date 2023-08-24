@@ -16,7 +16,32 @@ You know what can be in multiple states? Interactive media! (More specifically, 
 * Use the `:playing` pseudo-element to select media that is playing. 
 * Use the `:paused` pseudo-element to select media that is paused.
 
-@TODO: EXAMPLE?
+_These aren't implemented everywhere yet, and more are coming, such as `muted`. Check compatibility before using._
+
+{{< playful-code deftab="css" height="400" >}}
+{{< playful-code-tab lang="html" >}}
+<figure>
+    <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Sorry, could not load this video.
+    </video>
+</figure>
+{{< /playful-code-tab >}}
+{{< playful-code-tab lang="css" >}}
+video {
+  width: 100%;
+}
+&nbsp;
+video:playing {
+  outline: 2px solid green;
+}
+&nbsp;
+video:paused {
+  outline: 2px solid red;
+}
+{{< /playful-code-tab >}}
+{{< /playful-code >}}
+
 
 ## Cursor
 

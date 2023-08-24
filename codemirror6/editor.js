@@ -54,6 +54,7 @@ class Editor
     this.keepBase = this.node.dataset.keepbase == "true";
     this.deftab = this.node.dataset.deftab || "";
     this.noPreview = this.node.dataset.nopreview == "true"; 
+    this.iframeHeight = parseFloat(this.node.dataset.height) || 150;
   }
 
   prepareHTML()
@@ -154,6 +155,8 @@ class Editor
     }
 
     const iframe = document.createElement("iframe");
+    iframe.style.height = this.iframeHeight + "px";
+    
     this.nodeExecutionResult.innerHTML = "";
     this.nodeExecutionResult.appendChild(iframe);
 
