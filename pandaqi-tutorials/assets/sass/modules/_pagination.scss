@@ -1,4 +1,4 @@
-@use "modules/globals" as g;
+@use "critical_modules/globals" as g;
 
 .pagination {
     @include g.remove-standard-list-style();
@@ -7,7 +7,9 @@
 
     &.course-pagination {
         ul li a {
-            color: black !important;
+            @include g.themed() {
+                color: g.t("def-font-color") !important;
+            }
         }
     }
 
@@ -15,11 +17,11 @@
         position: relative;
 
         .arrow-left {
-            @include g.arrow-left(g.$example-bg-color);
+            @include g.arrow-left("example-bg-color");
         }
 
         .arrow-right {
-            @include g.arrow-right(g.$example-bg-color);
+            @include g.arrow-right("example-bg-color");
         }
     }
 

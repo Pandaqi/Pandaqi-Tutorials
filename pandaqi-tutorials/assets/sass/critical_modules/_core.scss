@@ -1,5 +1,4 @@
-@use "sass:color";
-@use "modules/globals" as g;
+@use "../critical_modules/globals" as g;
 
 * {
 	box-sizing: border-box;
@@ -9,14 +8,18 @@ body, html {
 	font-family: g.$body-font;
 	font-size: g.$def-font-size;
 	line-height: g.$def-line-height;
-	background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../grainy_bg.jpg);
-	color: g.$def-font-color;
-	background-color: g.$def-bg-color;
+	
 	height: 100%;
 	margin: 0;
 	padding: 0;
+}
 
-	overflow-x: hidden;
+body {
+	@include g.themed-same-level() {
+		background: g.t("def-bg-image");
+		color: g.t("def-font-color");
+		background-color: g.t("def-bg-color");
+	}
 }
 
 .center-block {
@@ -66,14 +69,26 @@ a {
 	cursor: pointer;
 }
 
+// Exception: this is the only block with regular, markdown-created links
+.style-article {
+    .right-block {
+        a {
+            text-decoration-color: currentcolor;
+        }
+    }
+}
+
+// @TODO: theme this?
 .style-article .right-block, .overview-text {
 	a {
-		text-decoration: underline 2px gray;
+		text-decoration: underline 2px currentcolor;
 		transition: text-decoration g.$def-trans, color g.$def-trans;
 
 		&:hover {
-			color: black;
-			text-decoration-color: g.$def-font-color;
+			text-decoration-color: currentcolor;
+			@include g.themed() {
+				color: g.t("def-black");
+			}
 		}
 	}
 }
@@ -84,27 +99,12 @@ button {
 }
 
 ::selection {
-	color: rgba(255, 200, 150, 1);
-	background-color: #333;
-}
-
-section {
-	p, li {
-		a {
-			color: rgb(150, 100, 50);
-			border-bottom: 2px solid rgb(150, 100, 50);
-
-			&:hover {
-				color: indianred;
-				border-bottom: 2px solid indianred;
-				/*text-shadow:0px 1px 3px #333;*/
-			}
-		}
+	@include g.themed() {
+		color: g.t("select-color");
+		background-color: g.t("select-bg-color");
 	}
 }
 
-// @TODO: the scaling was supposed to prevent ugly flashes on page load, because the SVGs are going MAXIMUM SIZE
-// But it doesn't work now, because the critical CSS is _also_ loaded later!
 .summary-container {
 	img {
         max-width: 256px;
@@ -129,7 +129,7 @@ h2,h3,h4,h5,h6 {
 		position: absolute;
 		left: -1.0 * g.$def-padding;
 		//top: -0.275em;
-		@include g.hexagon(1.0em, g.$def-divider-color);
+		@include g.hexagon-themed(1.0em, "def-divider-color");
 	}
 }
 
@@ -172,7 +172,9 @@ dd {
 }
 
 strong, b {
-	color: hsl(20, 75%, 37%);
+	@include g.themed() {
+		color: g.t("strong-color");
+	}
 }
 
 em strong,
@@ -182,14 +184,32 @@ b em {
 	font-variant: normal;
 	font-weight: normal;
 	letter-spacing: 0px;
-	color: hsl(20, 75%, 42%);
+	@include g.themed() {
+		color: g.t("strong-color");
+	}
 }
 
 /* Images */
 img {
+	max-width: 128px;
+	max-height: 128px;
+	display: block;
+
 	max-width: 100%;
+	max-height: 100%;
 	width: 100%;
 	height: auto;
+	border-radius: 0.1em;
+}
+
+// only provide default backgrounds for images inside tutorials, not anywhere else
+// and, of course, the overlay (see below
+.block-container.style-article {
+	img {
+		@include g.themed() {
+			background-color: g.t("def-image-bg-color");
+		}
+	}
 }
 
 /* @IMPROV: should be moved to a better location */
@@ -228,16 +248,6 @@ figure.video {
 	video {
 		filter: drop-shadow(0px 0px 5px #333);
 	}
-
-	/*
-	.side-note {
-		font-family: g.$header-font;
-		color: #553322;
-		background-color: #ffbb5f;
-		padding: 0.5rem;
-		border-radius: 0.5rem;
-		text-align: center;
-	}*/
 }
 
 img {
@@ -272,7 +282,9 @@ img {
 	padding: 2em;
 	z-index: 15000;
 
-	background-color: #EEE;
+	@include g.themed() {
+		background-color: g.t("def-bg-color");
+	}
 
 	display: none;
 	justify-content: center;
@@ -280,11 +292,13 @@ img {
 	align-content: center;
 
 	#overlay-image-src {
-		all: unset;
 		width: auto;
 		height: auto;
 		max-width: 100%;
 		max-height: 100%;
+		@include g.themed() {
+			background-color: g.t("def-image-bg-color");
+		}
 	}
 
 	.overlay-image-instruction {

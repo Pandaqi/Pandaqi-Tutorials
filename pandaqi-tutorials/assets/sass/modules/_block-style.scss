@@ -1,215 +1,179 @@
+@use "sass:color";
 @use "sass:map";
 @use "sass:list";
-@use "sass:color";
-
-@use "modules/globals" as g;
+@use "critical_modules/globals" as g;
 
 @function get-darkest($col1, $col2)
 {
     @return if(lightness($col1) < lightness($col2), $col1, $col2);
 }
 
-$colorschemes: (
-    "style-writing": ("col": #f7e2ff, "bg": #9b59b6, "border": #81B200, "h": #ffdcff, "toc": #eea3ee),
-    "style-writing-alt": ("col": #402401, "bg": #C1FF4C, "border": #6EE83A, "h": #354d08, "toc": black),
+body {
 
-    "style-general-knowledge": ("col": #370517, "bg": #FF5A95, "border": #FFEF47, "h": #ffe2ed, "toc": #ffc8dc),
-    "style-general-knowledge-alt": ("col": #402401, "bg": #FF5DA0, "border": #E84E49, "h": white, "toc": black),
+    @include g.themed-same-level() {
+        $colorschemes: g.t("colorschemes");
 
-    "style-visual": ("col": #022222, "bg": #7cbbbb, "border": #FF7C2F, "h": #044545, "toc": #a7e7e7),
-    "style-visual-alt": ("col": #fff, "bg": #2c3e50, "border": #2F97FF, "h": white, "toc": black),
+        @each $name, $color-data in $colorschemes {
+            $bg: map.get($color-data, "bg");
+            $col: map.get($color-data, "col");
+            $border: map.get($color-data, "border");
+            $heading: map.get($color-data, "h");
+            $toc: map.get($color-data, "toc");
 
-    "style-life-skills": ("col": #ffd2ce, "bg": #c0392b, "border": #ffee37, "h": #ffe2df, "toc": #f7adad),
-    "style-life-skills-alt": ("col": #402401, "bg": #FF5DA0, "border": #E84E49, "h": white, "toc": black),
+            .#{$name} {
+                background-color: $bg;
+                color: $col;
+                border-color: $border;
 
-    "style-audio": ("col": #402401, "bg": #f1c40f, "border": #B218A6, "h": #363100, "toc": #f4d96d),
-    "style-audio-alt": ("col": #402401, "bg": #FFB52F, "border": #4451B2, "h": white, "toc": black),
-
-    "style-programming": ("col": #fff, "bg": #3FB186, "border": #FF532F, "h": white, "toc": #73e7bb),
-    "style-programming-alt": ("col": #fff, "bg": #2ecc71, "border": #FF3E2F, "h": white, "toc": black),
-
-    "style-article": ("col": #402401, "bg": transparent, "border": #eeb850, "h": #402401, "toc": black),
-    "style-nav": ("col": #402401, "bg": beige, "border": #eeb850, "h": white, "toc": black),
-    "style-overview": ("col": #53142c, "bg": #ffa7c9, "border": #bb3b81, "h": white, "toc": black),
-    "style-video": ("col": #fff, "bg": brown, "border": #ffdfdf, "h": white, "toc": black),
-    "style-support": ("col": #402401, "bg": #fbcf77, "border": #e67e22, "h": white, "toc": black),
-    "style-quiz": ("col": #0a274b, "bg": #77a3fb, "border": #8d77fb, "h": white, "toc": black)
-);
-
-// Exception: this is the only block with regular, markdown-created links
-.style-article {
-    .right-block {
-        a {
-            text-decoration-color:#ae845a;
-        }
-    }
-}
-
-
-@each $name,
-$color-data in $colorschemes {
-    $bg: map.get($color-data, "bg");
-    $col: map.get($color-data, "col");
-    $border: map.get($color-data, "border");
-    $heading: map.get($color-data, "h");
-    $toc: map.get($color-data, "toc");
-
-    .#{$name} {
-        background-color: $bg;
-        color: $col;
-        border-color: $border;
-
-        h1,h2,h3,h4,h5,h6 {
-            color: $heading;
-        }
-
-        .left-block {
-            border-color: $border;
-        }
-
-        &.block-separator {
-            background-color: color.scale($bg, $lightness: 30%);
-            border-color: color.scale($border, $lightness: 30%);
-
-            .left-block {
-                border-color: color.scale($border, $lightness: 30%);
-            }
-        }
-
-        &.masked.big-mask {
-            background-color: $bg;
-            color: $col;
-        }
-
-        .between-block-hex {
-            $size: 4.0em;
-            @include g.hexagon($size, $border); // $border is not a typo
-            @include g.flex-center();
-
-            position: absolute;
-            left: -1.0 * (0.5*g.$def-padding + 0.5*$size) + 0.25em;
-
-            img {
-                width: 0.66 * $size;
-                filter: drop-shadow(0 0 5px rgba(0,0,0,0.75));
-            }
-
-            @media all and (max-width: g.$breakpoint-big)
-			{
-				display: none;
-			}
-        }
-
-        #mobile-metadata {
-            background-color: color.scale($bg, $lightness: -20%, $saturation: -20%);
-
-            a {
-                color: $heading;
-                border-bottom-color: $heading;
-
-                &:hover {
-                    $new-color: $heading;
-                    color: $new-color;
-                    border-bottom-color: $new-color;
+                h1,h2,h3,h4,h5,h6 {
+                    color: $heading;
                 }
-            }
-        }
 
-        .pagination {
-            $nav-color: color.scale($bg, $lightness: -20%, $saturation: -20%);
-            $nav-text-color: white;
-
-            a {
-                background-color: $nav-color !important;
-                color: $nav-text-color;
-            }
-
-            .arrow-left {
-                border-left-color: $nav-color !important;
-            }
-
-            .arrow-right {
-                border-right-color: $nav-color !important;
-            }
-        }
-
-        
-        .metadata {
-
-            $metadata-bg: color.scale($bg, $lightness: -20%, $saturation: -30%);
-            $metadata-col: color.scale($bg, $lightness: 70%);
-
-            a, span {
-                color: $metadata-col;
-                background-color: $metadata-bg;
-
-                &::before {
-                    border-left-color: $metadata-bg !important;
+                .left-block {
+                    border-color: $border;
                 }
-            }
 
-            a {
-                &:hover {
-                    color: $metadata-bg;
-                    background-color: $metadata-col;
+                &.block-separator {
+                    background-color: color.scale($bg, $lightness: 30%);
+                    border-color: color.scale($border, $lightness: 30%);
 
-                    &::before {
-                        border-left-color: $metadata-col !important;
+                    .left-block {
+                        border-color: color.scale($border, $lightness: 30%);
+                    }
+                }
+
+                &.masked.big-mask {
+                    background-color: $bg;
+                    color: $col;
+                }
+
+                .between-block-hex {
+                    $size: 4.0em;
+                    @include g.hexagon-color($size, $border); // $border is not a typo
+                    @include g.flex-center();
+
+                    position: absolute;
+                    left: -1.0 * (0.5*g.$def-padding + 0.5*$size) + 0.25em;
+
+                    img {
+                        width: 0.66 * $size;
+                        filter: drop-shadow(0 0 5px rgba(0,0,0,0.75));
+                    }
+
+                    @media all and (max-width: g.$breakpoint-big)
+                    {
+                        display: none;
+                    }
+                }
+
+                #mobile-metadata {
+                    background-color: color.scale($bg, $lightness: -20%, $saturation: -20%);
+
+                    a {
+                        color: $heading;
+                        border-bottom-color: $heading;
+
+                        &:hover {
+                            $new-color: $heading;
+                            color: $new-color;
+                            border-bottom-color: $new-color;
+                        }
+                    }
+                }
+
+                .pagination {
+                    $nav-color: color.scale($bg, $lightness: -20%, $saturation: -20%);
+                    $nav-text-color: white;
+
+                    a {
+                        background-color: $nav-color !important;
+                        color: $nav-text-color;
+                    }
+
+                    .arrow-left {
+                        border-left-color: $nav-color !important;
+                    }
+
+                    .arrow-right {
+                        border-right-color: $nav-color !important;
+                    }
+                }
+
+                
+                .metadata {
+
+                    $metadata-bg: color.scale($bg, $lightness: -20%, $saturation: -30%);
+                    $metadata-col: color.scale($bg, $lightness: 70%);
+
+                    a, span {
+                        color: $metadata-col !important;
+                        background-color: $metadata-bg;
+
+                        &::before {
+                            border-left-color: $metadata-bg !important;
+                        }
+                    }
+
+                    a {
+                        &:hover {
+                            color: $metadata-bg !important;
+                            background-color: $metadata-col;
+
+                            &::before {
+                                border-left-color: $metadata-col !important;
+                            }
+                        }
                     }
                 }
             }
-        }
-    }
-    
-    .secondary-#{$name} {
-
-        #{ g.$drop-cap-selector } {
-            color: get-darkest($heading, $bg);
-        }
-
-        table {
-            $table-bg: color.scale($bg, $lightness: 70%, $saturation: -45%);
-            background-color: $table-bg;
             
-            tr {
-                &:nth-child(2n) td {
-                    background-color: color.scale($table-bg, $lightness: -10%, $saturation: -5%);
-                }
+            .secondary-#{$name} {
 
-                td {
-                    code {
-                        color: color.scale($table-bg, $lightness: -80%);
+                table {
+                    $table-bg: color.scale($bg, $lightness: 70%, $saturation: -45%);
+                    background-color: $table-bg;
+                    
+                    tr {
+                        &:nth-child(2n) td {
+                            background-color: color.scale($table-bg, $lightness: -10%, $saturation: -5%);
+                        }
+
+                        td {
+                            code {
+                                color: color.scale($table-bg, $lightness: -80%);
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        .toc, .side-note {
-            $toc-color: color.scale($toc, $lightness: -80%);
-            $toc-bg-color: $toc;
+                .toc, .side-note {
+                    $toc-color: color.scale($toc, $lightness: -80%);
+                    $toc-bg-color: $toc;
 
-            a, span {
-                color: $toc-color;
-                background-color: $toc-bg-color;
+                    a, span {
+                        color: $toc-color;
+                        background-color: $toc-bg-color;
 
-                &::before {
-                    border-left-color: $toc-bg-color !important;
-                }
-            }
+                        &::before {
+                            border-left-color: $toc-bg-color !important;
+                        }
+                    }
 
-            a {
-                &:hover {
-                    color: #fff;
-                    background-color: $toc-color;
+                    a {
+                        &:hover {
+                            color: #fff;
+                            background-color: $toc-color;
 
-                    &::before {
-                        border-left-color: $toc-color !important;
+                            &::before {
+                                border-left-color: $toc-color !important;
+                            }
+                        }
+                    }
+
+                    .label {
+                        background-color: transparent;
                     }
                 }
-            }
-
-            .label {
-                background-color: transparent;
             }
         }
     }

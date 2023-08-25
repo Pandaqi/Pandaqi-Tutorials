@@ -1,4 +1,4 @@
-@use "globals" as g;
+@use "critical_modules/globals" as g;
 
 $border: 3px solid gray;
 
@@ -49,29 +49,10 @@ table {
         }
 
         &:nth-child(2n) td {
-            background-color: rgba(255, 200, 100, 0.4);
+            @include g.themed() {
+                background-color: g.t("transparent-bg-medium");
+            }
         }
         
     }
-}
-
-.database-table {
-    color: hsl(14, 49%, 43%);
-	border-bottom: none;
-	margin: 0px;
-    
-    tr td:nth-child(n+2) {
-	    border-left: 1px solid rgb(155, 100, 0);
-    }
-
-    &.un-selected-row {
-        font-style: italic;
-        font-size: 95%;
-        opacity: 0.5;
-    }
-}
-
-.helper-database-table {
-	opacity: 0.75;
-	margin-bottom: 50px;
 }

@@ -1,5 +1,5 @@
 @use "sass:math";
-@use "modules/globals" as g;
+@use "critical_modules/globals" as g;
 
 .block-container {
 	display: flex;
@@ -27,7 +27,6 @@
 
 		.metadata {
 			$circle-size: 3.0em;
-			$circle-bg: rgba(0,0,0,0.1);
 			position: relative;
 
 			.course-circle {
@@ -36,13 +35,15 @@
 
 				width: $circle-size;
 				height: $circle-size;
-				
-				background-color: $circle-bg;
 				margin-top: g.$def-padding;
 				margin-left: 1.0em;
 
 				img {
 					width: 0.66*$circle-size;
+				}
+
+				@include g.themed() {
+					background-color: g.t("transparent-bg-light");
 				}
 			}
 			
@@ -51,8 +52,11 @@
 				width: 100px;
 				height: 5px;
 				top: 1.5em;
-				background-color: $circle-bg;
 				left: 4.0em;
+
+				@include g.themed() {
+					background-color: g.t("transparent-bg-light");
+				}
 			}
 
 			.text {
@@ -140,43 +144,49 @@
 		}
 
 		.example {	
-			background-color: g.$example-bg-color;
+			@include g.themed() {
+				color: g.t("example-color");
+				background-color: g.t("example-bg-color");
+			}
 		}
 
 		.example-arrow {
 			.arrow-right {
-				@include g.arrow-right(g.$example-bg-color);
+				@include g.arrow-right("example-bg-color");
 			}
 		}
 
 		blockquote {
-			background-color: g.$blockquote-bg-color;
-
-			strong {
-				color: #2a4f8e;
+			@include g.themed() {
+				color: g.t("blockquote-color");
+				background-color: g.t("blockquote-bg-color");
 			}
 		}
 
 		blockquote {
 			.arrow-right {
-				@include g.arrow-right(g.$blockquote-bg-color);
+				@include g.arrow-right("blockquote-bg-color");
 			}
 		}
 
 		.remark {
-			color: #555a17;
-			background-color: g.$remark-bg-color;
+
+			@include g.themed() {
+				color: g.t("remark-color");
+				background-color: g.t("remark-bg-color");
+
+				strong {
+					color: g.t("remark-color");
+				}
+			}
+
 			font-family: g.$script-font;
 			font-size: 1.1rem;
-
-			strong {
-				color: #555a17;
-			}
 		}
 
 		.remark-arrow {
 			.arrow-right {
-				@include g.arrow-right(g.$remark-bg-color);
+				@include g.arrow-right("remark-bg-color");
 			}
 		}
 	}
@@ -211,11 +221,14 @@
 }
 
 .prerequisite, .category-backlink {
-	color: #99a238;
+	@include g.themed() {
+		color: g.t("prerequisite-link-color");
+	}
+
 	font-style: italic;
 
 	a {
-		text-decoration-color: #99a238; 
+		text-decoration-color: currentcolor; 
 	}
 }
 
@@ -257,8 +270,11 @@
 	}
 	
 	a {
-		background-color: #7b491a;
-		color: #ffdec1;
+		@include g.themed() {
+            color: g.t("support-link-color");
+            background-color: g.t("support-link-bg-color");
+        }
+
 		font-family: g.$header-font;
 	}
 
@@ -288,7 +304,7 @@
 		gap: 0.5em;
 
 		.icon {
-			@include g.hexagon(1.5em, rgba(255,255,255,0.5));
+			@include g.hexagon-color(1.5em, rgba(255,255,255,0.5));
 			@include g.flex-center();
 	
 			img {

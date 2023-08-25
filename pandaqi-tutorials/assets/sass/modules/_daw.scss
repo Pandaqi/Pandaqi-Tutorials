@@ -2,7 +2,11 @@
 @use "sass:list";
 @use "sass:color";
 
-@use "modules/_globals.scss" as g;
+@use "critical_modules/globals" as g;
+
+// NOTE: this whole stylesheet is non-themed (dark/light), 
+// Because most of it depends on DAW colors and randomized track colors,
+// so theming it is senseless
 
 @mixin slider-thumb
 {

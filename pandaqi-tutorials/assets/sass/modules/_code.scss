@@ -1,8 +1,7 @@
-@use "globals" as g;
+@use "critical_modules/globals" as g;
 
 $code-font-size: 0.66em;
 $large-code-font-size: 0.8rem;
-$code-color: #fbcf77;
 
 code {
     font-family: g.$code-font;
@@ -31,10 +30,14 @@ code {
 
 .codemirror-editor {
     iframe {
-        border: 2px solid brown;
         margin-top: 1em;
         width: 100%;
         padding: 0.1em;
+        background-color: white;
+
+        @include g.themed() {
+            border: 0.22em solid g.t("strong-color");
+        }
     }
 
     .cm-scroller {
@@ -67,8 +70,13 @@ code {
                 opacity: 1.0;
                 color: black;
             }
+        }
+    }
 
-            
+    .codemirror-container {
+        .codemirror-tab {
+            background-color: #FAFAFA;
+            color: #141414;
         }
     }
 }
@@ -83,15 +91,15 @@ p, li {
         font-family: g.$code-font;
         font-size: 0.8rem;
         font-style: normal;
-        background-color: $code-color;
+
+        @include g.themed() {
+            color: g.t("code-color");
+            background-color: g.t("code-bg-color");
+        }
     
         em {
             font-size: 0.75rem;
             opacity: 0.85;
-        }
-    
-        attr {
-            color: hsl(20, 85%, 32%);
         }
     }
 }
@@ -105,16 +113,20 @@ table {
 
 .remark {
     code {
-        background-color: #315f17;
-        color: #abf155;
+        @include g.themed() {
+            color: g.t("remark-code-color");
+            background-color: g.t("remark-code-bg-color");
+        }
     }
 }
 
 
 blockquote {
     code {
-        background-color: #d7ebff;
-        color: #020a0e;
+        @include g.themed() {
+            color: g.t("blockquote-code-color");
+            background-color: g.t("blockquote-code-bg-color");
+        }
     }
 }
 
@@ -123,8 +135,12 @@ blockquote {
         border-radius: 8px;
         font-family: initial;
         font-size: 100%;
-        background-color: rgba(0, 0, 0, 0.24);
-        color: beige;
+        
+        @include g.themed() {
+            color: g.t("quiz-code-color");
+            background-color: g.t("quiz-code-bg-color");
+        }
+
         padding-left: 10px;
         padding-right: 10px;
         font-style: normal;

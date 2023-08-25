@@ -1,4 +1,4 @@
-@use "modules/globals" as g;
+@use "critical_modules/globals" as g;
 
 @mixin icon($offset:0) {
     mask-position-x: $offset;

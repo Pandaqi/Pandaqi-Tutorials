@@ -1,6 +1,5 @@
 @use "sass:math";
-
-@use "modules/globals" as g;
+@use "critical_modules/globals" as g;
 
 // Type 1: GRID summary container and summaries
 $hexagon-size: 8.0rem;
@@ -12,8 +11,6 @@ $bottom-margin-lost: $margin - $hexagon-size * 0.2885;
 $offset-pusher-width: 0.5 * $hexagon-size + $margin;
 
 $breakpoint-hex-to-square: 300px;
-
-
 
 .summary-container.summary-grid {
     a {
@@ -27,6 +24,7 @@ $breakpoint-hex-to-square: 300px;
         }
     
         &:hover {
+            // non-themed (as it's always on top icon images)
             .label {
                 background-color: rgba(0,0,0,0.75);
                 color: rgba(255,255,255,0.9);

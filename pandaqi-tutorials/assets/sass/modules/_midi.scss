@@ -1,4 +1,4 @@
-@use "modules/_globals.scss" as g;
+@use "critical_modules/globals" as g;
 
 figure.midi-player {
     margin: 0;
@@ -16,10 +16,21 @@ figure.midi-player {
     opacity: 0.5;
 }
 
+.midi-canvas {
+    @include g.themed() {
+        background-color: g.t("midi-canvas-bg-color");
+    }
+}
+
 .midi-button-play {
-    background-color: #eeb850;
+    @include g.themed() {
+        background-color: g.t("midi-button-bg-color");
+    }
 }
 
 .midi-parse-feedback {
-    color: red;
+    @include g.themed() {
+        color: g.t("midi-error-color");
+    }
+
 }

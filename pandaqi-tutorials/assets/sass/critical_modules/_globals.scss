@@ -1,0 +1,402 @@
+@use "sass:map";
+@use "sass:list";
+
+$def-max-width: 1126px;
+$def-center-block-width: 720px;
+$def-max-text-width: 960px;
+$def-font-size: calc(15px + 0.390625vw);
+$def-padding: 1.0em;
+$def-line-height: 1.45rem;
+$def-margin: 1.0em; // default margin applied to paragraphs by browsers, @IMPROV: set manually just to be sure??
+$def-trans: 0.3s; // default time for transition parameter
+$def-arrow-size: 1.0em;
+
+$breakpoint-small: 280px;
+$breakpoint-medium: 550px;
+$breakpoint-big: 800px;
+$breakpoint-huge: $def-max-width;
+
+$left-block-width: 250px;
+
+$body-font: "Raleway";
+$header-font: "Dosis";
+$script-font: "Pandaqi Hand";
+$code-font: "JetBrainsMono";
+
+$num-masks: 8;
+
+$drop-cap-selector: ".right-block > p:first-child:first-letter";
+
+$arrow-padding: 0.5em;
+$arrow-margin: 0.25em;
+
+
+/* Commonly reused functions */
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin arrow($size) {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    left: -0.5 * $def-padding;
+    top: 0.5 * $def-padding;
+
+    transition: top $def-trans, left $def-trans, right $def-trans, bottom $def-trans;
+}
+
+@mixin arrow-right($color, $size: $def-arrow-size) {
+    @include arrow($size);
+    @include themed() {
+        border-right: $size solid t($color);
+	}
+}
+
+@mixin arrow-left($color, $size: $def-arrow-size) {
+    @include arrow($size);
+    @include themed() {
+        border-left: $size solid t($color);
+	}
+
+    left: initial;
+    top: 0.5em;
+    right: -($size - 0.025em);
+}
+
+@mixin hexagon-color($size, $color) {
+    width: $size;
+    height: ($size * 1.1547);
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+    background-color: $color;
+}
+
+@mixin hexagon-themed($size, $color: "string") {
+    width: $size;
+    height: ($size * 1.1547);
+    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+
+    @include themed() {
+        background-color: t($color);
+	}
+}
+
+@mixin drop-cap() {
+    float: left;
+    // color: #e74c3c;
+    font-size: 4.0em;
+    padding-top: 0.275em;
+    padding-right: 0.12em;
+    padding-bottom: 0.25em;
+    font-weight: 900;
+    font-style: normal;
+    font-family: $header-font;
+}
+
+@mixin remove-standard-list-style() {
+    ul {
+        @include remove-standard-list-style-inside();
+    }
+}
+
+@mixin remove-standard-list-style-inside() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        margin: 0.25em;
+        padding: 0;
+        display: inline-block;
+    }
+}
+
+@mixin metadata-arrow($col: "toc-color", $bg-col: "toc-bg-color") {
+    position: relative;
+    display: inline-block;
+
+    padding: $arrow-padding;
+    margin: $arrow-margin;
+    
+    @include themed() {
+        color: t($col);
+	}
+
+    border-radius: 0.25em;
+
+    transition: color $def-trans, background-color $def-trans;
+
+    &::before {
+        @include arrow-left($bg-col, $arrow-padding + $arrow-margin);
+        transition: border-color $def-trans;
+    }
+}
+
+@mixin metadata-arrow-link($col: "toc-color", $bg-col: "toc-bg-color") {
+    @include metadata-arrow($col, $bg-col);
+
+    &:hover {
+        &::before {
+            @include arrow-left($col, $arrow-padding + $arrow-margin);
+        }
+
+    }
+}
+
+@mixin hyphenate-fully() {
+    text-align: justify;
+
+    -webkit-hyphens: auto;
+    -webkit-hyphenate-limit-before: 3;
+    -webkit-hyphenate-limit-after: 3;
+    -webkit-hyphenate-limit-chars: 6 3 3;
+    -webkit-hyphenate-limit-lines: 2;
+    -webkit-hyphenate-limit-last: always;
+    -webkit-hyphenate-limit-zone: 8%;
+    -moz-hyphens: auto;
+    -moz-hyphenate-limit-chars: 6 3 3;
+    -moz-hyphenate-limit-lines: 2;
+    -moz-hyphenate-limit-last: always;
+    -moz-hyphenate-limit-zone: 8%;
+    -ms-hyphens: auto;
+    -ms-hyphenate-limit-chars: 6 3 3;
+    -ms-hyphenate-limit-lines: 2;
+    -ms-hyphenate-limit-last: always;
+    -ms-hyphenate-limit-zone: 8%;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    hyphenate-limit-lines: 2;
+    hyphenate-limit-last: always;
+    hyphenate-limit-zone: 8%;
+}
+
+/* Support for dark/light mode */
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin themed-same-level {
+    @each $theme, $map in $themes {
+        &.theme-#{$theme} {
+          $theme-map: () !global;
+          @each $key, $submap in $map {
+            $value: map-get(map-get($themes, $theme), '#{$key}');
+            $theme-map: map-merge($theme-map, ($key: $value)) !global;
+          }
+          @content;
+          $theme-map: null !global;
+        }
+    } 
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+$colorschemes-light: (
+    style-writing: ("col": #f7e2ff, "bg": #9b59b6, "border": #81B200, "h": #ffdcff, "toc": #eea3ee),
+    //style-writing-alt: ("col": #402401, "bg": #C1FF4C, "border": #6EE83A, "h": #354d08, "toc": black),
+
+    style-general-knowledge: ("col": #370517, "bg": #FF5A95, "border": #FFEF47, "h": #ffe2ed, "toc": #ffc8dc),
+    //style-general-knowledge-alt: ("col": #402401, "bg": #FF5DA0, "border": #E84E49, "h": white, "toc": black),
+
+    style-visual: ("col": #022222, "bg": #7cbbbb, "border": #FF7C2F, "h": #044545, "toc": #a7e7e7),
+    //style-visual-alt: ("col": #fff, "bg": #2c3e50, "border": #2F97FF, "h": white, "toc": black),
+
+    style-life-skills: ("col": #ffd2ce, "bg": #c0392b, "border": #ffee37, "h": #ffe2df, "toc": #f7adad),
+    //style-life-skills-alt: ("col": #402401, "bg": #FF5DA0, "border": #E84E49, "h": white, "toc": black),
+
+    style-audio: ("col": #402401, "bg": #f1c40f, "border": #B218A6, "h": #363100, "toc": #f4d96d),
+    //style-audio-alt: ("col": #402401, "bg": #FFB52F, "border": #4451B2, "h": white, "toc": black),
+
+    style-programming: ("col": #fff, "bg": #3FB186, "border": #FF532F, "h": white, "toc": #73e7bb),
+    //style-programming-alt: ("col": #fff, "bg": #2ecc71, "border": #FF3E2F, "h": white, "toc": black),
+
+    style-article: ("col": #402401, "bg": transparent, "border": #eeb850, "h": #402401, "toc": black),
+    style-overview: ("col": #53142c, "bg": #ffa7c9, "border": #bb3b81, "h": white, "toc": black),
+    style-support: ("col": #402401, "bg": #fbcf77, "border": #e67e22, "h": white, "toc": black),
+    style-nav: ("col": #402401, "bg": beige, "border": #eeb850, "h": white, "toc": black),
+    style-quiz: ("col": #0a274b, "bg": #77a3fb, "border": #8d77fb, "h": white, "toc": black),
+
+    //style-video: ("col": #fff, "bg": brown, "border": #ffdfdf, "h": white, "toc": black),
+
+);
+
+$colorschemes-dark: (
+    style-writing: ("col": #dba2f0, "bg": #45105a, "border": #81B200, "h": #ddaaf1, "toc": #783991),
+    style-general-knowledge: ("col": #f8a4c3, "bg": #5d132d, "border": #837b21, "h": #eba9c3, "toc": #631b36),
+    style-visual: ("col": #8ff2f2, "bg": #1f7777, "border": #9e5327, "h": #adfbfb, "toc": #0b4141),
+    style-life-skills: ("col": #d9a49f, "bg": #59160f, "border": #ada224, "h": #cd9e98, "toc": #721e1e),
+    style-audio: ("col": #e9b87c, "bg": #5e4e0c, "border": #ba34ae, "h": #dacb41, "toc": #53450a),
+    style-programming: ("col": #a2f2d3, "bg": #0f4e36, "border": #8f2915, "h": #a2f2d3, "toc": #196d4d),
+
+    style-article: ("col": #ead9c8, "bg": transparent, "border": #7d5918, "h": #ead9c8, "toc": white),
+    style-overview: ("col": #f8c3d7, "bg":  #53142c, "border": #bb3b81, "h": white, "toc": black),
+    style-support: ("col": #fbcf77, "bg": #402401, "border": #a15817, "h": white, "toc": black),
+    style-nav: ("col": #fbcf77, "bg": #402401, "border": #a15817, "h": white, "toc": black),
+    style-quiz: ("col": #77a3fb, "bg": #0a274b, "border": #5b47c0, "h": white, "toc": black),
+
+    //style-video: ("col": #fff, "bg": brown, "border": #ffdfdf, "h": white, "toc": black),
+);
+
+$def-bg-image-value-light: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../grainy_bg.jpg);
+$def-bg-image-value-dark: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../grainy_bg.jpg);
+
+$themes: (
+    light: (
+        colorschemes: $colorschemes-light,
+
+        def-black: black,
+        def-white: white,
+
+        def-bg-image: $def-bg-image-value-light,
+        def-font-color: #402401,
+        def-divider-color: #402401,
+        def-bg-color: #fbfcfc, 
+        def-image-bg-color: transparent,
+        strong-color: hsl(20, 75%, 42%),
+
+        transparent-bg-light: rgba(0,0,0,0.1),
+        transparent-bg-medium: rgba(0,0,0,0.45),
+        transparent-bg-heavy: rgba(0,0,0,0.8),
+        
+        toc-color: #333,
+        toc-bg-color: #DDD,
+
+        header-footer-bg-color: #eeb850,
+        header-footer-border-color: #a97a25,
+
+        code-color: #212121,
+        code-bg-color: #fbcf77,
+        
+        remark-color: #555a17,
+        remark-bg-color: hsl(65, 49%, 80%),
+        remark-code-color: #abf155,
+        remark-code-bg-color: #315f17,
+
+        example-color: #212121,
+        example-bg-color: rgb(225, 196, 148),
+
+        blockquote-color: #2a4f8e,
+        blockquote-bg-color: rgb(147, 217, 239),
+        blockquote-code-color: #020a0e,
+        blockquote-code-bg-color: #d7ebff,
+
+        select-color: rgba(255, 200, 150, 1),
+        select-bg-color: #333,
+
+        quiz-code-color: beige,
+        quiz-code-bg-color: rgba(0, 0, 0, 0.24),
+
+		support-link-color: #ffdec1,
+        support-link-bg-color: #7b491a,
+
+        prerequisite-link-color: #99a238,
+
+        toc-text-color: #53142c,
+        toc-text-color-hover: black,
+        toc-line-color: #bb3b81,
+        toc-counter-bg-color: #fff,
+
+        quiz-color: #143553,
+        quiz-button-color: #e7fffd,
+        quiz-button-bg-color: #267a6e,
+
+        midi-button-bg-color: #eeb850,
+        midi-error-color: red,
+        midi-canvas-bg-color: transparent,
+
+        footer-link-color: hsl(20, 75%, 22%),
+        footer-link-bg-color: beige,
+        footer-link-color-hover: beige,
+        footer-link-bg-color-hover: hsl(20, 75%, 42%)
+    ),
+
+    dark: (
+        colorschemes: $colorschemes-dark,
+
+        def-black: white,
+        def-white: black,
+
+        def-bg-image: $def-bg-image-value-dark,
+        def-font-color: #ead9c8,
+        def-divider-color: #ead9c8,
+        def-bg-color: #211414, 
+        def-image-bg-color: #ead9c8,
+        strong-color: #ffac83,
+
+        transparent-bg-light: rgba(255, 255, 255, 0.1),
+        transparent-bg-medium: rgba(255, 255, 255, 0.45),
+        transparent-bg-heavy: rgba(255, 255, 255, 0.8),
+        
+        toc-color: #DDD,
+        toc-bg-color: #333,
+
+        header-footer-bg-color: #332202,
+        header-footer-border-color: #6e4e12,
+
+        code-color: #fffefc,
+        code-bg-color: #543c0d,
+        
+        remark-color: hsl(66, 44%, 76%),
+        remark-bg-color:  #4e540f,
+        remark-code-color: #315f17,
+        remark-code-bg-color: #abf155,
+
+        example-color: rgb(225, 196, 148),
+        example-bg-color: #46351d,
+
+        blockquote-color: rgb(147, 217, 239),
+        blockquote-bg-color: #2a4f8e,
+        blockquote-code-color: #d7ebff,
+        blockquote-code-bg-color: #020a0e,
+
+        select-color: #222,
+        select-bg-color: rgb(206, 154, 106),
+
+        quiz-code-color: rgba(0, 0, 0, 0.24),
+        quiz-code-bg-color: beige,
+
+		support-link-color: #ffdec1,
+        support-link-bg-color: #7b491a,
+
+        prerequisite-link-color: #99a238,
+
+        toc-text-color: #e7b3c7,
+        toc-text-color-hover: white,
+        toc-line-color: #bb3b81,
+        toc-counter-bg-color: #280412,
+
+        quiz-color: #a1c5e7,
+        quiz-button-color:  #267a6e,
+        quiz-button-bg-color: #e7fffd,
+
+        midi-button-bg-color: #eeb850,
+        midi-error-color: red,
+    	midi-canvas-bg-color: #FCFCFC,
+
+        footer-link-color: beige,
+        footer-link-bg-color: hsl(20, 82%, 9%),
+        footer-link-color-hover: hsl(21, 70%, 15%),
+        footer-link-bg-color-hover: rgb(224, 224, 181),
+
+        // TODO: COLORSCHEMES
+    )
+);

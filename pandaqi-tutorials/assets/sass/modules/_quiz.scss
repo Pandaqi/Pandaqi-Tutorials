@@ -1,4 +1,4 @@
-@use "globals" as g;
+@use "critical_modules/globals" as g;
 
 
 .quiz-container {
@@ -18,7 +18,9 @@
     .quiz-question {
         span {
             font-weight: 900;
-            color: #143553;
+            @include g.themed() {
+                color: g.t("quiz-color");
+            }
 
             img {
                 width: auto;
@@ -40,8 +42,10 @@
 
     button.masked {
         font-family: g.$header-font;
-        background-color: #267a6e;
-        color: #e7fffd;
+        @include g.themed() {
+            color: g.t("quiz-button-color");
+            background-color: g.t("quiz-button-bg-color");
+        }
     }
 
     .quiz-answers {
@@ -80,6 +84,7 @@
                 justify-content: left;
             }
 
+            // non-themed
             .quiz-button-container {
                 @include g.flex-center();
 

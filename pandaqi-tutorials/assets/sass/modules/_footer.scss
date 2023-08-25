@@ -1,4 +1,4 @@
-@use "globals" as g;
+@use "critical_modules/globals" as g;
 
 #gotoBottomBtn {
     position: fixed;
@@ -9,7 +9,7 @@
     transition: filter g.$def-trans;
     border: none;
 
-    @include g.hexagon(3.0em, rgba(0,0,0,0.4));
+    @include g.hexagon-themed(3.0em, "transparent-bg-medium");
 
     &:hover {
         filter: #{ "invert()" };
@@ -24,20 +24,29 @@
 
 footer {
     a, button {
-        color: hsl(20, 75%, 22%);
-        background-color: beige;
+        @include g.themed() {
+            color: g.t("footer-link-color");
+            background-color: g.t("footer-link-bg-color");
+        }
+
         transition: color g.$def-trans, background-color g.$def-trans;
 
         &:hover {
-            background-color: hsl(20, 75%, 42%);
-            color: beige;
+            @include g.themed() {
+                color: g.t("footer-link-color-hover");
+                background-color: g.t("footer-link-bg-color-hover");
+            }
         }
     } 
 }
 
 #footer-container {
-	background-color: g.$header-footer-bg-color;
-	border-top: 4px solid g.$header-footer-border-color;
+
+    @include g.themed() {
+		background-color: g.t("header-footer-bg-color");
+        border-top: 4px solid g.t("header-footer-border-color");
+	}
+
 	width: 100%;
 	display: block;
     padding-top: 2.0em;
