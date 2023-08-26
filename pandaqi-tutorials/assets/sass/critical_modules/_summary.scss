@@ -1,0 +1,19 @@
+.summary-container.summary-grid {
+    .sub-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
+       
+        article.summary, div.summary {
+            position: relative;
+
+            width: 5.0em;
+            height: 5.0em;
+
+            .label {
+                display: none;
+            }
+        }
+    }
+}

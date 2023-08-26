@@ -1,11 +1,17 @@
 {{ define "main" }}
+	<header class="front-page-header">
+		<a href="{{ .Site.BaseURL }}"><h1>{{ .Title }}</h1></a>
+	</header>
+
 	<main class="padding">
-		<header class="overview-text center-block frontpage-text">
-			<h1>{{ .Title }}</h1>
+		<div class="front-page-explanation-flexbox">
 			<div>
+				<img src="/tutorials/theme/front_page_image.webp">
+			</div>
+			<div class="frontpage-text">
 				{{ .Content }}
 			</div>
-		</header>
+		</div>
 
 		{{ $pages := (where .Site.Pages ".Params.type" "==" "course") }}
 		

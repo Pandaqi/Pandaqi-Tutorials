@@ -1,0 +1,39 @@
+@use "../critical_modules/globals" as g;
+
+button {
+	cursor: pointer;
+	border: none;
+}
+
+#gotoBottomBtn {
+    display: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+// Exception: this is the only block with regular, markdown-created links
+.style-article {
+    .right-block {
+        a {
+            text-decoration-color: currentcolor;
+        }
+    }
+}
+
+.style-article .right-block, .overview-text {
+	a {
+		text-decoration: underline 2px currentcolor;
+		transition: text-decoration g.$def-trans, color g.$def-trans;
+
+		&:hover {
+			text-decoration-color: currentcolor;
+			@include g.themed() {
+				color: g.t("def-black");
+			}
+		}
+	}
+}

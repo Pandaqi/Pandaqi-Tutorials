@@ -5,9 +5,10 @@
 {{ if eq $layout_style "grid" }}
     {{ $pages = $pages | shuffle }}
 {{ end }}
+{{ $num_pages := len $pages }}
 
-<div class="summary-container summary-{{ $layout_style }} {{ $class }}">
-    <div class="sub-container">
+<div class="summary-container summary-{{ $layout_style }} {{ $class }}" data-count="{{ $num_pages }}">
+    <nav class="sub-container">
         {{ range $pages }}
             {{ if eq $layout_style "grid" }}
                 {{ partial "summary-grid.html" . }}
@@ -15,5 +16,5 @@
                 {{ partial "summary-list.html" . }}
             {{ end }}
         {{ end }}
-    </div>
+    </nav>
 </div>

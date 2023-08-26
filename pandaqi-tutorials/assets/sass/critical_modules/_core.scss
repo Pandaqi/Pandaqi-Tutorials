@@ -24,19 +24,11 @@ body {
 
 .center-block {
 	margin: auto;
-	//max-width: g.$def-max-width;
 	max-width: g.$def-center-block-width;
 }
 
 .padding {
 	padding: g.$def-padding;
-}
-
-.frontpage-text {
-	text-align: center;
-	max-width: 600px;
-	font-size: 0.75rem;
-	line-height: 120%;
 }
 
 .flex-center {
@@ -51,51 +43,8 @@ body {
 	bottom: 0;
 }
 
-.coming-soon-message {
-	text-align: center;
-    font-family: 'Dosis';
-    font-size: 4.0rem;
-    margin: 3.0rem;
-	line-height: 120%;
-}
-
 span.underline {
 	text-decoration: underline;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
-	cursor: pointer;
-}
-
-// Exception: this is the only block with regular, markdown-created links
-.style-article {
-    .right-block {
-        a {
-            text-decoration-color: currentcolor;
-        }
-    }
-}
-
-// @TODO: theme this?
-.style-article .right-block, .overview-text {
-	a {
-		text-decoration: underline 2px currentcolor;
-		transition: text-decoration g.$def-trans, color g.$def-trans;
-
-		&:hover {
-			text-decoration-color: currentcolor;
-			@include g.themed() {
-				color: g.t("def-black");
-			}
-		}
-	}
-}
-
-button {
-	cursor: pointer;
-	border: none;
 }
 
 ::selection {
@@ -105,59 +54,7 @@ button {
 	}
 }
 
-.summary-container {
-	img {
-        max-width: 256px;
-        max-height: 256px;
-		filter: drop-shadow(0px 0px 3px #333);
-    }
-}
-
-/* Headings */
-h1,h2,h3,h4,h5,h6 {
-	font-family: g.$header-font;
-	position: relative;
-	margin-top: 70px;
-	margin-bottom: 8px;
-	line-height: 120%;
-}
-
-h2,h3,h4,h5,h6 {
-	&:before {
-		content: "";
-		display: block;
-		position: absolute;
-		left: -1.0 * g.$def-padding;
-		//top: -0.275em;
-		@include g.hexagon-themed(1.0em, "def-divider-color");
-	}
-}
-
-
-h1 {
-	margin-top: 0.5rem;
-	font-size: 3.5rem;
-}
-
-h2 {
-	font-size: 2.5rem;
-	padding-left: 0.5rem; // make space for hexagon
-}
-
-h3 {
-	font-size: 1.5rem;
-
-	&::before {
-		left: -1.325 * g.$def-padding;
-	}
-}
-
-h4 {
-	font-size: 1.0rem;
-}
-
-
-/* Small tags */
+/* Minor tags */
 abbr {
 	font-size: 76%;
 	letter-spacing: 0.75px;
@@ -186,137 +83,5 @@ b em {
 	letter-spacing: 0px;
 	@include g.themed() {
 		color: g.t("strong-color");
-	}
-}
-
-/* Images */
-img {
-	max-width: 128px;
-	max-height: 128px;
-	display: block;
-
-	max-width: 100%;
-	max-height: 100%;
-	width: 100%;
-	height: auto;
-	border-radius: 0.1em;
-}
-
-// only provide default backgrounds for images inside tutorials, not anywhere else
-// and, of course, the overlay (see below
-.block-container.style-article {
-	img {
-		@include g.themed() {
-			background-color: g.t("def-image-bg-color");
-		}
-	}
-}
-
-/* @IMPROV: should be moved to a better location */
-.side-note {
-	position: absolute;
-	left: -0.725 * g.$left-block-width;
-	width: 0.65 * g.$left-block-width;
-	line-height: 150%;
-	font-family: g.$header-font;
-	font-size: 0.75rem;
-}
-
-figure:not(.no-hover) {
-	transition: margin g.$def-trans, background g.$def-trans, border g.$def-trans;
-	border-left: 0 solid #e78655;
-	margin: 0;
-	background: transparent;
-	
-	&:hover {
-		cursor: pointer;
-		border-left: 0.5em solid #e78655;
-		background: repeating-linear-gradient(45deg,
-				transparent,
-				transparent 10px,
-				rgba(50, 50, 50, 0.05) 10px,
-				rgba(50, 50, 50, 0.05) 20px);
-	}
-}
-
-figure.video {
-	width: 100%;
-    margin: auto;
-	margin-top: 1em;
-    margin-bottom: 3.5em;
-
-	video {
-		filter: drop-shadow(0px 0px 5px #333);
-	}
-}
-
-img {
-	&.float-right, &.float-left {
-		width: 250px !important;
-		margin: 1.0em;
-		display: inline-block;
-	}
-	
-	&.float-right {
-		float: right;
-	}
-
-	&.float-left {
-		float: left;
-	}
-}
-
-.float-clear {
-	clear: both;
-}
-
-#overlay-image {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-
-	width: 100%;
-	height: 100%;
-	padding: 2em;
-	z-index: 15000;
-
-	@include g.themed() {
-		background-color: g.t("def-bg-color");
-	}
-
-	display: none;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-
-	#overlay-image-src {
-		width: auto;
-		height: auto;
-		max-width: 100%;
-		max-height: 100%;
-		@include g.themed() {
-			background-color: g.t("def-image-bg-color");
-		}
-	}
-
-	.overlay-image-instruction {
-		text-align: center;
-		position: absolute;
-		bottom: 0.33em;
-		font-style: italic;
-		width: 100%;
-	}
-}
-
-// To remove decoration and easily print the tutorials at home
-@media print {
-
-	header,
-	#footer,
-	.hexSmall,
-	.hexagon {
-		display: none !important;
 	}
 }

@@ -1,0 +1,8 @@
+// To remove decoration and easily print the tutorials at home
+// @TODO: make this actually good
+@media print {
+	header,
+	footer {
+		display: none !important;
+	}
+}

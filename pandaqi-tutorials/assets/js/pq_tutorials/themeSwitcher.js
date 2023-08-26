@@ -4,6 +4,7 @@ export default class ThemeSwitcher
     {
         this.localStorageKey = "pandaqiTutorialsDarkMode";
         this.currentValue = this.readMode();
+        this.themeNames = ["theme-light", "theme-dark"];
 
         const buttons = document.getElementsByClassName("darkModeBtn");
         for(const button of buttons)
@@ -14,8 +15,7 @@ export default class ThemeSwitcher
             });
         }
 
-        //document.documentElement.classList.add(this.getModeString());
-        document.body.classList.add(this.getModeString());
+        this.setModeOnBody();
     }
 
     toggleMode()
@@ -27,6 +27,16 @@ export default class ThemeSwitcher
     readMode()
     {
         return window.localStorage.getItem(this.localStorageKey) == "true";
+    }
+
+    setModeOnBody()
+    {
+        for(const theme of this.themeNames)
+        {
+            if(!document.body.classList.contains(theme)) { continue; }
+            document.body.classList.remove(theme);
+        }
+        document.body.classList.add(this.getModeString());
     }
 
     getModeString()

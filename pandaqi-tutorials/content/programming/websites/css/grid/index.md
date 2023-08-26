@@ -403,4 +403,20 @@ _In general, it's recommended to define a clear structure and stay within it. Th
 
 ## Conclusion
 
-@TODO
+For most use cases, a grid is really simple.
+
+* Turn the container into a grid (with `display: grid;`)
+* Set the size/number of columns (or rows) that you want (with the template)
+* Add styles to individual grid items to make it look how you want it to.
+
+It's recommended to go from big to small. First set properties on the _whole_ grid that work for most situations. Only then set the same style on individual _grid items_ that need it. 
+
+{{% example %}}
+First set `grid-template-columns` to give your grid 3 columns. But if one item wants to be special and take up two of them, set `grid-column-end` on just that one element. 
+
+The other way around, focusing on small styles and exceptions first, usually means a lot more work and issues later on.
+{{% /example %}}
+
+But if you want more advanced designs, you can surely achieve it using all the other properties. You can align, space, reflow, etcetera any way you need.
+
+Hopefully this article gave a short and gentle _introduction_ to what grids can do, and give you the tools to construct the type of grid you'll need 90% of the time.

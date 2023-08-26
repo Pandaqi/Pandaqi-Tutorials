@@ -1,2 +1,44 @@
 @use "critical_modules/globals" as g;
 
+.front-page-explanation-flexbox {
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    max-width: 1280px;
+    margin: auto;
+
+    @media all and (max-width: g.$breakpoint-big)
+    {
+        flex-wrap: wrap;
+    }
+}
+
+.frontpage-text {
+	font-size: 0.9em;
+
+    a { 
+        text-decoration: underline;
+    }
+}
+
+.front-page-header {
+    margin: 0;
+    padding: 0;
+    margin-bottom: -2.5em;
+
+    height: 26vw;
+    background-image: url(/tutorials/theme/header.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center top;
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        padding-top: 11vw;
+        font-size: 5vw;
+        color: #BAFFEB;
+    }
+}

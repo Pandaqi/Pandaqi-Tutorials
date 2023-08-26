@@ -2,23 +2,8 @@
 @use "critical_modules/globals" as g;
 
 .block-container {
-	display: flex;
-	flex-wrap: nowrap;
-
-	.left-pad {
-		width: 10vw;
-		@media all and (max-width: g.$def-max-width) { display: none; }
-	}
-
-	.right-pad {
-		width: 30vw;
-		@media all and (max-width: g.$def-max-width) { display: none; }
-	}
 
 	.left-block {
-		font-family: g.$header-font;
-
-		width: g.$left-block-width;
 		border-right-width: 0.5rem;
 		border-right-style: solid;
 		padding: 0.5rem;
@@ -87,16 +72,9 @@
 				@include g.metadata-arrow-link();
 			}
 		}
-	
-		@media all and (max-width: g.$breakpoint-big)
-		{
-			display: none;
-		}
 	}
 	
 	.right-block {
-		width: 100%;
-		max-width: g.$def-center-block-width;
 		padding: g.$def-padding;
 		position: relative;
 
@@ -281,9 +259,24 @@
 	@include g.remove-standard-list-style();
 }
 
-#mobile-metadata {
-	display: none;
+.side-note {
+	position: absolute;
+	left: -0.725 * g.$left-block-width;
+	width: 0.65 * g.$left-block-width;
+	line-height: 150%;
+	font-family: g.$header-font;
+	font-size: 0.75rem;
+}
 
+.coming-soon-message {
+	text-align: center;
+    font-family: 'Dosis';
+    font-size: 4.0rem;
+    margin: 3.0rem;
+	line-height: 120%;
+}
+
+#mobile-metadata {
 	@include g.remove-standard-list-style();
 
 	ul {

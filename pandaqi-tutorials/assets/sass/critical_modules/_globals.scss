@@ -280,8 +280,12 @@ $themes: (
         toc-color: #333,
         toc-bg-color: #DDD,
 
-        header-footer-bg-color: #eeb850,
-        header-footer-border-color: #a97a25,
+        header-footer-bg-color: #57b095,
+        header-footer-border-color: #175a42,
+        header-footer-text-color: #02281b,
+
+        //header-footer-bg-color: #eeb850,
+        //header-footer-border-color: #a97a25,
 
         code-color: #212121,
         code-bg-color: #fbcf77,
@@ -323,10 +327,10 @@ $themes: (
         midi-error-color: red,
         midi-canvas-bg-color: transparent,
 
-        footer-link-color: hsl(20, 75%, 22%),
-        footer-link-bg-color: beige,
-        footer-link-color-hover: beige,
-        footer-link-bg-color-hover: hsl(20, 75%, 42%)
+        footer-link-color: hsl(152, 79%, 15%),
+        footer-link-bg-color: rgb(220, 245, 225),
+        footer-link-color-hover: rgb(220, 245, 226),
+        footer-link-bg-color-hover: hsl(146, 76%, 35%)
     ),
 
     dark: (
@@ -349,8 +353,12 @@ $themes: (
         toc-color: #DDD,
         toc-bg-color: #333,
 
-        header-footer-bg-color: #332202,
-        header-footer-border-color: #6e4e12,
+        header-footer-bg-color: #002317,
+        header-footer-border-color: #006446,
+        header-footer-text-color: #9fe6d0,
+
+        //header-footer-bg-color: #332202,
+        //header-footer-border-color: #6e4e12,
 
         code-color: #fffefc,
         code-bg-color: #543c0d,
@@ -392,11 +400,14 @@ $themes: (
         midi-error-color: red,
     	midi-canvas-bg-color: #FCFCFC,
 
-        footer-link-color: beige,
-        footer-link-bg-color: hsl(20, 82%, 9%),
-        footer-link-color-hover: hsl(21, 70%, 15%),
-        footer-link-bg-color-hover: rgb(224, 224, 181),
+        footer-link-color:  rgb(220, 245, 225),
+        footer-link-bg-color: hsl(152, 78%, 21%),
+        footer-link-color-hover: hsl(146, 76%, 35%),
+        footer-link-bg-color-hover:  rgb(220, 245, 226),
 
-        // TODO: COLORSCHEMES
+        //footer-link-color: beige,
+        //footer-link-bg-color: hsl(20, 82%, 9%),
+        //footer-link-color-hover: hsl(21, 70%, 15%),
+        //footer-link-bg-color-hover: rgb(224, 224, 181),
     )
 );

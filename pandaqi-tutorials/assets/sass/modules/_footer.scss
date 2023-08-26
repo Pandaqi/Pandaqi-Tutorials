@@ -8,6 +8,7 @@
     cursor: pointer;
     transition: filter g.$def-trans;
     border: none;
+    display: block;
 
     @include g.hexagon-themed(3.0em, "transparent-bg-medium");
 
@@ -22,7 +23,22 @@
     }
 }
 
+.footer-banner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(/tutorials/theme/footer.webp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    pointer-events: none;
+    height: 45vw;
+}
+
 footer {
+    position: relative;
+
     a, button {
         @include g.themed() {
             color: g.t("footer-link-color");
@@ -45,16 +61,16 @@ footer {
     @include g.themed() {
 		background-color: g.t("header-footer-bg-color");
         border-top: 4px solid g.t("header-footer-border-color");
+        color: g.t("header-footer-text-color");
 	}
 
 	width: 100%;
 	display: block;
     padding-top: 2.0em;
-	padding-bottom: 2.0em;
+	padding-bottom: 40vw;
 
     .menu {
         margin-bottom: 2.0em;
-        max-width: g.$def-center-block-width;
         margin: auto;
     }
 
@@ -62,6 +78,10 @@ footer {
         @include g.flex-center();
         flex-wrap: wrap;
         padding: 1.0em;
+
+        max-width: 1300px;
+        margin: auto;
+        filter: drop-shadow(0 0 4px #333);
 
         @include g.remove-standard-list-style();
     }
