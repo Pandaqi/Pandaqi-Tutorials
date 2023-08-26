@@ -1,4 +1,6 @@
-{{ if .Page.Params.bamboo }}
+{{ $params := .Page.Params }}
+
+{{ if $params.bamboo }}
     {{ $res := resources.Get "js/pq_bamboo/main.js" | js.Build "js/lib-pqBamboo.js" | minify }}
     {{ $webworker := resources.Get "js/pq_bamboo/pqBamboo-webworker.js" | minify }}
     {{ $res.Publish }}
@@ -6,20 +8,26 @@
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
-{{ if .Page.Params.midi }}
+{{ if $params.midi }}
     {{ $res := resources.Get "js/pq_midi/main.js" | js.Build "js/lib-pqMidi.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
-{{ if .Page.Params.daw }}
+{{ if $params.daw }}
     {{ $res := resources.Get "js/pq_daw/main.js" | js.Build "js/lib-pqDaw.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
-{{ if .Page.Params.codemirror }}
+{{ if $params.codemirror }}
     {{ $res := resources.Get "js/codemirror/editor.bundle.min.js" }}
+    {{ $res.Publish }}
+    <script async defer src="{{ $res.RelPermalink }}"></script>
+{{ end }}
+
+{{ if $params.paint }}
+    {{ $res := resources.Get "js/pq_paint/main.js" | js.Build "js/lib-pqPaint.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}

@@ -3,9 +3,12 @@ title: Introduction
 overview: true
 weight: 1
 type: "article"
+paint: true
 ---
 
 Learning how to draw somewhat adequately is useful to more than just painters. In a business meeting, clear drawings help visualize what you're trying to say. In a game, imaginative drawings can take the gameplay to another level. Often, ideas are better expressed with quick sketches than trying to put them into words and losing a lot of meaning.
+
+{{< paint caption="Test" >}}
 
 This course, therefore, doesn't teach you a particular style or set of techniques. It provides a general overview of the principles behind drawing: rendering some image to a 2D plane, like a screen or paper. Principles such as depth, perspective and shading.
 
@@ -22,3 +25,4 @@ This course was also meant to teach _myself_ how to draw. So I don't provide exa
 I recommend you read through the whole course once. Only then pick your specialization. Even if you only want to draw simple and crude cartoons, you'll _still_ need many of the principles discussed here.
 
 Of course, I need *some* style to showcase the principles. For that I use a simple lineart style, which aims to be realistic but without texturing or adding details.
+
