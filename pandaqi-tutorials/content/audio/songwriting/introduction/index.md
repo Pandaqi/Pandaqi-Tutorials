@@ -16,13 +16,23 @@ As we all know, quantity breeds quality. Just doing something a lot will automat
 
 In this guide, I will explain the best principles I learned from _trying to write five hundred songs_. Also the most practical ones: music is an emotional journey, not a theoretical subject.
 
-That's why this guide has many audio examples (playable and visual). Like the one below.
+That's why this guide has many **playful audio examples**, like the one below.
 
 {{< midi tempo="120" time="4/4" strict="true" metronome="true" >}}
 :C4/1 D4/2 A3/1 | A3/1 A3/1 C4/2
 :F2/4 C3/4
 :A3/2 R/2 G3/4
 {{< /midi >}}
+
+Not only can you _see_ the melody and _play it_, you can even **edit it**!
+
+* Click + drag any note to move it around
+* Drag the _ends_ of a note to resize it (start time or end time)
+* Right-click a note (or make it zero size) to remove it
+* If you move a note above or below the current view, it automatically adds more pitches for you.
+* Finally, use the buttons and sliders to change the melody's properties.
+
+With everything you learn, you can immediately _play_ with the examples and construct melodies right within the web page! 
 
 At the end, you hopefully have tools for ...
 
