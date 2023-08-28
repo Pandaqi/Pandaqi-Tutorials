@@ -138,6 +138,10 @@
 			@include g.themed() {
 				color: g.t("blockquote-color");
 				background-color: g.t("blockquote-bg-color");
+
+				strong {
+					color: g.t("blockquote-code-color");
+				}
 			}
 		}
 

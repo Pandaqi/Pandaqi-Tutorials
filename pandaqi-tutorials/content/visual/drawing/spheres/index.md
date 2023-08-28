@@ -2,6 +2,7 @@
 title: Spheres
 type: "article"
 weight: 12
+paint: true
 quiz:
   - type: actions
     actions:
@@ -74,6 +75,8 @@ The *x* and *y* axis are always perpendicular. Your ellipses should be as well.
 ## Exercises
 
 Just like the cube, try to do these as often as you can.
+
+{{< paint >}}
 
 ### Simple Spheres
 

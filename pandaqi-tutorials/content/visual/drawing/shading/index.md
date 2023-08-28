@@ -2,6 +2,7 @@
 title: Shading
 type: "article"
 weight: 19
+paint: true
 quiz:
   - type: terms
     terms:
@@ -106,3 +107,5 @@ Instead of drawing and shading a single object, draw many basic shapes overlappi
 Use only one light source and two basic shapes the first few tries. Once you're comfortable with that, scale the number of sources and objects.
 
 ![Exercise to practice lighting and shadowing with multiple objects.](DrawingShadedBasicShapesExercise.webp)
+
+{{< paint >}}

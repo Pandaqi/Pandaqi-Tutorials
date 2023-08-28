@@ -2,6 +2,7 @@
 title: Coloring
 type: "article"
 weight: 20
+paint: true
 quiz:
   - type: actions
     actions:
@@ -53,6 +54,8 @@ Let's say a _different_ red light weakly shines on that brown floor from the oth
 {{% /example %}}
 
 On the other hand, highlights _are_ a result of light. So if a yellow light hits the top of a green object, it _will_ mix the green and yellow. 
+
+{{< paint >}}
 
 ## How to mix colors
 

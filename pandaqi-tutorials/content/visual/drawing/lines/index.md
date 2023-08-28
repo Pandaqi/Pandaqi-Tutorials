@@ -2,6 +2,7 @@
 title: Lines
 type: "article"
 weight: 5
+paint: true
 quiz:
   - type: actions
     actions:
@@ -77,6 +78,8 @@ If you have trouble with a certain line or curve, simply rotate the page until i
 ## Exercises
 
 I recommend doing these exercises on a day to day basis. They can also be used as a warmup.
+
+{{< paint >}}
 
 ### Straight Lines
 

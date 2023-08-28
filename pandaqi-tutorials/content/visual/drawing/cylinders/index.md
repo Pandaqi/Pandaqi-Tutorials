@@ -2,6 +2,7 @@
 title: Cylinders
 type: "article"
 weight: 13
+paint: true
 quiz:
   - type: actions
     actions:
@@ -43,6 +44,8 @@ I hope the image clarifies this more.
 
 ![How to draw cylinders in perspective, using ellipse foreshortening.](DrawingCylindersInPerspective.webp)
 
+{{< paint >}}
+
 ## Putting Cylinders in Boxes
 
 As usual, there's always the option of drawing a cube around it. Simply draw your cube like you normally would, nothing fancy, but make sure to *draw through* it. This means that you draw the lines at the back, which you normally don't see, as well. 
@@ -69,6 +72,8 @@ Together, all these lines form a nice grid for you to see how the form of your c
 Like constructing spheres, it's important to change the degree of the ellipse when moving in three-dimensional space.
 
 ![Example of contour lines on cylinders; creating two seperate grid-like shapes](DrawingContouredCylinders.webp)
+
+{{< paint >}}
 
 ## Exercise
 

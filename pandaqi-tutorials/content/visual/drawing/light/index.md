@@ -2,6 +2,7 @@
 title: Light
 type: "article"
 weight: 18
+paint: true
 quiz:
   - type: terms
     terms:
@@ -87,3 +88,5 @@ Shading the basic shapes!
 Draw any of the basic shapes (cube, sphere, cylinder, pyramid, cone), and go through all four shading types to add them. Just as basic shapes were the first step to creating complex forms, shading basic shapes is the first step to shading complex forms. You can start with rough shading and later try adding colour or more subtlety/complexity.
 
 ![Exercise for simple shading using the basic shapes you already know.](DrawingLightShadingExercise.webp)
+
+{{< paint >}}

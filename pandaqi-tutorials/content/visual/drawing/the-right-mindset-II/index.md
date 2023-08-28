@@ -1,6 +1,7 @@
 ---
 title: The Right Mind-Set II
 type: "article"
+paint: true
 weight: 25
 ---
 
@@ -35,3 +36,5 @@ You might be wondering now: *what's all this text about, if you're claiming I ne
 One last (general) advice is to look at the world in as many new and different ways as possible. For example, to fire up your visual system you could look at subjects upside down, or place them in such strange light that you can't easily make out what is what. You can come up with all sorts of things to get your brain to look only at the shapes and contours, and the interplay between them, instead of trying to identify objects and patterns all the time.
 
 Half the battle when drawing (or doing any visual work), is shutting off the part of your brain that is against it and will interfere.
+
+{{< paint >}}

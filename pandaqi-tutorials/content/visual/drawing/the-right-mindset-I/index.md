@@ -1,6 +1,7 @@
 ---
 title: The Right Mind-Set I
 type: "article"
+paint: true
 weight: 24
 ---
 
@@ -47,3 +48,5 @@ It's a magical thing, really. I often feel unmotivated to draw things for my gam
 * "Huh, those buttons look better. Is it because I added round corners? Let's test round corners on _all the buttons_."
 
 The visual part of the brain takes over, finding new connections, trying to solve the visual puzzles, and only rarely thinking in absolute numbers or process. Those are the best moments. With that mind-set, you'll do your best work.
+
+{{< paint >}}

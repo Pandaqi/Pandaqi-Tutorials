@@ -35,6 +35,13 @@ export default class HexGrid {
 
             hexGrid.parentNode.style.marginBottom = spaceLost + "px";
 
+            const breakpointHexToSquare = 350;
+            if(parentWidth < breakpointHexToSquare)
+            {
+                hexGrid.style.width = "100%";
+                hexGrid.parentNode.style.marginBottom = "2em";
+            }
+
         }
     }
 }

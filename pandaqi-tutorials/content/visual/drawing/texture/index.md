@@ -1,6 +1,7 @@
 ---
 title: Texture
 type: "article"
+paint: true
 weight: 22
 ---
 
@@ -34,6 +35,8 @@ In general, **imperfection is key**. In real-life, all objects have at least sli
 
 Try to repeat the overall pattern of the texture, yet vary it (slightly) every time you do so.
 
+{{< paint >}}
+
 ### Sense the Stroke
 
 If you have the object in front of you, or you have a very good imagination, it's of course always possible to just feel the texture of the object. Where does it have bumps? Where does it feel rough? At the end of this chapter, I'll provide more concrete workflows for when you know what your texture is.
@@ -60,6 +63,8 @@ If that's not possible or too much work, simply try to get a feel for how your t
 Here I'd like to go over creating six very common types of textures. Not only can this help you directly (in case you needed this exact type of texture), but it also provides more insight into the world of texture drawing. I encourage you to practice drawing each of these textures at least once.
 
 The image at the start of the chapter displays most of these.
+
+{{< paint >}}
 
 ### Smooth
 

@@ -2,6 +2,7 @@
 title: Cubes
 type: "article"
 weight: 11
+paint: true
 quiz:
   - type: actions
     actions:
@@ -55,6 +56,8 @@ So, simply establish the vanishing points and draw lines from them. Ta da, you'r
 
 As you can see in the image, if you choose your vanishing points too close to your object, you get a very distorted perspective. This often isn't realistic at all. 
 
+{{< paint >}}
+
 The three vanishing points work best is they form a nice triangle. After you've chosen two vanishing points (which shouldn't be too close to each other), the third one should be at a roughly equal distance from both points.
 
 {{% remark %}}
@@ -94,6 +97,8 @@ _Why do you keep mentioning contour lines?_ Believe me, they are the best help y
 Just think about how often shapes in the real world are cubes ... with some changes. Maybe a cube with holes. A cube with certain parts extruded. If you want to accurately morph your cube into the actual shape you were looking for, you need the contour lines to show you *how* the surface wraps in perspective, and *where* you need to make your change.
 
 ![Explaining more of the practical use of contour lines](DrawingCubesModified.webp)
+
+{{< paint >}}
 
 ## Drawing Through
 

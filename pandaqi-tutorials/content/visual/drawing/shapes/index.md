@@ -2,6 +2,7 @@
 title: Shapes
 type: "article"
 weight: 7
+paint: true
 quiz:
   - type: terms
     terms:
@@ -92,3 +93,5 @@ Because basic shapes are easy to learn and to draw, like *rectangles* and *ovals
 ## Exercises
 
 After such a general and abstract chapter, there aren't really exercises to be done. All I can say is: if you have the time, find an interesting object, and try drawing it using the methods I provided. Especially try to see and draw the negative shapes. Go wild!
+
+{{< paint >}}

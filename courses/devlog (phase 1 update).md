@@ -117,9 +117,10 @@ I also try to improve the website in other ways with each update. This time, I .
 
 * Made the MIDI player for the [Songwriting](https://pandaqi.com/tutorials/audio/songwriting/) interactive. So you can actually change the melody or add a new one yourself with each example.
 * Added a simple drawing tool for the [Drawing](https://pandaqi.com/tutorials/visual/drawing/) course. It's very easy, in modern browsers, to just create a canvas and allow somebody to draw on it. A simple tool like this improves the experience _a lot_, allowing you to instantly test ideas, no need to switch to some other material or app.
-* Checked if I could make the colored blocks the _full_ width of the page on wider pages.
-* Checked if a _dark mode_ would be possible.
-* Minor bug fixes that were on my list
+* Made the colored blocks the _full_ width of the page on wider pages.
+* Added a _dark mode_.
+* Added proper banners and imagery, mostly to make the front page more inviting (and less barebones/simplistic), but they also show up in other places.
+* Lots of bug fixes or tiny improvements that were on my list
 
 @TODO: Images, a bit more info
 

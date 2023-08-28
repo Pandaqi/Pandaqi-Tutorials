@@ -2,6 +2,7 @@
 title: Rectangles
 type: "article"
 weight: 8
+paint: true
 quiz:
   - type: actions
     actions:
@@ -61,6 +62,8 @@ Animation showing how to divide rectangles to find contour lines
 ## Exercises
 
 The exercises for this are simple ones I recommend you try to do every day as a warm-up.
+
+{{< paint >}}
 
 ### Any Rectangle
 

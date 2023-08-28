@@ -1,33 +1,26 @@
+import BrushTool from "./brushTool"
+
 export default class EraserTool
 {
     constructor()
     {
-        this.drawCanvas = null;
+        this.cursor = "pointer";
+        this.eraser = true;
     }
 
     onDrawStart(params)
     {
-        this.drawCanvas = params.pqPaint.getBrush().getImage();
-        this.drawAt(params);
+        this.brushTool = new BrushTool();
+        this.brushTool.onDrawStart(params);
     }
 
     onDrawProgress(params)
     {
-        this.drawAt(params);
+        this.brushTool.onDrawProgress(params);
     }
 
     onDrawEnd(params)
     {
-        this.drawCanvas = null;
-    }
-
-    drawAt(params)
-    {
-        const canvas = params.pqPaint.getCanvas();
-        const pointList = params.pqPaint.getBrush().getInterpolatedPointList(params);
-        for(const point of pointList)
-        {
-            canvas.addToBuffer({ canvas: this.drawCanvas, pos: point, composite: "destination-out" });
-        }
+        this.brushTool.onDrawEnd(params);
     }
 }

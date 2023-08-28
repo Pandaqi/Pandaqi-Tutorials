@@ -8,6 +8,8 @@ window.addEventListener('load', function () {
         pqPaints.push(new PandaqiPaint(pqPaintNode));
     }
 
-    window.PQ_PAINT = {}; // @TODO?
+    window.PQ_PAINT = {
+        nodes: pqPaints
+    };
 })
 

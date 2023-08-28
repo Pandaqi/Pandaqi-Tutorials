@@ -1,10 +1,11 @@
 import Point from "../point"
+import Config from "../config"
 
 export default class FillTool
 {
     constructor()
     {
-        this.MAX_DIFFERENCE_FOR_FLOOD_FILL = 0.15;
+        this.cursor = "cell";
         this.neighborOffsets = [
             new Point().setXY(1,0),
             new Point().setXY(0,1),
@@ -24,7 +25,8 @@ export default class FillTool
     {
         const pos = params.pos.clone().round();
         const canvas = params.pqPaint.getCanvas();
-        const ctx = canvas.getContext();
+        const ctxRead = canvas.getContextOutput();
+        const ctxWrite = canvas.getContextActive();
         const canvasSize = canvas.getSize();
         const startingColor = canvas.readColorAt(pos);
 
@@ -39,20 +41,24 @@ export default class FillTool
             pixelsChecked[x] = [];
             for(let y = 0; y < canvasSize.height; y++)
             {
-                pixelsChecked[x][y] = false;
+                pixelsChecked[x][y] = null;
             }
         }
 
-        const imageData = ctx.getImageData(0, 0, canvasSize.width, canvasSize.height);
+        const imageData = ctxRead.getImageData(0, 0, canvasSize.width, canvasSize.height);
         
         // first, find all connected pixels with the same or similar colors
         while(pixelsToCheck.length > 0)
         {
             const pixel = pixelsToCheck.pop();
-            pixelsChecked[pixel.x][pixel.y] = true;
+            const cachedVal = pixelsChecked[pixel.x][pixel.y];
+            const color = cachedVal ?? this.getPixelRaw(imageData, pixel);
+            pixelsChecked[pixel.x][pixel.y] = color;
 
-            const color = this.getPixelRaw(imageData, pixel);
-            const tooDissimilar = this.colorsTooFarApart(startingColor, color, this.MAX_DIFFERENCE_FOR_FLOOD_FILL);
+            // @TODO: pixelsChecked contains all read pixel values, use that to check dissimilarity with (known) NEIGHBORS
+            // If very close, allow flood fill to continue?
+
+            const tooDissimilar = this.colorsTooFarApart(startingColor, color, Config.MAX_DIFFERENCE_FOR_FLOOD_FILL);
             if(tooDissimilar) { continue; }
 
             pixelsFlooded.push(pixel);
@@ -63,28 +69,21 @@ export default class FillTool
                 const alreadyHandled = pixelsChecked[nb.x][nb.y];
                 if(alreadyHandled) { continue; }
                 pixelsToCheck.push(nb);
-                pixelsChecked[nb.x][nb.y] = true;
+                pixelsChecked[nb.x][nb.y] = this.getPixelRaw(imageData, nb);
             }
         }
 
         // second, actually fill all those pixels with the brush color
         const brush = params.pqPaint.getBrush();
         brush.fillPixelListRaw(imageData, pixelsFlooded);
-        ctx.putImageData(imageData, 0, 0);
-    }
+        ctxWrite.putImageData(imageData, 0, 0);
 
-    /*distColorToRawColor(color, raw)
-    {
-        const r = Math.abs(color.r - raw[0]);
-        const g = Math.abs(color.g - raw[1]);
-        const b = Math.abs(color.b - raw[2]);
-        const a = Math.abs(color.a - raw[3]);
-        return (r + g + b + a) / 4.0;
-    }*/
+        canvas.commitCanvasActive();
+    }
 
     colorsTooFarApart(color, raw, t)
     {
-        return Math.abs(color.r - raw[0]) > t || Math.abs(color.g - raw[1]) > t ||  Math.abs(color.b - raw[2]) > t;
+        return Math.abs(color.r - raw[0]/255.0) > t || Math.abs(color.g - raw[1]/255.0) > t ||  Math.abs(color.b - raw[2]/255.0) > t;
     }
 
     getPixelRaw(imageData, point) 

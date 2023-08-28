@@ -29,6 +29,7 @@ $breakpoint-hex-to-square: 350px;
         &:hover {
             // non-themed (as it's always on top icon images)
             .label {
+                display: block;
                 background-color: rgba(0,0,0,0.75);
                 color: rgba(255,255,255,0.9);
             }
@@ -72,6 +73,7 @@ $breakpoint-hex-to-square: 350px;
 
         .sub-container {
             font-size: 0; // disable white space between inline block element
+            display: block;
 
             article.summary, div.summary {
                 width: $hexagon-size;

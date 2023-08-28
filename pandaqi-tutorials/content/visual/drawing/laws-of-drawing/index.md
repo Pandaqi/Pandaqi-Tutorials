@@ -2,6 +2,7 @@
 title: The Laws of Drawing
 type: "article"
 weight: 4
+paint: true
 quiz:
   - type: terms
     terms:
@@ -53,6 +54,8 @@ For this, I have what I call the 9 Laws of Drawing:
 These laws aren't placed in any random order! They are ordered from basic to advanced, and structured in the same way as this whole course.
 
 I'll start with teaching you to get simple lines and curves looking right. Then we continue to shapes, which leads to 3D objects, which leads to adding enrichment and details. Essentially, this already describes the whole *drawing process*. You've already learnt everything you need to know! 
+
+{{< paint >}}
 
 Now all I need to do ... is show you how to do it.
 

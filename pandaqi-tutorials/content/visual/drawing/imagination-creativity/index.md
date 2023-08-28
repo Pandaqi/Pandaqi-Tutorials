@@ -1,6 +1,7 @@
 ---
 title: Imagination & Creativity
 type: "article"
+paint: true
 weight: 26
 ---
 
@@ -59,7 +60,7 @@ The best way to do so, is by experimenting a lot.
 Nevertheless, two general types of handwriting are useful to develop.
 
 -   **Free Handwriting:** Loose, fast and intuitive. When you quickly want to sketch something, for example, you use this free handwriting. In a few swift strokes, try to capture the overall action of your subject rather than correct proportions or accurate details. Drawing freely often is a good way to get a large scene on paper very quickly, or to sketch the idea or feeling of what you want to achieve.
--   **Controlledd Handwriting:** On the other end, there's very controlled drawing. Used when working on small areas, carefully and patiently refining the lines and rendering the tones of your subject. Controlled handwriting is evaluated and changed frequently, as to make sure every detail, proportion and shade is perfect.
+-   **Controlled Handwriting:** On the other end, there's very controlled drawing. Used when working on small areas, carefully and patiently refining the lines and rendering the tones of your subject. Controlled handwriting is evaluated and changed frequently, as to make sure every detail, proportion and shade is perfect.
 
 ![Example of the different handwritings.](DrawingDifferentHandwritings.webp)
 
@@ -80,6 +81,8 @@ Think out of the box and everything becomes an amazing tool. Your eraser can be 
 The possibilities are endless!
 
 Usually, trying something new will compose a new idea, shed new light on your subject, or accidentally create a new way of drawing you can use for your next project. If it doesn't, it's still not wasted time. You've experimented and now know what you **don't** like.
+
+{{< paint >}}
 
 ## Tips & Tricks
 

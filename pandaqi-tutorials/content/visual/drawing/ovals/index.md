@@ -2,6 +2,7 @@
 title: Ovals
 type: "article"
 weight: 9
+paint: true
 quiz:
   - type: terms
     terms:
@@ -81,6 +82,8 @@ How to use simple divided ellipses to define more complex contour lines.
 ## Exercises
 
 Again, simple exercises I suggest you do daily. Or whenever you have some time to kill. I practiced these when sitting in a boring lecture---so I basically practiced these all day while at university.
+
+{{< paint >}}
 
 ### Ovals
 

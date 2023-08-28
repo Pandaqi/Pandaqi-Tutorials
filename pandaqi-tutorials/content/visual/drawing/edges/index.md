@@ -2,6 +2,7 @@
 title: Edges
 type: "article"
 weight: 6
+paint: true
 quiz:
   - type: objects
     objects:
@@ -69,3 +70,5 @@ A technique for drawing really sharp / pointy / spiky edges
 An exercise to practice giving your lines more meaning. Look at the images below and draw each of them twice. The first time, copy the image exactly and identify the types of edges. The second time, change one edge to another type.
 
 ![An exercise for consciously working with edges.](DrawingEdgesExercise.webp)
+
+{{< paint >}}

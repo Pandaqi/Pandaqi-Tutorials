@@ -1,11 +1,8 @@
 import Brush from "./brush"
 import PaintCanvas from "./paintCanvas"
 import PaintInterface from "./paintInterface"
-
-import BrushTool from "./tools/brushTool"
-import EraserTool from "./tools/eraserTool"
-import PickerTool from "./tools/pickerTool"
-import FillTool from "./tools/fillTool"
+import Tools from "./tools/main"
+import Config from "./config"
 
 export default class PandaqiPaint
 {
@@ -13,12 +10,9 @@ export default class PandaqiPaint
     {
         this.node = node;
         this.brush = new Brush();
-        this.tools = {
-            "brush": new BrushTool(),
-            "eraser": new EraserTool(),
-            "picker": new PickerTool(),
-            "fill": new FillTool()
-        }
+        this.tools = new Tools();
+
+        this.history = [];
 
         this.createCanvas();
         this.createInterface();
@@ -34,11 +28,7 @@ export default class PandaqiPaint
         return this.brush;
     }
 
-    getToolDictionary() { return this.tools; }
-    getTool()
-    {
-        return this.tools[this.interface.getToolSelected()];
-    }
+    getTools() { return this.tools; }
 
     getCanvas() { return this.canvas; }
     createCanvas()
@@ -50,5 +40,19 @@ export default class PandaqiPaint
     createInterface()
     {
         this.interface = new PaintInterface(this);
+    }
+
+    undo() { this.popState(); }
+    pushState(state) 
+    { 
+        this.history.push(state);
+        if(this.history.length >= Config.MAX_UNDO) { this.history.shift(); }
+    }
+
+    popState() { 
+        if(this.history.length <= 1) { return; }
+        this.history.pop();
+        const state = this.history[this.history.length - 1];
+        this.getCanvas().setStateTo(state);
     }
 }

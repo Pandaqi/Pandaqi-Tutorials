@@ -2,6 +2,7 @@
 title: Intersections & Organic Forms
 type: "article"
 weight: 15
+paint: true
 quiz:
   - type: actions
     actions:
@@ -63,6 +64,8 @@ _How do I know if I'm right?_ It will look right. But there's a more consistent 
 * Use the "boolean" or "intersection" modifier on them
 * It should give the correct end result. Use it to check if you were right.
 
+{{< paint >}}
+
 ## Holes
 
 A very simplified version of those subtractions comes from **punching holes** in an object. 
@@ -96,3 +99,7 @@ In the image, you see ellipses used to give something a solid and organic form. 
 This skill comes down to practice and observing the world around you. I think the simplest exercise is to draw random "blobby shapes" and dropping them on top of each other. This forces them to interact with each other in all sorts of ways. Keep in mind that the forms should retain their thickness, even when they are stretched and distorted.
 
 ![Exercise by drawing random organic blobs and how they interact.](DrawingOrganicBlobsExercise.webp)
+
+Now try it yourself!
+
+{{< paint >}}

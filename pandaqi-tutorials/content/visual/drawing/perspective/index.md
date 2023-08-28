@@ -2,6 +2,7 @@
 title: Perspective
 type: "article"
 weight: 21
+paint: true
 quiz:
   - type: terms
     terms:
@@ -100,3 +101,5 @@ Lastly, vanishing points can be---and often will be---off-paper. In that case, d
 Draw something using one, two, or three-point perspective. Establish your horizon, establish your vanishing point(s), and draw random cubes that follow the guides you set out.
 
 ![Exercise to practice overall perspective (one, two or three point).](DrawingPerspectiveExercise.webp)
+
+{{< paint >}}

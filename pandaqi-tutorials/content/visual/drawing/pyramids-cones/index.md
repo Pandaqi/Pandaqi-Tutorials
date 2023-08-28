@@ -2,6 +2,7 @@
 title: Pyramids & Cones
 type: "article"
 weight: 14
+paint: true
 quiz:
   - type: terms
     terms:
@@ -30,6 +31,8 @@ A pyramid's contour lines are rather simple. The bottom of the pyramid (the *bas
 
 ![Example of drawing contour lines on pyramids.](DrawingContouredPyramids.webp)
 
+{{< paint >}}
+
 ## Cones
 
 A cone is a cylinder, but with one of the circular sides collapsed into a single point. Just like the pyramid, drawing a cone means drawing a cylinder and then replacing one side by a single point.
@@ -41,6 +44,8 @@ A cone is a cylinder, but with one of the circular sides collapsed into a single
 Again, regard the bottom of the cone as the *base*. The contour lines are ellipses parallel to the base. Make sure to slightly change the degree with every new ellipse, as you look at them from a slightly different angle.
 
 ![Example of drawing contour lines on cones.](DrawingContouredCones.webp)
+
+{{< paint >}}
 
 ## Where do I find Pyramids and Cones?
 

@@ -1,5 +1,6 @@
 import Point from "./point"
 import Color from "./color"
+import Config from "./config"
 
 export default class PaintCanvas
 {
@@ -12,31 +13,64 @@ export default class PaintCanvas
         this.drawBuffer = [];
         this.drawCanvas = null;
 
-        this.MAX_DRAWS_PER_FRAME = 60.0;
-
-        this.createCanvasElement();
+        this.createCanvasElements();
         this.attachMouseEvents();
-        this.onAnimationFrame();
+        this.listenForSignals();
+
+        this.pqPaint.pushState(this.cloneState());
+    }
+
+    download()
+    {
+        var link = document.createElement('a');
+        link.download = '[Pandaqi Paint] Canvas.png';
+        link.href = this.canvasOutput.toDataURL()
+        link.click();
     }
 
     getSize() { return this.canvasResolution; }
-    getContext() { return this.ctx; }
+    getCanvasOutput() { return this.canvasOutput; }
+    getContextOutput() { return this.contextOutput; }
+    getContextActive() { return this.contextActive; }
     createCanvasElement()
     {
         const canv = document.createElement("canvas");
         canv.width = this.canvasResolution.width;
         canv.height = this.canvasResolution.height;
+        return canv;
+    }
+
+    createCanvasElements()
+    {
+        let canv = this.createCanvasElement();
+        this.pqPaint.getContainerNode().appendChild(canv);
         canv.style.width = "100%";
         canv.classList.add("paint-canvas");
 
-        this.pqPaint.getContainerNode().appendChild(canv);
-        this.canvas = canv;
-        this.ctx = this.canvas.getContext("2d", { willReadFrequently: true });
+        const params = { willReadFrequently: true, imageSmoothingEnabled: true };
+
+        this.canvasOutput = canv;
+        this.contextOutput = canv.getContext("2d", params);
+        this.clearCanvas(this.canvasOutput, true);
+
+        this.canvasCurrent = this.createCanvasElement();
+        this.contextCurrent = this.canvasCurrent.getContext("2d", params); // shouldn't ever be used, ideally
+
+        this.canvasActive = this.createCanvasElement();
+        this.contextActive = this.canvasActive.getContext("2d", params);
+
+    }
+
+    listenForSignals()
+    {
+        Config.addEventListener("toolChanged", (ev) => {
+            this.canvasOutput.style.cursor = ev.detail.tool.cursor;
+        })
     }
 
     attachMouseEvents()
     {
-        const canv = this.canvas;
+        const canv = this.canvasOutput;
         canv.addEventListener('mousedown', this.onDrawStart.bind(this), true);
         canv.addEventListener('touchstart', this.onDrawStart.bind(this), true);
 
@@ -55,7 +89,7 @@ export default class PaintCanvas
         if(!ev) { return this.lastDrawPos; }
 
         const p = new Point();
-        const offset = this.canvas.getBoundingClientRect();
+        const offset = this.canvasOutput.getBoundingClientRect();
         p.move({ x: -offset.left, y: -offset.top });
 
         if(ev.type == 'touchstart' || ev.type == 'touchmove' || ev.type == 'touchend' || ev.type == 'touchcancel')
@@ -80,6 +114,14 @@ export default class PaintCanvas
         }
     }
 
+    cancelEvents(ev)
+    {
+        if(!ev) { return false; }
+        ev.preventDefault();
+        ev.stopPropagation();
+        return false;
+    }
+
     onDrawStart(ev)
     {
         if(this.drawing) { return; }
@@ -87,7 +129,8 @@ export default class PaintCanvas
         
         const pos = this.getPosFromEvent(ev);
         this.lastDrawPos = pos.clone();
-        this.pqPaint.getTool().onDrawStart(this.collectToolParams(ev));
+        Config.dispatchEvent("drawStart", { params: this.collectToolParams(ev) });
+        return this.cancelEvents(ev);
     }
 
     onDrawProgress(ev)
@@ -95,17 +138,18 @@ export default class PaintCanvas
         if(!this.drawing) { return; }
 
         const params = this.collectToolParams(ev);
-        this.pqPaint.getTool().onDrawProgress(params);
+        Config.dispatchEvent("drawProgress", { params: params });
         this.lastDrawPos = params.pos.clone();
+        return this.cancelEvents(ev);
     }
 
     onDrawEnd(ev)
     {
         if(!this.drawing) { return; }
+        Config.dispatchEvent("drawEnd", { params: this.collectToolParams(ev) });
         this.drawing = false;
         this.lastDrawPos = null;
-
-        this.pqPaint.getTool().onDrawEnd(this.collectToolParams(ev));
+        return this.cancelEvents(ev);
     }
 
     onDrawCancel()
@@ -114,32 +158,107 @@ export default class PaintCanvas
         this.onDrawEnd(null);
     }
 
-    onAnimationFrame()
+    clearCanvas(canv, fillBackground = false) 
     {
-        requestAnimationFrame(this.onAnimationFrame.bind(this));
-        this.drawFromBuffer();
+        const ctx = canv.getContext("2d");
+        ctx.clearRect(0, 0, this.canvasResolution.width, this.canvasResolution.height);
+
+        if(fillBackground)
+        {
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect(0, 0, canv.width, canv.height);
+        }
     }
 
-    addToBuffer(val) { this.drawBuffer.push(val); }
-    drawFromBuffer()
+    setStateTo(state)
     {
-        const numDraws = Math.min(this.drawBuffer.length, this.MAX_DRAWS_PER_FRAME);
-        if(numDraws <= 0) { return; }
+        this.clearCanvas(this.canvasCurrent);
+        this.contextCurrent.drawImage(state, 0, 0);
+        this.refreshOutput(false);
+    }
 
-        for(let i = 0; i < numDraws; i++)
+    cloneState()
+    {
+        const canv = document.createElement("canvas");
+        canv.width = this.canvasOutput.width;
+        canv.height = this.canvasOutput.height;
+        canv.getContext("2d").drawImage(this.canvasOutput, 0, 0);
+        return canv;
+    }
+
+    clearOutput()
+    {
+        this.clearCanvas(this.canvasCurrent);
+        this.clearCanvas(this.canvasActive);
+        this.refreshOutput();
+    }
+
+    refreshOutput(saveState = true)
+    {
+        this.clearCanvas(this.canvasOutput, true);
+        this.contextOutput.drawImage(this.canvasCurrent, 0, 0);
+        this.drawActiveCanvasOnto(this.canvasOutput);
+
+        if(saveState) { this.pqPaint.pushState(this.cloneState()); }
+    }
+
+    drawActiveCanvasOnto(targetCanvas)
+    {
+        const ctx = targetCanvas.getContext("2d");
+        ctx.save();
+        ctx.globalCompositeOperation = this.pqPaint.getTools().getCompositeOperation();
+        ctx.drawImage(this.canvasActive, 0, 0);
+        ctx.restore();
+    }
+
+    commitCanvasActive()
+    {
+        /*const img = document.createElement("img");
+        img.src = this.canvasActive.toDataURL();
+        this.pqPaint.getContainerNode().appendChild(img);*/
+
+        this.drawActiveCanvasOnto(this.canvasCurrent);
+        this.clearCanvas(this.canvasActive);
+        this.clearCanvas(this.canvasOutput, true);
+        this.refreshOutput();
+    }
+
+    drawOnActiveCanvas(canvasOperation)
+    {
+        if(canvasOperation.clearBefore) { this.clearCanvas(this.canvasActive); }
+
+        const canvasToStamp = canvasOperation.canvas;
+        const ctx = this.contextActive;
+        ctx.globalAlpha = canvasOperation.alpha;
+        ctx.globalCompositeOperation = canvasOperation.composite;
+
+        if(canvasOperation.usesImage())
         {
-            const drawObject = this.drawBuffer.pop();
-            const pos = drawObject.pos;
-            const canv = drawObject.canvas;
-            const comp = drawObject.composite;
-            this.ctx.globalCompositeOperation = comp; 
-            this.ctx.drawImage(canv, pos.x, pos.y);
+            for(const point of canvasOperation.getPoints())
+            {
+                ctx.drawImage(canvasToStamp, point.x, point.y);
+            }
         }
+
+        if(canvasOperation.usesVector())
+        {
+            const settings = canvasOperation.getLineSettings();
+            const path = new Path2D();
+            for(const point of canvasOperation.getPoints())
+            {
+                path.lineTo(point.x, point.y);
+            }
+            ctx.strokeStyle = settings.color;
+            ctx.lineWidth = settings.lineWidth;
+            ctx.stroke(path);
+        }
+  
+        this.refreshOutput(canvasOperation.saveStateAfterwards);
     }
 
     convertRealPosToCanvasPos(realPos)
     {
-        const displaySize = this.canvas.getBoundingClientRect();
+        const displaySize = this.canvasOutput.getBoundingClientRect();
         const underlyingSize = this.canvasResolution;
 
         const scaleVector = new Point().setXY(
@@ -152,7 +271,7 @@ export default class PaintCanvas
 
     convertCanvasPosToRealPos(canvasPos)
     {
-        const displaySize = this.canvas.getBoundingClientRect();
+        const displaySize = this.canvasOutput.getBoundingClientRect();
         const underlyingSize = this.canvasResolution;
 
         const scaleVector = new Point().setXY(
@@ -165,7 +284,7 @@ export default class PaintCanvas
 
     readColorAt(canvasPos)
     {
-        const rawColor = this.ctx.getImageData(canvasPos.x, canvasPos.y, 1, 1).data;
+        const rawColor = this.contextOutput.getImageData(canvasPos.x, canvasPos.y, 1, 1).data;
         const color = new Color(rawColor[0] / 255.0, rawColor[1] / 255.0, rawColor[2] / 255.0, rawColor[3] / 255.0)
         return color;
     }

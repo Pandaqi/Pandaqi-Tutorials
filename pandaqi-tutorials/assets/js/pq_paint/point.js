@@ -3,10 +3,6 @@ export default class Point {
     {
         this.x = p.x || 0;
         this.y = p.y || 0;
-        this.neighbors = (p.neighbors || []).slice(); // any point it CAN reach
-        this.connections = (p.connections || []).slice(); // points to which it's actually connected
-        this.metadata = null;
-        if(p.metadata) { this.metadata = Object.assign({}, p.metadata); }
     }
 
     clone() { return new Point(this); }
@@ -90,42 +86,4 @@ export default class Point {
     {
         return new Point().setXY(p.x - this.x, p.y - this.y);
     }
-
-    // neighbors
-    addNeighbor(p = new Point()) { this.neighbors.push(p); }
-    removeNeighbor(p = new Point())
-    {
-        const idx = this.getNeighborIndex(p);
-        if(idx < 0) { return; }
-        this.neighbors.splice(idx, 1);
-    }
-    countNeighbors() { return this.neighbors.length; }
-    getNeighborIndex(p) { return this.neighbors.indexOf(p); }
-    hasNeighbor(p) { return this.neighbors.includes(p); }
-    canConnectTo(p) { return this.hasNeighbor(p); }
-    hasNeighbors() { return this.countNeighbors() > 0; }
-    getNeighbors() { return this.neighbors.slice(); }
-    clearNeighbors() { this.neighbors = []; }
-
-    // connections
-    addConnection(p = new Point()) { this.connections.push(p); }
-    removeConnection(p = new Point())
-    {
-        const idx = this.getConnectionIndex(p);
-        if(idx < 0) { return; }
-        this.connections.splice(idx, 1);
-    }
-    countConnections() { return this.connections.length; }
-    getConnectionIndex(p) { return this.connections.indexOf(p); }
-    hasConnection(p) { return this.connections.includes(p); }
-    isConnectedTo(p) { return this.hasConnection(p); }
-    hasConnections() { return this.countConnections() > 0; }
-    getConnections() { return this.connections.slice(); }
-    clearConnections() { this.connections = []; }
-
-    // metadata
-    setMetadata(obj) { this.metadata = obj; }
-    getMetadata() { return this.metadata; }
-
-    
 }

@@ -2,6 +2,7 @@
 title: Construction & Form
 type: "article"
 weight: 10
+paint: true
 quiz:
   - type: terms
     terms:
@@ -55,6 +56,8 @@ As you see, I use the word *pose* in a general sense. It doesn't only apply to h
 
 By understanding where the joints are, you know where different basic shapes will connect. Additionally, you can draw the same thing in multiple states or "poses" by rotating/moving that joint and everything attached.
 
+{{< paint >}}
+
 ## Gesture & Rhythm
 
 Most poses have a general action, direction or movement within them. This is called the *gesture* or *rhythm*. 
@@ -69,6 +72,8 @@ If you're drawing a human, a simple vertical curve already establishes that the 
 
 ![Examples of starting from a simple gesture ( = one line that indicates direction).](DrawingGesture.webp)
 
+{{< paint >}}
+
 ## Contour Lines
 
 Basic shapes are quite static. A panda's upper body can be approximated with a cylinder---but it _isn't_ actually a cylinder! Once you laid out the basic shapes, it's time to modify them and add details to improve the realism of your drawing.
@@ -81,6 +86,8 @@ Don't worry, I'll go more in-depth in upcoming chapters.
 
 ![Example on how to use contour lines to make basic shapes less basic.](DrawingFormContourLines.webp)
 
+{{< paint >}}
+
 ## Balance
 
 Last but not least, a quick tip. If an object is not falling over, it's *balanced*. Therefore, if you're drawing something that isn't moving/in action, you should make sure the balance is right. 
@@ -92,3 +99,5 @@ Gravity and balance are two of the main forces humans recognize and expect. So t
 \> **Laws of Form #5:** If your object isn't falling over, make sure it's balanced. If your object actually *is* falling over, or you want a surrealistic effect, reduce balance on purpose.
 
 ![Example of balance in drawing and form.](DrawingFormBalance.webp)
+
+{{< paint >}}
