@@ -33,24 +33,12 @@ I know, I'm being a perfectionist. I already put way too much time into this. Th
 ### Typography
 The [Typography](../../../visual/typography/) course is nice. Almost every chapter has a quiz. It has clear images. But the real way to learn something is through interactivity! I should add some buttons, some tiny games, some interactive stuff inside the course. It shouldn't be too hard to allow readers to actually _play_ with font size, line height, spacing, and other typography concepts.
 
-### MIDI Tool
-The tool I use for the [Songwriting](../../../audio/songwriting/) course is really nice ... but it lacks interactivity. You can't add your own notes, change it, etcetera. (This was the very first time I created a dedicated tool for a tutorial, so I didn't even _think_ about this.) That should change.
-
 ### Writing
-Some simple tool that counts words, checks sentence length, gives a readability index---should be doable.
-
-Besides that, I might create some "writing prompt" generator.
+Some simple tool that counts words, checks sentence length, gives a readability index---should be doable. Besides that, I might create some "writing prompt" generator.
 
 ### Visual
-Add an actual _canvas for drawing_ to my graphics tutorials.
 
-If I ever get around to more tutorials about video editing, graphics, etcetera, I could also add a barebones animation editor. (Nothing actually fancy, of course. Just enough to let you _play_ with the concepts I explain. Simple things like keyframes, tweening, etcetera.)
-
-## Writing courses
-
-Some of the courses in Writing were the first ones I ever wrote. That's almost ten years ago now. I was just a kid trying to become a better writer.
-
-Now I _am_ that professional writer. The courses just aren't good enough. Additionally, I want to write many new ones that provide more value. (Focusing on self-publishing, plot, character, dialogue, etcetera.)
+If I ever get around to more tutorials about video editing, graphics, etcetera, I could also add a barebones **animation editor** or **vector graphics** app. (Nothing actually fancy, of course. Just enough to let you _play_ with the concepts I explain. Simple things like keyframes, tweening, etcetera.)
 
 ## To infinity and beyond
 

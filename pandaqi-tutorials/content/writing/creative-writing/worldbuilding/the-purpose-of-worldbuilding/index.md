@@ -4,7 +4,7 @@ type: "article"
 weight: 3
 ---
 
-As usual, I also want to devote a chapter on the _why_ question. Why do we need worldbuilding? Why would people like to learn facts about a non-existing world?
+As usual, I also want to devote a chapter to the _why_ question. Why do we need worldbuilding? Why would people like to learn facts about a non-existing world?
 
 Those are good questions. If you can't answer them, it's pretty hard to create a satisfying world! But the answer is very simple and predictable.
 
