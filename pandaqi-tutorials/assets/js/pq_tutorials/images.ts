@@ -1,9 +1,13 @@
 /* Images <=> Fullscreen */
-export default class Images {
+export default class Images 
+{
+    overlayImage: HTMLElement;
+    overlayImageSource: HTMLImageElement;
+
     constructor(id = "overlay-image", sourceID = "overlay-image-src")
     {
         this.overlayImage = document.getElementById(id);
-        this.overlayImageSource = document.getElementById(sourceID);
+        this.overlayImageSource = document.getElementById(sourceID) as HTMLImageElement;
         this.setupEvents();
     }
 
@@ -12,7 +16,7 @@ export default class Images {
         if(!this.overlayImage) { return; }
         if(!this.overlayImageSource) { return; }
 
-        const imgs = document.getElementsByTagName("img");
+        const imgs : HTMLImageElement[] = Array.from(document.getElementsByTagName("img"));
         for(const img of imgs)
         {
             if(img.classList.contains("no-click")) { continue; }

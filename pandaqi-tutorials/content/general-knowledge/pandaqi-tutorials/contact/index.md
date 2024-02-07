@@ -4,7 +4,7 @@ weight: 5
 type: "article"
 ---
 
-I'm old-school. Mail me at [askthepanda@pandaqi.com](mailto:askthepanda@pandaqi.com)
+I'm old-school. Mail me at [schoolofpanda@gmail.com](mailto:schoolofpanda@gmail.com)
 
 Other websites might provide alternative mailing addresses or platforms. They will probably work, though the one above is definitely the one you should try.
 

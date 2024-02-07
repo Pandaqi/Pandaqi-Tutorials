@@ -6,7 +6,7 @@ if(isset($_POST['subject']) && isset($_POST['message']) && isset($_POST['sender'
 	$sender = $_POST['sender'];
 	$headers = "From:  " . $sender;
 	if($sub != "" && $msg != "" && $sender != "" && filter_var($sender, FILTER_VALIDATE_EMAIL)) {
-		$sendMail = mail ("askthepanda@pandaqi.com", $sub, $msg, $headers);	
+		$sendMail = mail ("schoolofpanda@gmail.com", $sub, $msg, $headers);	
 		if($sendMail) {
 			$didWeSucceed = true;
 		}		

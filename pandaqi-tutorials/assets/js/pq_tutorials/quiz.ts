@@ -11,7 +11,13 @@ const config = {
     multiQuestions: ["general", "blanks"]
 }
 
-export default class Quiz {
+export default class Quiz 
+{
+    questionNode: HTMLElement;
+    answerNode: HTMLElement;
+    nextQuestionNode: HTMLElement;
+    questions: any[];
+
     constructor() 
     {
         this.questionNode = document.getElementById("quiz-question");
@@ -30,6 +36,7 @@ export default class Quiz {
     /* Step 1) we use QUIZ_DATA (global variable set by article) to generate all possible questions */
     generateQuestions()
     {
+        // @ts-ignore
         const data = window.QUIZ_DATA;
 
         for(let i = 0; i < data.length; i++)
@@ -171,6 +178,9 @@ export default class Quiz {
     
         shuffle(this.questions);
     }
+    blankString(arg0: string, blankString: any): string {
+        throw new Error("Method not implemented.");
+    }
 
     // turns string url (from frontmatter) into actual image
     convertImage(val)
@@ -211,7 +221,7 @@ export default class Quiz {
     
             const btn = document.createElement("div");
             btn.classList.add("quiz-button");
-            btn.setAttribute("data-correct", isCorrect);
+            btn.setAttribute("data-correct", isCorrect + "");
             btn.innerHTML = answerLetter;
             btnCont.appendChild(btn);
     

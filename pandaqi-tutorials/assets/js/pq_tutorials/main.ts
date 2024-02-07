@@ -14,6 +14,7 @@ const navigation = new Navigation();
 const quiz = new Quiz();
 const themeSwitcher = new ThemeSwitcher();
 
+// @ts-ignore
 window.PQ_TUTORIALS = {
     fonts: fonts,
     hexGrid: hexGrid,

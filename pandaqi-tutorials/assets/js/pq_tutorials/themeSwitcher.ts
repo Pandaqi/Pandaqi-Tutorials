@@ -1,12 +1,16 @@
 export default class ThemeSwitcher
 {
+    localStorageKey: string;
+    currentValue: boolean;
+    themeNames: string[];
+
     constructor()
     {
         this.localStorageKey = "pandaqiTutorialsDarkMode";
         this.currentValue = this.readMode();
         this.themeNames = ["theme-light", "theme-dark"];
 
-        const buttons = document.getElementsByClassName("darkModeBtn");
+        const buttons : HTMLButtonElement[] = Array.from(document.getElementsByClassName("darkModeBtn"));
         for(const button of buttons)
         {
             button.addEventListener("click", (ev) => {
@@ -21,7 +25,7 @@ export default class ThemeSwitcher
     toggleMode()
     {
         this.currentValue = !this.currentValue;
-        window.localStorage.setItem(this.localStorageKey, this.currentValue);
+        window.localStorage.setItem(this.localStorageKey, this.currentValue + "");
     }
 
     readMode()
