@@ -128,7 +128,7 @@ The styles I described above should be *separate font files*. On the computer, w
 Instead, find a typeface that naturally supports all the variations you need. This means you shouldn't use fake bolds, fake italics, fake small caps, or fake condensed/wide versions (by distorting the letters yourself).
 
 {{% example %}}
-I maintain a huge website---in Dutch, mind you---filled with connected short stories: [De Levenssaga](https://delevenssaga.nl). My main purpose was to have a website that is _easy_ and _fun_ to read on all devices. When picking fonts, I therefore restricted myself to font families that had many handmade variations: regular, italic, bold, black, medium, ...
+I maintain a huge website filled with connected short stories: [The Saga of Life](https://thesagaoflife.com/). My main purpose was to have a website that is _easy_ and _fun_ to read on all devices. When picking fonts, I therefore restricted myself to font families that had many handmade variations: regular, italic, bold, black, medium, ...
 
 It meant I had to throw out some fonts that looked really cool, but it was the right decision. The reader can choose their own font, and whatever option they choose, all stories will look consistent and readable.
 {{% /example %}}

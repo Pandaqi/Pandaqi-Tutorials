@@ -117,7 +117,7 @@ Block quotes have more to them than that. A block quotation is used when citing 
 Verse quotations have short lines, sometimes without much or any punctuation. It's best to indent them considerably, or centre them (if they aren't too long).
 
 {{% remark %}}
-Before, I mentioned my huge website containing short stories in Dutch ([De Levenssaga](https://delevenssaga.nl)). 
+Before, I mentioned my huge website containing short stories in both Dutch and English: [The Saga of Life](https://thesagaoflife.com/). 
 
 In that design, each chapter starts with a **drop cap**. It's a technique where you enlarge the first letter and display it in a more decorative font. (This websites uses them as well, but way less pronounced.)
 

@@ -1,7 +1,7 @@
 {{ $params := .Page.Params }}
 
 {{ if $params.bamboo }}
-    {{ $res := resources.Get "js/pq_bamboo/main.js" | js.Build "js/lib-pqBamboo.js" | minify }}
+    {{ $res := resources.Get "js/pq_bamboo/main.ts" | js.Build "js/lib-pqBamboo.js" | minify }}
     {{ $webworker := resources.Get "js/pq_bamboo/pqBamboo-webworker.js" | minify }}
     {{ $res.Publish }}
     {{ $webworker.Publish }}
@@ -9,13 +9,13 @@
 {{ end }}
 
 {{ if $params.midi }}
-    {{ $res := resources.Get "js/pq_midi/main.js" | js.Build "js/lib-pqMidi.js" | minify }}
+    {{ $res := resources.Get "js/pq_midi/main.ts" | js.Build "js/lib-pqMidi.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
 {{ if $params.daw }}
-    {{ $res := resources.Get "js/pq_daw/main.js" | js.Build "js/lib-pqDaw.js" | minify }}
+    {{ $res := resources.Get "js/pq_daw/main.ts" | js.Build "js/lib-pqDaw.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
@@ -27,7 +27,7 @@
 {{ end }}
 
 {{ if $params.paint }}
-    {{ $res := resources.Get "js/pq_paint/main.js" | js.Build "js/lib-pqPaint.js" | minify }}
+    {{ $res := resources.Get "js/pq_paint/main.ts" | js.Build "js/lib-pqPaint.js" | minify }}
     {{ $res.Publish }}
     <script async defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}

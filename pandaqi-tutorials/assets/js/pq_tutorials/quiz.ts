@@ -91,7 +91,7 @@ export default class Quiz
                     }
     
                     sentence = sentence.replace("$1", "<span>" + this.convertImage(o1) + "</span>");
-                    sentence = sentence.replace("$B", this.blankString);
+                    sentence = sentence.replace("$B", config.blankString);
     
                     if(questionType == "terms") 
                     {
@@ -177,9 +177,6 @@ export default class Quiz
         }
     
         shuffle(this.questions);
-    }
-    blankString(arg0: string, blankString: any): string {
-        throw new Error("Method not implemented.");
     }
 
     // turns string url (from frontmatter) into actual image
