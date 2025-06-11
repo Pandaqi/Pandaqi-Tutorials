@@ -38,7 +38,7 @@ Every single tip or tool for plotting simply applies to every storyline equally.
 
 Assume that everything you learn can be applied to any storyline, long or short, major or minor. In fact, most books have the same overall plot, but rearranged to feel unique. With so many books already written, finding fresh ways to combine storylines is one of the only ways to create a _unique_ plot.
 
-For more concrete tips on handling multiple storylines, check out the [A, B and C Story](../../storytelling/a-b-c-story/) from my Storytelling course. The chapters after it also regularly give concrete tips for combining storylines.
+For more concrete tips on handling multiple storylines, check out the [A, B and C Story](../../storytelling/the-a-b-c-story/) from my Storytelling course. The chapters after it also regularly give concrete tips for combining storylines.
 
 ## An example
 

@@ -117,7 +117,7 @@ Doing so forces you to keep it minimal and clean. You can't add too many element
 
 This also means that text is _usually_ centered on the page, offset quite a bit from the edge.
 
-Now this article, however, strays into the territory of teaching graphic design. So I'll stop here. I highly recommend simply visiting my [Design] courses (on this website) and working through those if you really want a good grasp on Graphic Design.
+Now this article, however, strays into the territory of teaching graphic design. So I'll stop here. I highly recommend simply visiting my [Design](/tutorials/visual/graphic-design/) courses (on this website) and working through those if you really want a good grasp on Graphic Design.
 
 ## Getting ideas
 

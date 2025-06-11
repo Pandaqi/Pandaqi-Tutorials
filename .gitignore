@@ -1,3 +1,5 @@
 public/
 private/
 node_modules/
+*.zip
+codemirror6/
