@@ -43,8 +43,8 @@
 
 	{{ $courses := where .Site.Pages ".Params.type" "eq" "course" }}
 	{{ $articles := where .Site.Pages ".Params.type" "eq" "article" }}
-	{{ $num_courses := lang.NumFmt 0 (len $courses) }}
-	{{ $num_articles := lang.NumFmt 0 (len $articles) }}
+	{{ $num_courses := lang.FormatNumberCustom 0 (len $courses) }}
+	{{ $num_articles := lang.FormatNumberCustom 0 (len $articles) }}
 
 	{{ $num_words := 0 }}
 	{{ range $courses }}
@@ -53,9 +53,9 @@
 	{{ range $articles }}
 		{{ $num_words = add $num_words (.Content | countwords) }}
 	{{ end }}
-	{{ $num_words = lang.NumFmt 0 $num_words }}
+	{{ $num_words = lang.FormatNumberCustom 0 $num_words }}
 
 	<div class="credits">
-		Contains {{ $num_courses }} courses, {{ $num_articles }} articles, and {{ $num_words }} words &middot;
+		Contains {{ $num_courses }} courses, {{ $num_articles }} articles, and {{ $num_words }} words
 	</div>
 </footer>
