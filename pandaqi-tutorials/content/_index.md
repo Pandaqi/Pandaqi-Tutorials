@@ -2,12 +2,14 @@
 title: "Pandaqi Tutorials"
 ---
 
-Welcome to my tutorial website! Pick a course and start reading.
+Welcome to my tutorial website! Pick a course and start reading. 
 
-It is my firm belief that knowledge and education should be free to all. You **don't** need to pay for a book, course, college, service, or whatever. You **don't** need to wait on the terrible educational system to improve yourself. 
+This website has many high-quality, playful courses from the areas in which I work. It aims to provide **free education and tools** as much as I can, mostly focused on **lifestyle** (health, productivity), **creative skills** (writing, designing, music), and **computer science** (programming, websites). 
 
-Most knowledge is available online, for free. Learning happens mostly by _doing_ and _experimenting_, which you can obviously do yourself, for free, any time.
+We also run a larger [**educational online store**](https://thewaywardmelody.com/) with higher-quality free and paid products such as educational games, puzzles, stories, escape rooms, and more.
 
-I maintain this website to help this cause. It has many high-quality, playful courses from the areas in which I work. If I don’t have what you're looking for, check out the [other resources](/tutorials/general-knowledge/pandaqi-tutorials/other-resources).
+If I don't have what you're looking for, check out the [other resources](/tutorials/general-knowledge/pandaqi-tutorials/other-resources).
+
+This website uses **no AI**. None. Not even a bit. Not in the writing, not in the coding, not in the images, nowhere. It has existed for many years, way before ChatGPT became a thing.
 
 

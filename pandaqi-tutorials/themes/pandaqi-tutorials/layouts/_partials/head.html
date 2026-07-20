@@ -8,7 +8,7 @@
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 
-	<link rel="icon" type="image/png" href="{{ .Site.BaseURL }}/favicon.png" />
+	<link rel="icon" type="image/png" href="{{ .Site.BaseURL }}favicon.png" />
 
 	{{ $options := (dict "targetPath" "css/critical.css" "outputStyle" "compressed" "transpiler" "dartsass") }}
 	{{ $style := resources.Get "sass/critical.scss" | css.Sass $options | minify }}
