@@ -90,7 +90,7 @@ export default class CodeBlock
 
         if(this.thread) { this.thread.terminate(); }
         
-        this.thread = new Worker(Config.workerURL);
+        this.thread = new Worker(Config.getWorkerURL());
         this.thread.addEventListener('message', this.finishExecuting.bind(this));
 
         let message = { code: content, config: this.getConfig() };

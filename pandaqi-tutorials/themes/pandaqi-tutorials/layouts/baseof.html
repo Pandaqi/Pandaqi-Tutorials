@@ -4,10 +4,20 @@
 	{{ partial "head.html" . }}
 {{ end }}
 <body class="theme-dark">
+	<script>
+		// Set the theme before anything renders, to prevent a flash of the wrong theme.
+		(function() {
+			try {
+				var stored = window.localStorage.getItem("pandaqiTutorialsDarkMode");
+				var dark = (stored !== null) ? (stored === "true") : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+				document.body.className = dark ? "theme-dark" : "theme-light";
+			} catch(e) { /* keep the default theme */ }
+		})();
+	</script>
 	<!-- {{ block "header" . }} {{ partialCached "header" . }} {{ end }} -->
 
 	<button id="gotoBottomBtn" aria-label="Button to scroll to bottom of page">
-		<img src="/tutorials/icon/go_to_bottom.svg" alt="Button to scroll to bottom" title="Button to scroll to bottom" class="no-click" />
+		<img src="{{ "icon/go_to_bottom.svg" | relURL }}" alt="Button to scroll to bottom" title="Button to scroll to bottom" class="no-click" />
 	</button>
 
 	<div id="overlay-image" style="display: none;">

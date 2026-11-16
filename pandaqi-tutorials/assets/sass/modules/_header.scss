@@ -29,7 +29,8 @@
     margin-bottom: -2.5em;
 
     height: 26vw;
-    background-image: url(/tutorials/theme/header.webp);
+    // relative to the compiled stylesheet (css/style.css)
+    background-image: url("../theme/header.webp");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center top;

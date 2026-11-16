@@ -86,7 +86,7 @@ export default class Config
     {
         const lowestAudio = this.allNotes.indexOf(this.AUDIO_BOUNDS.min);
         const highestAudio = this.allNotes.indexOf(this.AUDIO_BOUNDS.max);
-        this.allNotesAudio = this.allNotes.slice(lowestAudio, highestAudio);
+        this.allNotesAudio = this.allNotes.slice(lowestAudio, highestAudio + 1); // slice() end is exclusive
     }
 
     getAllNotesWithAvailableAudio() { return this.allNotesAudio; }

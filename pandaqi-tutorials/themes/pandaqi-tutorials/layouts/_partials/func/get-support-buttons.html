@@ -4,19 +4,19 @@
 	<div class="column">
 		<p>Buy one of my projects. You get something nice, I get something nice.</p>
 		<ul>
-			<li>{{ partial "button.html" (dict "href" "https://pandaqi.com" "content" "My video games" "addCustomIcon" "/tutorials/icon/pandaqi.svg" "class" "style-general-knowledge" ) }}</li>
-			<li>{{ partial "button.html" (dict "href" "https://tiamopastoor.com" "content" "My books" "addCustomIcon" "/tutorials/icon/tiamopastoor.svg" "class" "style-visual") }}</li>
-			<li>{{ partial "button.html" (dict "href" "https://eltroubadour.com" "content" "My music" "addCustomIcon" "/tutorials/icon/el_troubadour.svg" "class" "style-audio" ) }}</li>
-			<li>{{ partial "button.html" (dict "href" "https://rodepanda.com" "content" "My full portfolio" "addCustomIcon" "/tutorials/icon/rode_panda.svg" "class" "style-life-skills") }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://pandaqi.com" "content" "My video games" "addCustomIcon" ("icon/pandaqi.svg" | relURL) "class" "style-general-knowledge" ) }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://tiamopastoor.com" "content" "My books" "addCustomIcon" ("icon/tiamopastoor.svg" | relURL) "class" "style-visual") }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://eltroubadour.com" "content" "My music" "addCustomIcon" ("icon/el_troubadour.svg" | relURL) "class" "style-audio" ) }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://rodepanda.com" "content" "My full portfolio" "addCustomIcon" ("icon/rode_panda.svg" | relURL) "class" "style-life-skills") }}</li>
 		</ul>
 	</div>
 
 	<div class="column">
 		<p>Donate through a popular platform using the link below.</p>
 		<ul>
-			<li>{{ partial "button.html" (dict "href" "https://patreon.com/tiamopastoor" "content" "Support me on Patreon" "addCustomIcon" "/tutorials/icon/patreon.svg") }}</li>
-			<li>{{ partial "button.html" (dict "href" "https://ko-fi.com/tiamopastoor" "content" "Support me on Ko-Fi" "addCustomIcon" "/tutorials/icon/ko_fi.svg") }}</li>
-			<li>{{ partial "button.html" (dict "href" "https://www.buymeacoffee.com/tiamopastoor" "content" "Support me on Buy me a Coffee" "addCustomIcon" "/tutorials/icon/buy_me_a_coffee.svg") }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://patreon.com/tiamopastoor" "content" "Support me on Patreon" "addCustomIcon" ("icon/patreon.svg" | relURL)) }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://ko-fi.com/tiamopastoor" "content" "Support me on Ko-Fi" "addCustomIcon" ("icon/ko_fi.svg" | relURL)) }}</li>
+			<li>{{ partial "button.html" (dict "href" "https://www.buymeacoffee.com/tiamopastoor" "content" "Support me on Buy me a Coffee" "addCustomIcon" ("icon/buy_me_a_coffee.svg" | relURL)) }}</li>
 		</ul>
 		<p>Simply giving feedback or spreading the word is also worth a lot.</p>
 	</div>

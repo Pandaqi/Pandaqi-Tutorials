@@ -90,3 +90,8 @@ figure.midi-player {
         color: g.t("midi-error-color");
     }
 }
+
+// Safety net: if the JS bundle never initialises, don't collapse the widget to nothing
+figure.midi-player:not(:has(canvas)) {
+    min-height: 6em;
+}

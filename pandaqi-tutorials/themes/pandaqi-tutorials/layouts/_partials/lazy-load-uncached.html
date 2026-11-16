@@ -1,33 +1,35 @@
 {{ $params := .Page.Params }}
 
 {{ if $params.bamboo }}
-    {{ $res := resources.Get "js/pq_bamboo/main.ts" | js.Build "js/lib-pqBamboo.js" | minify }}
-    {{ $webworker := resources.Get "js/pq_bamboo/pqBamboo-webworker.js" | minify }}
+    {{ $res := resources.Get "js/pq_bamboo/main.ts" | js.Build "js/lib-pqBamboo.js" | minify | fingerprint }}
+    {{ $workerSource := resources.Get "js/pq_bamboo/pqBamboo-webworker.js" }}
+    {{ $webworker := $workerSource | resources.ExecuteAsTemplate "js/pq_bamboo/pqBamboo-worker.js" (dict "libURL" $res.RelPermalink) | minify | fingerprint }}
     {{ $res.Publish }}
     {{ $webworker.Publish }}
-    <script async defer src="{{ $res.RelPermalink }}"></script>
+    <script>window.PQ_BAMBOO_WORKER_URL = "{{ $webworker.RelPermalink | safeJS }}";</script>
+    <script defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
 {{ if $params.midi }}
-    {{ $res := resources.Get "js/pq_midi/main.ts" | js.Build "js/lib-pqMidi.js" | minify }}
+    {{ $res := resources.Get "js/pq_midi/main.ts" | js.Build "js/lib-pqMidi.js" | minify | fingerprint }}
     {{ $res.Publish }}
-    <script async defer src="{{ $res.RelPermalink }}"></script>
+    <script defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
 {{ if $params.daw }}
-    {{ $res := resources.Get "js/pq_daw/main.ts" | js.Build "js/lib-pqDaw.js" | minify }}
+    {{ $res := resources.Get "js/pq_daw/main.ts" | js.Build "js/lib-pqDaw.js" | minify | fingerprint }}
     {{ $res.Publish }}
-    <script async defer src="{{ $res.RelPermalink }}"></script>
+    <script defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
 {{ if $params.codemirror }}
-    {{ $res := resources.Get "js/codemirror/editor.bundle.min.js" }}
+    {{ $res := resources.Get "js/codemirror/editor.bundle.min.js" | fingerprint }}
     {{ $res.Publish }}
-    <script async defer src="{{ $res.RelPermalink }}"></script>
+    <script defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}
 
 {{ if $params.paint }}
-    {{ $res := resources.Get "js/pq_paint/main.ts" | js.Build "js/lib-pqPaint.js" | minify }}
+    {{ $res := resources.Get "js/pq_paint/main.ts" | js.Build "js/lib-pqPaint.js" | minify | fingerprint }}
     {{ $res.Publish }}
-    <script async defer src="{{ $res.RelPermalink }}"></script>
+    <script defer src="{{ $res.RelPermalink }}"></script>
 {{ end }}

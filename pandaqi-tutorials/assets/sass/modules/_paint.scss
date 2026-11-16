@@ -115,4 +115,9 @@ figure.pandaqi-paint {
     input:invalid {
         outline: 0.25em solid red;
     }
+
+    // Safety net: if the JS bundle never initialises, show an empty canvas-sized area instead of nothing
+    &:not(:has(canvas)) {
+        min-height: 12em;
+    }
 }

@@ -58,7 +58,9 @@ export default class Reverb extends PluginTemplate
         }
 
         const daw = this.plugin.getDaw();
-        const loadParams = { extension: "m4a", path: "/tutorials/daw/impulse_responses" }
+        // @ts-ignore => injected by the Hugo template; fallback keeps older/standalone builds working
+        const baseURL = (typeof window !== "undefined" && window.PQ_BASE_URL) ? window.PQ_BASE_URL : "/tutorials/";
+        const loadParams = { extension: "m4a", path: baseURL + "daw/impulse_responses" }
         await AUDIO.checkAndLoadResources(daw, [val], loadParams);
 
         (this.audioNodes.convolver as ConvolverNode).buffer = AUDIO.getResource(val);

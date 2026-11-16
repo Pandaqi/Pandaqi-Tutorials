@@ -31,7 +31,6 @@ sectionPagesMenu = "main"
 
 [params]
     testOnlyCriticalStyle = false
-    loadPQToolsAsSeparateFiles = false
 
 [markup.highlight]
     codeFences = true

@@ -28,7 +28,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(/tutorials/theme/footer.webp);
+    // relative to the compiled stylesheet (css/style.css)
+    background-image: url("../theme/footer.webp");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;

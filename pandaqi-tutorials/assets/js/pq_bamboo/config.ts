@@ -60,6 +60,12 @@ const operators = {
 const obj = {
     maxLoopCount: 20,
     workerURL: '/tutorials/js/pq_bamboo/pqBamboo-webworker.min.js',
+    getWorkerURL()
+    {
+        // @ts-ignore => injected by the Hugo template, so fingerprinted/renamed worker builds keep working
+        const injected = (typeof window !== "undefined") ? window.PQ_BAMBOO_WORKER_URL : null;
+        return injected || obj.workerURL;
+    },
     builtinGlobals: builtinGlobals, 
     tabCharacter: "\u00a0",
     tabSize: 2,

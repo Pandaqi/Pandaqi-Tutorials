@@ -16,8 +16,6 @@ export default class HexGrid
         const sizeOfOneEntry = fontSize * (8.0 + 0.5 + 0.5);
         const spaceLostPerRow = fontSize * 1.808;
 
-        console.log(sizeOfOneEntry);
-
         for(const hexGrid of hexGrids)
         {
             if(!hexGrid.parentElement.classList.contains("summary-grid")) { continue; }

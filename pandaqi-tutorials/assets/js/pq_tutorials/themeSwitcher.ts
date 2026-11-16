@@ -30,7 +30,11 @@ export default class ThemeSwitcher
 
     readMode()
     {
-        return window.localStorage.getItem(this.localStorageKey) == "true";
+        const stored = window.localStorage.getItem(this.localStorageKey);
+        if(stored !== null) { return stored == "true"; }
+
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return !!prefersDark;
     }
 
     setModeOnBody()

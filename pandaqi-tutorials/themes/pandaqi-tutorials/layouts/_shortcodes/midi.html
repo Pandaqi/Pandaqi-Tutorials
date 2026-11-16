@@ -17,4 +17,7 @@
     <div class="midi-data" data-tempo="{{ $tempo }}" data-time="{{ $time }}" data-strict="{{ $strict }}" data-pitchinput="{{ $pitch_input }}" data-timeinput="{{ $time_input }}" data-transpose="{{ $transpose }}" data-metronome="{{ $metronome }}" style="display:none;">
         {{- .Inner -}}
     </div>
+    <noscript>
+        <p>This interactive MIDI player needs JavaScript to play and visualise the notes.</p>
+    </noscript>
 </figure>

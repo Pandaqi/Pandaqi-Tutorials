@@ -8,14 +8,18 @@
 	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 
-	<link rel="icon" type="image/png" href="{{ .Site.BaseURL }}favicon.png" />
+	<link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}" />
 
 	{{ $options := (dict "targetPath" "css/critical.css" "outputStyle" "compressed" "transpiler" "dartsass") }}
-	{{ $style := resources.Get "sass/critical.scss" | css.Sass $options | minify }}
+	{{ $style := resources.Get "sass/critical.scss" | css.Sass $options | minify | fingerprint }}
 	<link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}">
 
+	{{/* Base path of the site (with trailing slash), used by the widget scripts for audio/worker assets. */}}
+	{{ $basePath := (.Site.BaseURL | urls.Parse).Path }}
+	{{ if eq $basePath "" }}{{ $basePath = "/" }}{{ end }}
+	<script>window.PQ_BASE_URL = "{{ $basePath | safeJS }}";</script>
+
 	{{ if .Params.enableMathJax }}
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	{{ end }}
 </head>

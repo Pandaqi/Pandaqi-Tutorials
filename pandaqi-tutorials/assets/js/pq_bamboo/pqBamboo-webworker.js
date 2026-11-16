@@ -1,4 +1,4 @@
-importScripts("/tutorials/js/lib-pqBamboo.min.js");
+importScripts("{{ .libURL }}");
 
 function displayFeedback(cfg, fb, res)
 {

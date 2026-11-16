@@ -14,7 +14,9 @@ const AudioLoader = class
 
     getFilePath()
     {
-        let basePath = "/tutorials/midi/audio";
+        // @ts-ignore => injected by the Hugo template; fallback keeps older/standalone builds working
+        const baseURL = (typeof window !== "undefined" && window.PQ_BASE_URL) ? window.PQ_BASE_URL : "/tutorials/";
+        let basePath = baseURL + "midi/audio";
 
         // @ts-ignore
         let useCustomPath = (PQ_MIDI.config && PQ_MIDI.config.audio && PQ_MIDI.config.audio.path)
@@ -22,7 +24,7 @@ const AudioLoader = class
         
         // @ts-ignore
         basePath = PQ_MIDI.config.audio.path;
-        if(basePath.charAt(basePath.length-1) == "/") { basePath.slice(0, -1); }
+        if(basePath.charAt(basePath.length-1) == "/") { basePath = basePath.slice(0, -1); }
         return basePath;
     }
 

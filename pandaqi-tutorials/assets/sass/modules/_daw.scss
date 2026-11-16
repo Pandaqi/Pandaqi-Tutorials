@@ -114,7 +114,8 @@ $icons: (
 
 .pq-daw-wrapper {
     .icon {
-        background-image: url(/tutorials/daw/assets/pq_daw_icons.webp);
+        // relative to the compiled stylesheet (css/style.css), so the site also works outside /tutorials/
+        background-image: url("../daw/assets/pq_daw_icons.webp");
         width: 32px;
         height: 32px;
         background-size: cover;
@@ -493,4 +494,7 @@ select {
         transform: rotate(90deg);
         z-index: 2000;
     }
+}
+.pq-daw-wrapper:not(:has(canvas)) {
+    min-height: 10em;
 }

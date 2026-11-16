@@ -4,7 +4,7 @@ import PLAYER from "./player"
 import DOM from "./dom"
 
 // initialize all DAW interfaces
-window.addEventListener('load', async () => 
+async function initDawInterfaces()
 {
     AUDIO.init();
     PLAYER.init();
@@ -22,4 +22,9 @@ window.addEventListener('load', async () =>
 
     // @ts-ignore => @DEBUGGING
     window.PQ_DAW = { daw: Daw, daws: daws };
-})
+}
+
+// Never rely on the `load` event alone: this bundle is loaded asynchronously (and Cloudflare Rocket Loader
+// defers every script until after `load`), in which case a `load` listener registered here would never fire.
+if(document.readyState !== "loading") { initDawInterfaces(); }
+else { document.addEventListener("DOMContentLoaded", initDawInterfaces, { once: true }); }

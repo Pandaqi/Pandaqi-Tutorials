@@ -49,17 +49,35 @@ export default class Navigation
     setupRandomButton()
     {
         if(!this.randBtn) { return; }
-        this.randBtn.addEventListener('click', (ev) => {
+        this.randBtn.addEventListener('click', async (ev) => {
+            ev.preventDefault();
+
             const metadataNode = document.getElementById("hidden-hugo-metadata");
-            if(!metadataNode || !metadataNode.dataset.pages) { return; }
-            const projectList = metadataNode.dataset.pages.split(",");
+            if(!metadataNode) { return; }
+
+            const projectList = await this.getRandomPageList(metadataNode);
+            if(projectList.length <= 0) { return; }
 
             const randIdx = Math.floor(Math.random() * projectList.length);
             const randURL = projectList[randIdx];
             window.location.href = randURL;
-            ev.preventDefault();
-            return false;
         })
+    }
+
+    // The page list is a separate (cached) JSON file nowadays, so it isn't repeated inside every article.
+    async getRandomPageList(node: HTMLElement) : Promise<string[]>
+    {
+        if(node.dataset.pages) { return node.dataset.pages.split(","); }
+        if(!node.dataset.pagesUrl) { return []; }
+
+        try {
+            const response = await fetch(node.dataset.pagesUrl);
+            if(!response.ok) { return []; }
+            return await response.json();
+        } catch(e) {
+            console.warn("Could not load the page list for the random button.", e);
+            return [];
+        }
     }
 
     /* Smooth scroll for all links */

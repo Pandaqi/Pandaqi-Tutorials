@@ -6,31 +6,31 @@
 	<div id="footer">
 		<ul>
 			<li>
-				{{ partial "button.html" (dict "href" "/tutorials/general-knowledge/pandaqi-tutorials/" "content" "About" "addIcon" true "class" "style-general-knowledge") }}
+				{{ partial "button.html" (dict "href" ("general-knowledge/pandaqi-tutorials/" | relURL) "content" "About" "addIcon" true "class" "style-general-knowledge") }}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "href" "https://pandaqi.com" "content" "Pandaqi | Games" "addCustomIcon" "/tutorials/icon/pandaqi.svg")
+				{{ partial "button.html" (dict "href" "https://pandaqi.com" "content" "Pandaqi | Games" "addCustomIcon" ("icon/pandaqi.svg" | relURL))
 			}}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "href" "https://pandaqi.com/blog/" "content" "Pandaqi | Blog" "addCustomIcon" "/tutorials/icon/writing_feather.svg")
+				{{ partial "button.html" (dict "href" "https://pandaqi.com/blog/" "content" "Pandaqi | Blog" "addCustomIcon" ("icon/writing_feather.svg" | relURL))
 			}}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "href" "https://tiamopastoor.com" "content" "Tiamo Pastoor | Books" "addCustomIcon" "/tutorials/icon/tiamopastoor.svg")
+				{{ partial "button.html" (dict "href" "https://tiamopastoor.com" "content" "Tiamo Pastoor | Books" "addCustomIcon" ("icon/tiamopastoor.svg" | relURL))
 			}}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "href" "https://rodepanda.com" "content" "Rode Panda | Portfolio" "addCustomIcon" "/tutorials/icon/rode_panda.svg") }}
+				{{ partial "button.html" (dict "href" "https://rodepanda.com" "content" "Rode Panda | Portfolio" "addCustomIcon" ("icon/rode_panda.svg" | relURL)) }}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "content" "Random" "id" "randProjBtn" "buttonTag" true "addCustomIcon" "/tutorials/icon/random.svg") }}
+				{{ partial "button.html" (dict "content" "Random" "id" "randProjBtn" "buttonTag" true "addCustomIcon" ("icon/random.svg" | relURL)) }}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "content" "Light / Dark Mode" "class" "darkModeBtn" "buttonTag" true "addCustomIcon" "/tutorials/icon/dark_mode_button.svg") }}
+				{{ partial "button.html" (dict "content" "Light / Dark Mode" "class" "darkModeBtn" "buttonTag" true "addCustomIcon" ("icon/dark_mode_button.svg" | relURL)) }}
 			</li>
 			<li>
-				{{ partial "button.html" (dict "content" "Go to top" "id" "gotoTopBtn" "buttonTag" true "addCustomIcon" "/tutorials/icon/go_to_top.svg") }}
+				{{ partial "button.html" (dict "content" "Go to top" "id" "gotoTopBtn" "buttonTag" true "addCustomIcon" ("icon/go_to_top.svg" | relURL)) }}
 			</li>
 		</ul>
 	</div>

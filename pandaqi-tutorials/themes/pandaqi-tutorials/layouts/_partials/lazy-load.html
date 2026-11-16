@@ -1,7 +1,7 @@
 {{ if not .Site.Params.testOnlyCriticalStyle }}
     {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "transpiler" "dartsass") }}
-    {{ $style := resources.Get "sass/style.scss" | css.Sass $options }}
-    <script async defer>
+    {{ $style := resources.Get "sass/style.scss" | css.Sass $options | fingerprint }}
+    <script>
 		const head = document.getElementsByTagName("head")[0];
 		let cssLink = document.createElement("link");
 	
@@ -13,13 +13,13 @@
 	</script>
 {{ end }}
 
-{{- $all_pages := .Site.RegularPages | shuffle | first 100 -}}
+{{- $all_pages := .Site.RegularPages -}}
 {{- $list := slice }}
 {{- range $all_pages -}}
     {{- $list = $list | append .RelPermalink -}}
 {{- end -}}
-{{- $list := delimit $list "," }}
-<span style="display:none;" id="hidden-hugo-metadata" data-pages="{{ $list }}"></span>
+{{- $randomData := resources.FromString "js/random-pages.json" ($list | jsonify) | fingerprint -}}
+<span style="display:none;" id="hidden-hugo-metadata" data-pages-url="{{ $randomData.RelPermalink }}"></span>
 
-{{ $res := resources.Get "js/pq_tutorials/main.ts" | js.Build "js/lib-pqTutorials.js" | minify }}
-<script async defer src="{{ $res.RelPermalink }}"></script>
+{{ $res := resources.Get "js/pq_tutorials/main.ts" | js.Build "js/lib-pqTutorials.js" | minify | fingerprint }}
+<script defer src="{{ $res.RelPermalink }}"></script>
