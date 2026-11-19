@@ -1,0 +1,4 @@
+{{- /* Builds the critical stylesheet. Called through partialCached so the Sass/asset */ -}}
+{{- /* pipeline only runs once per build instead of once per page. */ -}}
+{{- $options := (dict "targetPath" "css/critical.css" "outputStyle" "compressed" "transpiler" "dartsass") -}}
+{{- return (resources.Get "sass/critical.scss" | css.Sass $options | minify | fingerprint) -}}

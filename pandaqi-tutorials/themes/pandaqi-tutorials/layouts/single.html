@@ -20,7 +20,7 @@
 				{{ partial "block-general.html" (dict "context" . "leftContent" "Test your knowledge with the quiz!" "rightContent" $quiz "style" "quiz") }}
 			{{ end }}
 			
-			{{ $support := partial "func/get-support-buttons.html" }}
+			{{ $support := partialCached "func/get-support-buttons.html" . "support" }}
 			{{ partial "block-general.html" (dict "context" . "leftContent" "Support me and this website!" "rightContent" $support "style" "support") }}
 		</article>
 	</main>

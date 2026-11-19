@@ -1,0 +1,8 @@
+{{- /* Resolve the intrinsic width/height of an image inside the content tree. */ -}}
+{{- /* Called through partialCached (keyed on the path), so each image is only inspected once. */ -}}
+{{- $path := . -}}
+{{- $meta := false -}}
+{{- if fileExists $path -}}
+    {{- $meta = imageConfig $path -}}
+{{- end -}}
+{{- return $meta -}}

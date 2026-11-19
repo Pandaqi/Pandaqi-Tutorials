@@ -7,7 +7,7 @@
         {{ partial "toc.html" .context }}
     </div>
     <div class="right-block">
-        {{ .content | .context.Page.RenderString }}
+        {{ .content | safeHTML }}
     </div>
     <div class="right-pad"></div>
 </div>

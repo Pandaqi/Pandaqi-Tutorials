@@ -13,8 +13,8 @@ The video tag is very similar to the [Audio](../audio/) tag. That's why this cha
 {{< playful-code lang="html" height="500" >}}
 <figure>
     <video controls>
-        <source src="video.webm" type="video/webm">
-        <source src="video.mp4" type="video/mp4">
+        <source src="/tutorials/videos/example.webm" type="video/webm">
+        <source src="/tutorials/videos/example.mp4" type="video/mp4">
         Sorry, could not load this video.
     </video>
 </figure>

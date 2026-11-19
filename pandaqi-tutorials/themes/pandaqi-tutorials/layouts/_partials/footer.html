@@ -47,12 +47,8 @@
 	{{ $num_articles := lang.FormatNumberCustom 0 (len $articles) }}
 
 	{{ $num_words := 0 }}
-	{{ range $courses }}
-		{{ $num_words = add $num_words (.Content | countwords) }}
-	{{ end }}
-	{{ range $articles }}
-		{{ $num_words = add $num_words (.Content | countwords) }}
-	{{ end }}
+	{{ range $courses }}{{ $num_words = add $num_words (int .WordCount) }}{{ end }}
+	{{ range $articles }}{{ $num_words = add $num_words (int .WordCount) }}{{ end }}
 	{{ $num_words = lang.FormatNumberCustom 0 $num_words }}
 
 	<div class="credits">

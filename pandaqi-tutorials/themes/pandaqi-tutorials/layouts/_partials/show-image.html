@@ -13,8 +13,8 @@
 		</figcaption>
 	{{- end -}}
 	<picture>
-		{{- if fileExists $full_url -}}
-			{{- $img := imageConfig $full_url -}}			
+		{{- $img := partialCached "func/get-image-meta.html" $full_url $full_url -}}
+		{{- if $img -}}
 			{{- $alt := or $pure_alt ((replace .src ".webp" "") | humanize) -}}
 
 			<img 

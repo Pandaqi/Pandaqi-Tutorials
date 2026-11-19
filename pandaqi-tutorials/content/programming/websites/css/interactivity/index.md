@@ -22,7 +22,7 @@ _These aren't implemented everywhere yet, and more are coming, such as `muted`. 
 {{< playful-code-tab lang="html" >}}
 <figure>
     <video controls>
-        <source src="video.mp4" type="video/mp4">
+        <source src="/tutorials/videos/example.mp4" type="video/mp4">
         Sorry, could not load this video.
     </video>
 </figure>
